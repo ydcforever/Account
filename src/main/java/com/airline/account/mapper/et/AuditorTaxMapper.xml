@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.AuditorTaxMapper">
+
+    <insert id="insertTax" parameterType="com.airline.account.model.et.AuditorTax">
+        insert into AUDITOR_OFFICIAL_TAX
+        (
+        DOCUMENT_NO,
+        DOCUMENT_CARRIER_IATA_NO,
+        DOCUMENT_TYPE,
+        ISSUE_DATE,
+        TAX_CODE,
+        TAX_ALREADY_PAID_FLAG,
+        TAX_AMOUNT,
+        TAX_CURRENCY,
+        TAX_SEQ_NBR
+        )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{documentNo, jdbcType=VARCHAR},
+            #{documentCarrierIataNo, jdbcType=VARCHAR}
+            #{documentType, jdbcType=VARCHAR},
+            #{issueDate, jdbcType=DATE},
+            #{taxCode, jdbcType=VARCHAR},
+            #{taxAlreadyPaidFlag, jdbcType=VARCHAR},
+            #{taxAmount, jdbcType=DECIMAL},
+            #{taxCurrency, jdbcType=VARCHAR},
+            #{taxSeqNbr, jdbcType=DECIMAL}
+            FROM DUAL
+        </foreach>
+    </insert>
+</mapper>

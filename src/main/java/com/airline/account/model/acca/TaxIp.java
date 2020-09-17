@@ -1,0 +1,36 @@
+package com.airline.account.model.acca;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Created by ydc on 2020/9/15.
+ */
+@Data
+@NoArgsConstructor
+public class TaxIp {
+
+    private String dataType;
+
+    private String outputSys;
+
+    private String balMonth;
+
+    private String balPeriod;
+
+    private String airline3code;
+
+    private String ticketNo;
+
+    private String saleType;
+
+    private String currency;
+
+    private String taxType;
+
+    private String taxAmountCny;
+
+    private double taxAmount;
+
+    private String sourceName;
+}

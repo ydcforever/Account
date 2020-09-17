@@ -1,4 +1,4 @@
-package com.airline.account.ticket;
+package com.airline.account.model.et;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +25,7 @@ public class Ticket {
 
     private String conjunctionTicketString;
 
-    private String cnjCurrent;
+    private Integer cnjCurrent;
 
     private String cnjTotal;
 
@@ -86,4 +86,9 @@ public class Ticket {
     private String updateId;
 
     private String fareCalculationArea;
+
+    private String ffNo;
+
+    private String paxQty;
+
 }

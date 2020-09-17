@@ -1,4 +1,4 @@
-package com.airline.account.ticket;
+package com.airline.account.model.et;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

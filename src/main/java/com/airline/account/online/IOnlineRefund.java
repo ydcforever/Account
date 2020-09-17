@@ -1,6 +1,6 @@
 package com.airline.account.online;
 
-import com.airline.account.ticket.Segment;
+import com.airline.account.model.et.Segment;
 import com.airline.account.ticket.Tax;
 
 import java.util.List;

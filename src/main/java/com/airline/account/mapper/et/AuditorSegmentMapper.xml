@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.AuditorSegmentMapper">
+
+    <insert id="insertSegment" parameterType="com.airline.account.model.et.Segment">
+        insert into AUDITOR_OFFICIAL_COUPON
+        (
+        DOCUMENT_CARRIER_IATA_NO,
+        DOCUMENT_NO,
+        FIRST_TICKET_NO,
+        COUPON_NO,
+        FCA_NO,
+        FCA_AMOUNT,
+        DEPARTURE_DATE,
+        ARRIVE_DATE,
+        ORIGIN_AIRPORT_CODE,
+        DESTINATION_AIRPORT_CODE,
+        CARRIER_IATA_NO,
+
+        STOPOVER_INDICATOR,
+        FARE_BASIS,
+        FLIGHT_NO,
+        SERVICE_CLASS,
+        FLIGHT_DATE,
+        COUPON_STATUS_INDICATOR,
+        COUPON_BONUS_FLAG,
+        ISSUE_DATE,
+        DOCUMENT_TYPE,
+        COUPON_USE_INDI,
+
+        CNJ_CURRENT,
+        DEPARTURE_TERMINAL,
+        ARRIVAL_TERMINAL,
+        INVOLUNTARY_INDICATOR,
+        COMPARTMENT,
+        BAGGAGE_ALLOWANCE,
+        NOT_VALID_BEFORE,
+        NOT_VALID_AFTER,
+        EMD_COUPON_STATUS,
+        OPT_FLIGHT_NO,
+        ASR_SEAT
+        )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.documentCarrierIataNo, jdbcType=VARCHAR},
+            #{item.documentNo, jdbcType=VARCHAR},
+            #{item.firstTicketNo, jdbcType=VARCHAR},
+            #{item.couponNo, jdbcType=DECIMAL},
+            #{item.fcaNo, jdbcType=DECIMAL},
+            #{item.fcaAmount, jdbcType=DECIMAL},
+            #{item.departureDate, jdbcType=VARCHAR},
+            #{item.arriveDate, jdbcType=VARCHAR},
+            #{item.originAirportCode, jdbcType=VARCHAR},
+            #{item.destinationAirportCode, jdbcType=VARCHAR},
+            #{item.carrierIataNo, jdbcType=VARCHAR},
+
+            #{item.stopoverIndicator, jdbcType=VARCHAR},
+            #{item.fareBasis, jdbcType=VARCHAR},
+            #{item.flightNo, jdbcType=VARCHAR},
+            #{item.serviceClass, jdbcType=VARCHAR},
+            #{item.flightDate, jdbcType=DATE},
+            #{item.couponStatusIndicator, jdbcType=VARCHAR},
+            #{item.couponBonusFlag, jdbcType=VARCHAR},
+            #{item.issueDate, jdbcType=DATE},
+            #{item.documentType, jdbcType=VARCHAR},
+            #{item.couponUseIndi, jdbcType=VARCHAR},
+
+            #{item.cnjCurrent, jdbcType=DECIMAL},
+            #{item.departureTerminal, jdbcType=VARCHAR},
+            #{item.arrivalTerminal, jdbcType=VARCHAR},
+            #{item.involuntaryIndicator, jdbcType=VARCHAR},
+            #{item.compartment, jdbcType=VARCHAR},
+            #{item.baggageAllowance, jdbcType=VARCHAR},
+            #{item.notValidBefore, jdbcType=VARCHAR},
+            #{item.notValidAfter, jdbcType=VARCHAR},
+            #{item.emdCouponStatus, jdbcType=VARCHAR},
+            #{item.optFlightNo, jdbcType=VARCHAR},
+            #{item.asrSeat, jdbcType=VARCHAR}
+            FROM DUAL
+        </foreach>
+    </insert>
+</mapper>

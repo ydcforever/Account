@@ -1,7 +1,7 @@
 package com.airline.account.calculate;
 
-import com.airline.account.ticket.Segment;
-import com.airline.account.ticket.Ticket;
+import com.airline.account.model.et.Segment;
+import com.airline.account.model.et.Ticket;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;

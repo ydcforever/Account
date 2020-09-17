@@ -1,7 +1,5 @@
 package com.airline.account.utils;
-
 import com.airline.account.ticket.Tax;
-
 import java.util.Iterator;
 import java.util.List;
 

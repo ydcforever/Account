@@ -1,8 +1,8 @@
 package com.airline.account.audit;
 
-import com.airline.account.ticket.Exchange;
+import com.airline.account.model.et.Exchange;
+import com.airline.account.model.et.Ticket;
 import com.airline.account.ticket.Tax;
-import com.airline.account.ticket.Ticket;
 
 import java.util.List;
 
