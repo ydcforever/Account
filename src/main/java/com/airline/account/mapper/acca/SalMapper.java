@@ -12,15 +12,18 @@ import java.util.List;
 @Repository
 public interface SalMapper {
 
-    public List<Sal> queryDIpCnj(@Param("sal") Sal cnjSal);
+    //查询某段时间内的主票, 未完成
+//    public List<Sal> queryDIpCnj(String begin, String end);
+//    public List<Sal> queryDDpCnj(String begin, String end);
+//    public List<Sal> queryMIpCnj(String begin, String end);
+//    public List<Sal> queryMDpCnj(String begin, String end);
 
-    public List<Sal> queryDDpCnj(@Param("sal") Sal cnjSal);
+    public List<Sal> queryDIpSal(@Param("sal") Sal cnjSal);
 
-    public List<Sal> queryMIpCnj(@Param("sal") Sal cnjSal);
+    public List<Sal> queryDDpSal(@Param("sal") Sal cnjSal);
 
-    public List<Sal> queryMDpCnj(@Param("sal") Sal cnjSal);
+    public List<Sal> queryMIpSal(@Param("sal") Sal cnjSal);
 
-    public void moveIp(Sal sal);
+    public List<Sal> queryMDpSal(@Param("sal") Sal cnjSal);
 
-    public void moveDp(Sal sal);
 }

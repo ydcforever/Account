@@ -44,7 +44,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public void moveDIp(Sal cnjSal) {
-        List<Sal> sals = salMapper.queryDIpCnj(cnjSal);
+        List<Sal> sals = salMapper.queryDIpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
             List<Ticket> tickets = new ArrayList<>();
@@ -69,7 +69,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public void moveDDp(Sal cnjSal) {
-        List<Sal> sals = salMapper.queryDDpCnj(cnjSal);
+        List<Sal> sals = salMapper.queryDDpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
             List<Ticket> tickets = new ArrayList<>();
@@ -94,7 +94,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public void moveMIp(Sal cnjSal) {
-        List<Sal> sals = salMapper.queryMIpCnj(cnjSal);
+        List<Sal> sals = salMapper.queryMIpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
             List<Ticket> tickets = new ArrayList<>();
@@ -119,7 +119,7 @@ public class MoveServiceImpl implements MoveService {
      */
     @Override
     public void moveMDp(Sal cnjSal) {
-        List<Sal> sals = salMapper.queryMDpCnj(cnjSal);
+        List<Sal> sals = salMapper.queryMDpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
             List<Ticket> tickets = new ArrayList<>();

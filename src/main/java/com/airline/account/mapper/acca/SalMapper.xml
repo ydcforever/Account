@@ -107,28 +107,28 @@
         and t.first_ticket_no = #{sal.ticketNo}
     </sql>
 
-    <select id="queryDIpCnj" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryDIpSal" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
         select
         <include refid="showCol"/>
         FROM acca_sal_ip_d t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryDDpCnj" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryDDpSal" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
         select
         <include refid="showCol"/>
         FROM acca_sal_dp_d t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryMIpCnj" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryMIpSal" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
         select
            <include refid="showCol"/>
         FROM acca_sal_ip_m t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryMDpCnj" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryMDpSal" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
         select
         <include refid="showCol"/>
         FROM acca_sal_dp_m t
