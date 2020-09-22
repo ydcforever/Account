@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.airline.account.mapper.acca.SalMapper">
-    <resultMap type="com.airline.account.model.acca.Sal" id="SAL">
+    <resultMap type="com.airline.account.model.acca.Sal" id="Sal">
         <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"/>
         <result column="OUTPUT_SYS" property="outputSys" jdbcType="VARCHAR"/>
         <result column="BAL_MONTH" property="balMonth" jdbcType="VARCHAR"/>
@@ -11,7 +11,7 @@
         <result column="FINANCIAL_NO" property="financialNo" jdbcType="VARCHAR"/>
         <result column="COUPON_USE_INDICATOR" property="couponUseIndicator" jdbcType="VARCHAR"/>
         <result column="FIRST_TICKET_NO" property="firstTicketNo" jdbcType="VARCHAR"/>
-        <result column="CNJ_NO" property="cnjNo" jdbcType="VARCHAR"/>
+        <result column="CNJ_NO" property="cnjNo" jdbcType="DECIMAL"/>
         <result column="SALE_TYPE" property="saleType" jdbcType="VARCHAR"/>
         <result column="TICKET_TYPE" property="ticketType" jdbcType="VARCHAR"/>
         <result column="ISSUE_DATE" property="issueDate" jdbcType="VARCHAR"/>
@@ -85,7 +85,6 @@
         <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>
     </resultMap>
 
-
     <sql id="showCol">
           DATA_TYPE,OUTPUT_SYS,BAL_MONTH,BAL_PERIOD,AIRLINE_3CODE,
           TICKET_NO,FINANCIAL_NO,COUPON_USE_INDICATOR,FIRST_TICKET_NO,CNJ_NO,
@@ -103,8 +102,8 @@
     </sql>
 
     <sql id="cnjClause">
-             t.airline_3code = #{sal.airline3Code}
-        and t.first_ticket_no = #{sal.ticketNo}
+             t.airline_3code = #{sal.airline3code}
+         and t.first_ticket_no = #{sal.ticketNo}
     </sql>
 
     <select id="queryDIpSal" resultMap="Sal" parameterType="com.airline.account.model.acca.Sal">
@@ -135,4 +134,10 @@
         where <include refid="cnjClause"/>
     </select>
 
+    <select id="testQuery" resultType="com.airline.account.model.acca.Sal">
+        SELECT
+        <include refid="showCol"/>
+        FROM ACCA_SAL_DP_D t
+        WHERE <include refid="cnjClause"/>
+    </select>
 </mapper>

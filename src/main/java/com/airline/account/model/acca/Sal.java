@@ -170,4 +170,5 @@ public class Sal {
 
     private String saleCity;
 
+    private String sourceName;
 }

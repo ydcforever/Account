@@ -19,10 +19,10 @@
     <!-- 自动扫描base-package下的java文件,
              如果扫描到有@Component @Controller@Service等这些注解的类,
              则把这些类注册为bean -->
-    <context:component-scan base-package="springfox,com.airline.account.*"/>
+    <context:component-scan base-package="com.airline.account.*"/>
 
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
+    <!--<mvc:default-servlet-handler/>-->
+    <!--<mvc:annotation-driven/>-->
 
     <!-- implementor提供者
     A：直接给定服务器提供者类名
@@ -32,7 +32,7 @@
         <property name="locations">
             <list>
                 <value>classpath:jdbc.properties</value>
-                <value>classpath:product_param.properties</value>
+                <!--<value>classpath:product_param.properties</value>-->
             </list>
         </property>
     </bean>

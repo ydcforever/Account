@@ -28,32 +28,37 @@ public class TaxDp {
 
     private String taxType;
 
-    private String taxAmount1Cny;
+    private double taxAmount1Cny;
 
     private double taxAmount1;
 
     private String taxType2;
 
-    private String taxAmount2Cny;
+    private double taxAmount2Cny;
 
     private double taxAmount2;
 
     private String taxType3;
 
-    private String taxAmount3Cny;
+    private double taxAmount3Cny;
 
     private double taxAmount3;
 
     private String taxType4;
 
-    private String taxAmount4Cny;
+    private double taxAmount4Cny;
 
     private double taxAmount4;
 
     private String taxType5;
 
-    private String taxAmount5Cny;
+    private double taxAmount5Cny;
 
     private double taxAmount5;
 
+//    private String carrier;
+//
+//    private double flagid;
+//
+//    private String sourceName;
 }

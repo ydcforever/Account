@@ -91,4 +91,10 @@ public class Ticket {
 
     private String paxQty;
 
+    public Ticket(String documentCarrierIataNo, String documentNo, String documentType, String issueDate) {
+        this.documentCarrierIataNo = documentCarrierIataNo;
+        this.documentNo = documentNo;
+        this.documentType = documentType;
+        this.issueDate = issueDate;
+    }
 }

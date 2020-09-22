@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.airline.account.mapper.acca.SalMapper">
+<mapper namespace="com.airline.account.mapper.acca.TaxMapper">
     <resultMap type="com.airline.account.model.acca.TaxDp" id="TaxDp">
         <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"/>
         <result column="OUTPUT_SYS" property="outputSys" jdbcType="VARCHAR"/>
@@ -25,12 +25,12 @@
         <result column="TAX_TYPE5" property="taxType5" jdbcType="VARCHAR"/>
         <result column="TAX_AMOUNT5_CNY" property="taxAmount5Cny" jdbcType="DECIMAL"/>
         <result column="TAX_AMOUNT5" property="taxAmount5" jdbcType="DECIMAL"/>
-        <result column="CARRIER" property="carrier" jdbcType="VARCHAR"/>
-        <result column="FLAGID" property="flagid" jdbcType="DECIMAL"/>
-        <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>
+        <!--<result column="CARRIER" property="carrier" jdbcType="VARCHAR"/>-->
+        <!--<result column="FLAGID" property="flagid" jdbcType="DECIMAL"/>-->
+        <!--<result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>-->
     </resultMap>
 
-    <resultMap type="com.airline.account.model.acca.TaxIp" id="TaxIP">
+    <resultMap type="com.airline.account.model.acca.TaxIp" id="TaxIp">
         <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"/>
         <result column="OUTPUT_SYS" property="outputSys" jdbcType="VARCHAR"/>
         <result column="BAL_MONTH" property="balMonth" jdbcType="VARCHAR"/>
@@ -42,9 +42,9 @@
         <result column="TAX_TYPE" property="taxType" jdbcType="VARCHAR"/>
         <result column="TAX_AMOUNT_CNY" property="taxAmountCny" jdbcType="DECIMAL"/>
         <result column="TAX_AMOUNT" property="taxAmount" jdbcType="DECIMAL"/>
-        <result column="CARRIER" property="carrier" jdbcType="VARCHAR"/>
-        <result column="FLAGID" property="flagid" jdbcType="DECIMAL"/>
-        <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>
+        <!--<result column="CARRIER" property="carrier" jdbcType="VARCHAR"/>-->
+        <!--<result column="FLAGID" property="flagid" jdbcType="DECIMAL"/>-->
+        <!--<result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>-->
     </resultMap>
 
 
@@ -53,45 +53,44 @@
         SALE_TYPE,CURRENCY,TAX_TYPE,TAX_AMOUNT1_CNY,TAX_AMOUNT1,TAX_TYPE2,
         TAX_AMOUNT2_CNY,TAX_AMOUNT2,TAX_TYPE3,TAX_AMOUNT3_CNY,TAX_AMOUNT3,
         TAX_TYPE4,TAX_AMOUNT4_CNY,TAX_AMOUNT4,TAX_TYPE5,TAX_AMOUNT5_CNY,
-        TAX_AMOUNT5,CARRIER,FLAGID,SOURCE_NAME
+        TAX_AMOUNT5
     </sql>
 
     <sql id="showTaxIpCol">
         DATA_TYPE,OUTPUT_SYS,BAL_MONTH,BAL_PERIOD,AIRLINE_3CODE,TICKET_NO,
-        SALE_TYPE,CURRENCY,TAX_TYPE,TAX_AMOUNT_CNY,TAX_AMOUNT,
-        CARRIER,FLAGID,SOURCE_NAME
+        SALE_TYPE,CURRENCY,TAX_TYPE,TAX_AMOUNT_CNY,TAX_AMOUNT
     </sql>
 
     <sql id="cnjClause">
-        t.airline_3code = #{sal.airline3Code}
+        t.airline_3code = #{sal.airline3code}
         and t.ticket_no = #{sal.ticketNo}
     </sql>
 
-    <select id="queryDTaxDp" resultMap="TaxDp" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryDTaxDp" resultMap="TaxDp" parameterType="com.airline.account.model.acca.TaxDp">
         select
         <include refid="showTaxDpCol"/>
-        FROM acca_tax_ip_d t
+        FROM acca_tax_dp_d t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryMTaxDp" resultMap="TaxDp" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryMTaxDp" resultMap="TaxDp" parameterType="com.airline.account.model.acca.TaxDp">
         select
         <include refid="showTaxIpCol"/>
         FROM acca_tax_dp_d t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryDTaxIp" resultMap="TaxIp" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryDTaxIp" resultMap="TaxIp" parameterType="com.airline.account.model.acca.TaxIp">
         select
         <include refid="showTaxIpCol"/>
-        FROM acca_tax_ip_m t
+        FROM acca_tax_ip_d t
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="queryMTaxIp" resultMap="TaxIp" parameterType="com.airline.account.model.acca.Sal">
+    <select id="queryMTaxIp" resultMap="TaxIp" parameterType="com.airline.account.model.acca.TaxIp">
         select
-        <include refid="showCol"/>
-        FROM acca_tax_dp_m t
+        <include refid="showTaxIpCol"/>
+        FROM acca_tax_ip_m t
         where <include refid="cnjClause"/>
     </select>
 

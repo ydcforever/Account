@@ -18,6 +18,8 @@ public interface SalMapper {
 //    public List<Sal> queryMIpCnj(String begin, String end);
 //    public List<Sal> queryMDpCnj(String begin, String end);
 
+    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("tbl") String table);
+
     public List<Sal> queryDIpSal(@Param("sal") Sal cnjSal);
 
     public List<Sal> queryDDpSal(@Param("sal") Sal cnjSal);

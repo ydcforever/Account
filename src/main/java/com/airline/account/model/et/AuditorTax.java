@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class AuditorTax {
+    private String documentCarrierIataNo;
 
     private String documentNo;
-
-    private String documentCarrierIataNo;
 
     private String documentType;
 
@@ -26,5 +25,13 @@ public class AuditorTax {
 
     private String taxCurrency;
 
-    private String taxSeqNbr;
+    private Integer taxSeqNbr;
+
+    public AuditorTax(String documentCarrierIataNo, String documentNo, String issueDate, String taxCode, double taxAmount) {
+        this.documentCarrierIataNo = documentCarrierIataNo;
+        this.documentNo = documentNo;
+        this.issueDate = issueDate;
+        this.taxCode = taxCode;
+        this.taxAmount = taxAmount;
+    }
 }

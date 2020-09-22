@@ -28,9 +28,13 @@ public class TaxIp {
 
     private String taxType;
 
-    private String taxAmountCny;
+    private double taxAmountCny;
 
     private double taxAmount;
 
-    private String sourceName;
+//    private String carrier;
+//
+//    private double flagid;
+//
+//    private String sourceName;
 }

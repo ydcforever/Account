@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.airline.account.mapper.et.AuditorTaxMapper">
 
-    <insert id="insertTax" parameterType="com.airline.account.model.et.AuditorTax">
+    <insert id="insertTax">
         insert into AUDITOR_OFFICIAL_TAX
         (
-        DOCUMENT_NO,
         DOCUMENT_CARRIER_IATA_NO,
+        DOCUMENT_NO,
         DOCUMENT_TYPE,
         ISSUE_DATE,
         TAX_CODE,
@@ -17,15 +17,16 @@
         )
         <foreach collection="list" item="item" index="index" separator="UNION ALL">
             SELECT
-            #{documentNo, jdbcType=VARCHAR},
-            #{documentCarrierIataNo, jdbcType=VARCHAR}
-            #{documentType, jdbcType=VARCHAR},
-            #{issueDate, jdbcType=DATE},
-            #{taxCode, jdbcType=VARCHAR},
-            #{taxAlreadyPaidFlag, jdbcType=VARCHAR},
-            #{taxAmount, jdbcType=DECIMAL},
-            #{taxCurrency, jdbcType=VARCHAR},
-            #{taxSeqNbr, jdbcType=DECIMAL}
+            #{item.documentCarrierIataNo, jdbcType=VARCHAR},
+            #{item.documentNo, jdbcType=VARCHAR},
+            #{item.documentType, jdbcType=VARCHAR},
+
+            to_date(#{item.issueDate, jdbcType=DATE}, 'yyyyMMdd'),
+            #{item.taxCode, jdbcType=VARCHAR},
+            #{item.taxAlreadyPaidFlag, jdbcType=VARCHAR},
+            #{item.taxAmount, jdbcType=DECIMAL},
+            #{item.taxCurrency, jdbcType=VARCHAR},
+            #{item.taxSeqNbr, jdbcType=DECIMAL}
             FROM DUAL
         </foreach>
     </insert>

@@ -53,7 +53,6 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addIpSeg(segments, cnjSal);
-                auditorSegmentMapper.insertSegment(segments);
                 List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
                 addIpTax(auditorTaxes, taxIps);
             }
@@ -78,11 +77,10 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addDpSeg(segments, cnjSal);
-                auditorSegmentMapper.insertSegment(segments);
                 List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
                 addDpTax(auditorTaxes, taxDps);
             }
-            auditorTicketMapper.insertTicket(tickets);
+//            auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             auditorTaxMapper.insertTax(auditorTaxes);
         }
@@ -103,7 +101,6 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addIpSeg(segments, cnjSal);
-                auditorSegmentMapper.insertSegment(segments);
                 List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
                 addIpTax(auditorTaxes, taxIps);
             }
@@ -128,7 +125,6 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addDpSeg(segments, cnjSal);
-                auditorSegmentMapper.insertSegment(segments);
                 List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
                 addDpTax(auditorTaxes, taxDps);
             }
@@ -147,6 +143,7 @@ public class MoveServiceImpl implements MoveService {
         Ticket ticket = new Ticket();
         ticket.setDocumentCarrierIataNo(sal.getAirline3code());
         ticket.setDocumentNo(sal.getTicketNo());
+        ticket.setIssueDate(sal.getIssueDate());
         ticket.setDocumentType(sal.getSaleType());
         ticket.setAgentIataNo(sal.getAgentNo());
         ticket.setCnjCurrent(sal.getCnjNo());
@@ -174,7 +171,7 @@ public class MoveServiceImpl implements MoveService {
         for(int i = 0, len = status.length; i<len; i++){
             Segment seg = new Segment();
             if(!"V".equals(status[i])){
-                if (i == 1) {
+                if (i == 0) {
                     seg.setDocumentCarrierIataNo(sal.getAirline3code());
                     seg.setDocumentNo(sal.getTicketNo());
                     seg.setFirstTicketNo(sal.getFirstTicketNo());
@@ -187,7 +184,7 @@ public class MoveServiceImpl implements MoveService {
                     seg.setFlightNo(sal.getFlightNo1());
                     seg.setCouponUseIndi(status[i]);
                     list.add(seg);
-                } else if (i == 2){
+                } else if (i == 1){
                     seg.setDocumentCarrierIataNo(sal.getAirline3code());
                     seg.setDocumentNo(sal.getTicketNo());
                     seg.setFirstTicketNo(sal.getFirstTicketNo());
@@ -202,7 +199,7 @@ public class MoveServiceImpl implements MoveService {
                     seg.setFlightNo(sal.getFlightNo2());
                     seg.setCouponUseIndi(status[i]);
                     list.add(seg);
-                } else if (i == 3){
+                } else if (i == 2){
                     seg.setDocumentCarrierIataNo(sal.getAirline3code());
                     seg.setDocumentNo(sal.getTicketNo());
                     seg.setFirstTicketNo(sal.getFirstTicketNo());
@@ -217,7 +214,7 @@ public class MoveServiceImpl implements MoveService {
                     seg.setFlightNo(sal.getFlightNo3());
                     seg.setCouponUseIndi(status[i]);
                     list.add(seg);
-                } else if(i == 4){
+                } else if(i == 3){
                     seg.setDocumentCarrierIataNo(sal.getAirline3code());
                     seg.setDocumentNo(sal.getTicketNo());
                     seg.setFirstTicketNo(sal.getFirstTicketNo());
@@ -248,6 +245,7 @@ public class MoveServiceImpl implements MoveService {
                 AuditorTax auditorTax = new AuditorTax();
                 auditorTax.setDocumentCarrierIataNo(dp.getAirline3code());
                 auditorTax.setDocumentNo(dp.getTicketNo());
+                auditorTax.setDocumentType(dp.getSaleType());
                 auditorTax.setTaxCode(dp.getTaxType());
                 auditorTax.setTaxAmount(dp.getTaxAmount1());
                 auditorTax.setTaxCurrency(dp.getCurrency());
@@ -258,6 +256,7 @@ public class MoveServiceImpl implements MoveService {
                 AuditorTax auditorTax = new AuditorTax();
                 auditorTax.setDocumentCarrierIataNo(dp.getAirline3code());
                 auditorTax.setDocumentNo(dp.getTicketNo());
+                auditorTax.setDocumentType(dp.getSaleType());
                 auditorTax.setTaxCode(dp.getTaxType2());
                 auditorTax.setTaxAmount(dp.getTaxAmount2());
                 auditorTax.setTaxCurrency(dp.getCurrency());
@@ -268,6 +267,7 @@ public class MoveServiceImpl implements MoveService {
                 AuditorTax auditorTax = new AuditorTax();
                 auditorTax.setDocumentCarrierIataNo(dp.getAirline3code());
                 auditorTax.setDocumentNo(dp.getTicketNo());
+                auditorTax.setDocumentType(dp.getSaleType());
                 auditorTax.setTaxCode(dp.getTaxType3());
                 auditorTax.setTaxAmount(dp.getTaxAmount3());
                 auditorTax.setTaxCurrency(dp.getCurrency());
@@ -278,6 +278,7 @@ public class MoveServiceImpl implements MoveService {
                 AuditorTax auditorTax = new AuditorTax();
                 auditorTax.setDocumentCarrierIataNo(dp.getAirline3code());
                 auditorTax.setDocumentNo(dp.getTicketNo());
+                auditorTax.setDocumentType(dp.getSaleType());
                 auditorTax.setTaxCode(dp.getTaxType4());
                 auditorTax.setTaxAmount(dp.getTaxAmount4());
                 auditorTax.setTaxCurrency(dp.getCurrency());
@@ -288,6 +289,7 @@ public class MoveServiceImpl implements MoveService {
                 AuditorTax auditorTax = new AuditorTax();
                 auditorTax.setDocumentCarrierIataNo(dp.getAirline3code());
                 auditorTax.setDocumentNo(dp.getTicketNo());
+                auditorTax.setDocumentType(dp.getSaleType());
                 auditorTax.setTaxCode(dp.getTaxType5());
                 auditorTax.setTaxAmount(dp.getTaxAmount5());
                 auditorTax.setTaxCurrency(dp.getCurrency());
