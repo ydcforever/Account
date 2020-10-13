@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by ydc on 2020/9/7.
  */
-public class TaxUtil {
+public final class TaxUtil {
 
     /**
      * 税费比对，主要是改签

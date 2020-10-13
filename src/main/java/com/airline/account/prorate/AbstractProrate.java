@@ -33,15 +33,15 @@ public abstract class AbstractProrate {
         Map<String, SegmentTax> refund = new HashMap<>();
         for(String no : segNo){
             Map<String, SegmentTax> segTax = map.get(no);
-            Set<Map.Entry<String, SegmentTax>> set = segTax.entrySet();
-            for(Map.Entry<String, SegmentTax> item: set){
-                addSegMapTax(refund, item.getValue());
+            Collection<SegmentTax> seg = segTax.values();
+            for(SegmentTax segmentTax: seg){
+                addSegMapTax(refund, segmentTax);
             }
         }
         List<SegmentTax> list = new ArrayList<>();
-        Set<Map.Entry<String, SegmentTax>> refundSet = refund.entrySet();
-        for(Map.Entry<String, SegmentTax> item: refundSet){
-            list.add(item.getValue());
+        Collection<SegmentTax> refundSet = refund.values();
+        for(SegmentTax segmentTax: refundSet){
+            list.add(segmentTax);
         }
         return list;
     }

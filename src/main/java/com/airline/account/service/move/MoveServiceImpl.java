@@ -8,10 +8,11 @@ import com.airline.account.mapper.et.AuditorTicketMapper;
 import com.airline.account.model.acca.Sal;
 import com.airline.account.model.acca.TaxDp;
 import com.airline.account.model.acca.TaxIp;
-import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.AuditorTax;
+import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class MoveServiceImpl implements MoveService {
     @Autowired
     private TaxMapper taxMapper;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     /**
      * SAL国际日数据迁移
      * @param cnjSal
@@ -52,7 +56,7 @@ public class MoveServiceImpl implements MoveService {
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
                 addTicket(tickets, s);
-                addIpSeg(segments, cnjSal);
+                addSeg(segments, cnjSal);
                 List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
                 addIpTax(auditorTaxes, taxIps);
             }
@@ -76,7 +80,7 @@ public class MoveServiceImpl implements MoveService {
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
                 addTicket(tickets, s);
-                addDpSeg(segments, cnjSal);
+                addSeg(segments, cnjSal);
                 List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
                 addDpTax(auditorTaxes, taxDps);
             }
@@ -100,7 +104,7 @@ public class MoveServiceImpl implements MoveService {
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
                 addTicket(tickets, s);
-                addIpSeg(segments, cnjSal);
+                addSeg(segments, cnjSal);
                 List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
                 addIpTax(auditorTaxes, taxIps);
             }
@@ -124,7 +128,7 @@ public class MoveServiceImpl implements MoveService {
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
                 addTicket(tickets, s);
-                addDpSeg(segments, cnjSal);
+                addSeg(segments, cnjSal);
                 List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
                 addDpTax(auditorTaxes, taxDps);
             }
@@ -159,6 +163,14 @@ public class MoveServiceImpl implements MoveService {
         ticket.setFareCalculationArea(sal.getFca());
         ticket.setPassengerName(sal.getPaxName());
         list.add(ticket);
+    }
+
+    private void addSeg(List<Segment> list, Sal sal){
+        if(isNumber(sal.getCouponUseIndicator())){
+            addIpSeg(list, sal);
+        } else {
+            addDpSeg(list, sal);
+        }
     }
 
     /**
@@ -215,7 +227,6 @@ public class MoveServiceImpl implements MoveService {
             }
         }
     }
-
 
     /**
      * 国内税费映射
@@ -348,5 +359,9 @@ public class MoveServiceImpl implements MoveService {
             auditorTax.setTaxCurrency(ip.getCurrency());
             auditorTaxes.add(auditorTax);
         }
+    }
+
+    private static boolean isNumber(String str){
+        return str.matches(".*[0-9]+.*");
     }
 }

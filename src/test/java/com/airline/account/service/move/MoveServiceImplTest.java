@@ -39,6 +39,7 @@ public class MoveServiceImplTest {
 //        Sal cnj = salMapper.testQuery(sal, "ACCA_SAL_DP_D");
 //        System.out.println(cnj.toString());
         Sal t = list.get(0);
+//        System.out.println(t);
         moveService.moveDDp(t);
     }
 

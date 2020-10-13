@@ -16,5 +16,4 @@ public interface MoveService {
     public void moveMIp(Sal cnjSal);
 
     public void moveMDp(Sal cnjSal);
-
 }
