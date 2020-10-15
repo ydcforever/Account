@@ -14,4 +14,6 @@ public interface AuditorTicketMapper {
 
     public void insertTicket(@Param("list") List<Ticket> ticket);
 
+    public Ticket queryTicket(@Param("tkt") Ticket ticket);
+
 }

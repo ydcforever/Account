@@ -25,4 +25,10 @@ public class AuditorTicketMapperTest {
         auditorTicketMapper.insertTicket(list);
     }
 
+    @Test
+    public void testQueryTicket() throws Exception {
+        Ticket ticket = new Ticket("781","3633959119", "N", "2019-03-29");
+        Ticket a = auditorTicketMapper.queryTicket(ticket);
+        System.out.println(a.getEndorsementRestriction());
+    }
 }

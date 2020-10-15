@@ -30,13 +30,13 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     private void resolveDataSource(Class<?> clazz, Method method) {
         try {
             Class<?>[] types = method.getParameterTypes();
-            if (clazz.isAnnotationPresent(DDS.class)) {
-                DDS source = clazz.getAnnotation(DDS.class);
+            if (clazz.isAnnotationPresent(Switch.class)) {
+                Switch source = clazz.getAnnotation(Switch.class);
                 ds.set(source.value());
             }
             Method m = clazz.getMethod(method.getName(), types);
-            if (m != null && m.isAnnotationPresent(DDS.class)) {
-                DDS source = m.getAnnotation(DDS.class);
+            if (m != null && m.isAnnotationPresent(Switch.class)) {
+                Switch source = m.getAnnotation(Switch.class);
                 ds.set(source.value());
             }
         } catch (Exception e) {

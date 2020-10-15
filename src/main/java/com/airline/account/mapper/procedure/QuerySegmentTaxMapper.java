@@ -6,10 +6,12 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 
 /**
- * Created by ydc on 2019/5/17.
+ * Created by ydc on 2020/10/15.
  */
 @Repository
 @Switch("ydc")
-public interface QueryTaxMapper {
-    public void queryTax(HashMap map);
+public interface QuerySegmentTaxMapper {
+
+    public void querySegmentTax(HashMap map);
+
 }

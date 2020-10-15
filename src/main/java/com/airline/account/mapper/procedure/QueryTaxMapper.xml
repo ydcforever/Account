@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.btw.tax.calculate.mapper.QueryTaxMapper">
-	<resultMap type="com.btw.tax.calculate.model.QueryTax" id="QueryTaxs">
+<mapper namespace="com.airline.account.mapper.procedure.QueryTaxMapper">
+	<resultMap type="com.airline.account.ticket.Tax" id="QueryTaxs">
 	<!-- QueryTaxs的返回值 -->
-		<result column="TAX_CURRENCY" property="sales_curr" jdbcType="VARCHAR" />
-		<result column="TAX_CODE" property="tax_code" jdbcType="VARCHAR" />
-		<result column="TAX_AMOUNT" property="BTW_AMT" jdbcType="DECIMAL" />
+		<result column="TAX_CURRENCY" property="saleCur" jdbcType="VARCHAR" />
+		<result column="TAX_CODE" property="taxCode" jdbcType="VARCHAR" />
+		<result column="TAX_AMOUNT" property="amt" jdbcType="DECIMAL" />
+		<result column="TAX_NAME" property="taxName" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<select id="queryTax" parameterType="java.util.Map"

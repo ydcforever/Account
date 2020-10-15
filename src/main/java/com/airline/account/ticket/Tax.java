@@ -16,6 +16,8 @@ public class Tax {
 
 	private String saleCur;
 
+	private String taxName;
+
 	public Tax(String taxCode, Double amt, String saleCur) {
 		this.taxCode = taxCode;
 		this.amt = amt;

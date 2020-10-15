@@ -2,6 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.airline.account.mapper.et.AuditorSegmentMapper">
 
+    <resultMap type="com.airline.account.model.et.Segment" id="Segment">
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="FIRST_TICKET_NO" property="firstTicketNo" jdbcType="VARCHAR"/>
+        <result column="COUPON_NO" property="couponNo" jdbcType="DECIMAL"/>
+        <result column="FCA_NO" property="fcaNo" jdbcType="DECIMAL"/>
+        <result column="FCA_AMOUNT" property="fcaAmount" jdbcType="DECIMAL"/>
+        <result column="DEPARTURE_DATE" property="departureDate" jdbcType="VARCHAR"/>
+        <result column="ARRIVE_DATE" property="arriveDate" jdbcType="VARCHAR"/>
+        <result column="ORIGIN_AIRPORT_CODE" property="originAirportCode" jdbcType="VARCHAR"/>
+        <result column="DESTINATION_AIRPORT_CODE" property="destinationAirportCode" jdbcType="VARCHAR"/>
+        <result column="CARRIER_IATA_NO" property="carrierIataNo" jdbcType="VARCHAR"/>
+        <result column="STOPOVER_INDICATOR" property="stopoverIndicator" jdbcType="VARCHAR"/>
+        <result column="FARE_BASIS" property="fareBasis" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_NO" property="flightNo" jdbcType="VARCHAR"/>
+        <result column="SERVICE_CLASS" property="serviceClass" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_DATE" property="flightDate" jdbcType="DATE"/>
+        <result column="COUPON_STATUS_INDICATOR" property="couponStatusIndicator" jdbcType="VARCHAR"/>
+        <result column="COUPON_BONUS_FLAG" property="couponBonusFlag" jdbcType="VARCHAR"/>
+        <result column="BONUS_FARE_AMOUNT" property="bonusFareAmount" jdbcType="DECIMAL"/>
+        <result column="BONUS_CURRENCY" property="bonusCurrency" jdbcType="VARCHAR"/>
+        <result column="TPM" property="tpm" jdbcType="DECIMAL"/>
+        <result column="ICER" property="icer" jdbcType="DECIMAL"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
+        <result column="COUPON_POINT_AMOUNT" property="couponPointAmount" jdbcType="DECIMAL"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="DATE"/>
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE"/>
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
+        <result column="COUPON_USE_INDI" property="couponUseIndi" jdbcType="VARCHAR"/>
+        <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
+        <result column="BONUS_YQ_AMOUNT" property="bonusYqAmount" jdbcType="DECIMAL"/>
+        <result column="BONUS_OB_AMOUNT" property="bonusObAmount" jdbcType="DECIMAL"/>
+        <result column="DEPARTURE_TERMINAL" property="departureTerminal" jdbcType="VARCHAR"/>
+        <result column="ARRIVAL_TERMINAL" property="arrivalTerminal" jdbcType="VARCHAR"/>
+        <result column="INVOLUNTARY_INDICATOR" property="involuntaryIndicator" jdbcType="VARCHAR"/>
+        <result column="COMPARTMENT" property="compartment" jdbcType="VARCHAR"/>
+        <result column="BAGGAGE_ALLOWANCE" property="baggageAllowance" jdbcType="VARCHAR"/>
+        <result column="NOT_VALID_BEFORE" property="notValidBefore" jdbcType="VARCHAR"/>
+        <result column="NOT_VALID_AFTER" property="notValidAfter" jdbcType="VARCHAR"/>
+        <result column="EMD_COUPON_STATUS" property="emdCouponStatus" jdbcType="VARCHAR"/>
+        <result column="OPT_FLIGHT_NO" property="optFlightNo" jdbcType="VARCHAR"/>
+        <result column="ASR_SEAT" property="asrSeat" jdbcType="VARCHAR"/>
+    </resultMap>
+
     <insert id="insertSegment">
         insert into AUDITOR_OFFICIAL_COUPON
         (
@@ -79,4 +123,33 @@
             FROM DUAL
         </foreach>
     </insert>
+
+    <select id="querySegment" resultMap="Segment">
+        select <include refid="showCol"/>
+        from AUDITOR_OFFICIAL_COUPON t
+        where 1 = 1
+         <if test='seg.documentCarrierIataNo != null and seg.documentCarrierIataNo != ""'>
+             and t.DOCUMENT_CARRIER_IATA_NO = #{seg.documentCarrierIataNo}
+         </if>
+        <if test='seg.documentNo != null and seg.documentNo !=""'>
+            and t.DOCUMENT_NO = #{seg.documentNo}
+        </if>
+        <if test='seg.firstTicketNo != null and seg.firstTicketNo != ""'>
+            and t.FIRST_TICKET_NO = #{seg.firstTicketNo}
+        </if>
+        <if test='seg.cnjCurrent != null and seg.cnjCurrent != ""'>
+            and t.CNJ_CURRENT = #{seg.cnjCurrent}
+        </if>
+    </select>
+
+    <sql id="showCol">
+        DOCUMENT_CARRIER_IATA_NO,DOCUMENT_NO,FIRST_TICKET_NO,COUPON_NO,FCA_NO,FCA_AMOUNT,DEPARTURE_DATE,
+        ARRIVE_DATE,ORIGIN_AIRPORT_CODE,DESTINATION_AIRPORT_CODE,CARRIER_IATA_NO,
+
+        STOPOVER_INDICATOR,FARE_BASIS,FLIGHT_NO,SERVICE_CLASS,FLIGHT_DATE,COUPON_STATUS_INDICATOR,
+        COUPON_BONUS_FLAG,to_char(ISSUE_DATE,'yyyy-MM-dd'),DOCUMENT_TYPE,COUPON_USE_INDI,
+
+        CNJ_CURRENT,DEPARTURE_TERMINAL,ARRIVAL_TERMINAL,INVOLUNTARY_INDICATOR,COMPARTMENT,BAGGAGE_ALLOWANCE,
+        NOT_VALID_BEFORE,NOT_VALID_AFTER,EMD_COUPON_STATUS,OPT_FLIGHT_NO,ASR_SEAT
+    </sql>
 </mapper>

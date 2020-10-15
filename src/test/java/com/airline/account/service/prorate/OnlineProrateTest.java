@@ -1,10 +1,12 @@
-package com.airline.account.mapper.procedure;
+package com.airline.account.service.prorate;
 
 import com.airline.account.mapper.et.AuditorSegmentMapper;
 import com.airline.account.mapper.et.AuditorTicketMapper;
+import com.airline.account.mapper.procedure.QuerySegmentTaxMapper;
 import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
-import com.airline.account.ticket.Tax;
+import com.airline.account.prorate.OnlineProrate;
+import com.airline.account.prorate.SegmentTax;
 import com.airline.account.utils.TaxUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +16,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class QueryTaxMapperTest {
+public class OnlineProrateTest {
 
     @Autowired
-    private QueryTaxMapper queryTaxMapper;
+    private QuerySegmentTaxMapper querySegmentTaxMapper;
 
     @Autowired
     private AuditorTicketMapper auditorTicketMapper;
@@ -29,18 +33,24 @@ public class QueryTaxMapperTest {
     private AuditorSegmentMapper auditorSegmentMapper;
 
     @Test
-    public void testQueryTax() throws Exception {
+    public void testHandler() throws Exception {
         Ticket ticket = new Ticket("781","3633959119", "N", "2019-03-29");
         Ticket route = auditorTicketMapper.queryTicket(ticket);
 
         Segment segment = new Segment("781", "3633959119", 1);
         List<Segment> segments = auditorSegmentMapper.querySegment(segment);
-        HashMap<String, Object> map = TaxUtil.procedure(route, segments);
-        queryTaxMapper.queryTax(map);
-        List<Tax> list = (List<Tax>)map.get("result_recs");
-        System.out.println(map.get("routing_yq_amount"));
-        for(Tax tax : list) {
-            System.out.println(tax);
+        HashMap taxMap = TaxUtil.procedure(route, segments);
+        querySegmentTaxMapper.querySegmentTax(taxMap);
+        List<SegmentTax> list = (List<SegmentTax>)taxMap.get("result_set");
+
+        Map<String, Map<String, SegmentTax>>  map = OnlineProrate.getInstance().handler(list);
+        Set<Map.Entry<String, Map<String, SegmentTax>>> set = map.entrySet();
+        for (Map.Entry<String, Map<String, SegmentTax>> seg : set) {
+            String no = seg.getKey();
+            Map<String, SegmentTax> tax = seg.getValue();
+            for (SegmentTax segTax : tax.values()) {
+                System.out.println(no + ":" + segTax.toString());
+            }
         }
     }
 }

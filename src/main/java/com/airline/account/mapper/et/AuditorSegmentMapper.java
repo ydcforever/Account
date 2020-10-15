@@ -14,4 +14,5 @@ public interface AuditorSegmentMapper {
 
     public void insertSegment(@Param("list") List<Segment> segment);
 
+    public List<Segment> querySegment(@Param("seg") Segment segment);
 }

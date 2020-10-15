@@ -12,7 +12,6 @@ import com.airline.account.model.et.AuditorTax;
 import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,9 +37,6 @@ public class MoveServiceImpl implements MoveService {
 
     @Autowired
     private TaxMapper taxMapper;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     /**
      * SAL国际日数据迁移
@@ -184,44 +180,16 @@ public class MoveServiceImpl implements MoveService {
             Segment seg = new Segment();
             if(!"V".equals(status[i])){
                 if (i == 0) {
-                    fillNormalSeg(seg, sal);
-                    seg.setCouponNo(1);
-                    seg.setOriginAirportCode(sal.getAirport1());
-                    seg.setDestinationAirportCode(sal.getAirport2());
-                    seg.setCarrierIataNo(sal.getCarrier1());
-                    seg.setFareBasis(sal.getFareBasis1());
-                    seg.setFlightNo(sal.getFlightNo1());
-                    seg.setCouponUseIndi(status[i]);
+                    buildSeg1(seg, sal, status[i]);
                     list.add(seg);
                 } else if (i == 1){
-                    fillNormalSeg(seg, sal);
-                    seg.setCouponNo(2);
-                    seg.setOriginAirportCode(sal.getAirport2());
-                    seg.setDestinationAirportCode(sal.getAirport3());
-                    seg.setCarrierIataNo(sal.getCarrier2());
-                    seg.setFareBasis(sal.getFareBasis2());
-                    seg.setFlightNo(sal.getFlightNo2());
-                    seg.setCouponUseIndi(status[i]);
+                    buildSeg2(seg, sal, status[i]);
                     list.add(seg);
                 } else if (i == 2){
-                    fillNormalSeg(seg, sal);
-                    seg.setCouponNo(3);
-                    seg.setOriginAirportCode(sal.getAirport3());
-                    seg.setDestinationAirportCode(sal.getAirport4());
-                    seg.setCarrierIataNo(sal.getCarrier3());
-                    seg.setFareBasis(sal.getFareBasis3());
-                    seg.setFlightNo(sal.getFlightNo3());
-                    seg.setCouponUseIndi(status[i]);
+                    buildSeg3(seg, sal, status[i]);
                     list.add(seg);
                 } else if(i == 3){
-                    fillNormalSeg(seg, sal);
-                    seg.setCouponNo(4);
-                    seg.setOriginAirportCode(sal.getAirport4());
-                    seg.setDestinationAirportCode(sal.getAirport5());
-                    seg.setCarrierIataNo(sal.getCarrier4());
-                    seg.setFareBasis(sal.getFareBasis4());
-                    seg.setFlightNo(sal.getFlightNo4());
-                    seg.setCouponUseIndi(status[i]);
+                    buildSeg4(seg, sal, status[i]);
                     list.add(seg);
                 }
             }
@@ -294,47 +262,68 @@ public class MoveServiceImpl implements MoveService {
         for(String s : status){
             Segment seg = new Segment();
             if("1".equals(s)){
-                fillNormalSeg(seg, sal);
-                seg.setCouponNo(1);
-                seg.setOriginAirportCode(sal.getAirport1());
-                seg.setDestinationAirportCode(sal.getAirport2());
-                seg.setCarrierIataNo(sal.getCarrier1());
-                seg.setFareBasis(sal.getFareBasis1());
-                seg.setFlightNo(sal.getFlightNo1());
-                seg.setCouponUseIndi("F");
+                buildSeg1(seg, sal, "F");
                 list.add(seg);
             } else if ("2".equals(s)){
-                fillNormalSeg(seg, sal);
-                seg.setCouponNo(2);
-                seg.setOriginAirportCode(sal.getAirport2());
-                seg.setDestinationAirportCode(sal.getAirport3());
-                seg.setCarrierIataNo(sal.getCarrier2());
-                seg.setFareBasis(sal.getFareBasis2());
-                seg.setFlightNo(sal.getFlightNo2());
-                seg.setCouponUseIndi("F");
+                buildSeg2(seg, sal, "F");
                 list.add(seg);
             } else if ("3".equals(s)){
-                fillNormalSeg(seg, sal);
-                seg.setCouponNo(3);
-                seg.setOriginAirportCode(sal.getAirport3());
-                seg.setDestinationAirportCode(sal.getAirport4());
-                seg.setCarrierIataNo(sal.getCarrier3());
-                seg.setFareBasis(sal.getFareBasis3());
-                seg.setFlightNo(sal.getFlightNo3());
-                seg.setCouponUseIndi("F");
+                buildSeg3(seg, sal, "F");
                 list.add(seg);
             } else if ("4".equals(s)){
                 fillNormalSeg(seg, sal);
-                seg.setCouponNo(4);
-                seg.setOriginAirportCode(sal.getAirport4());
-                seg.setDestinationAirportCode(sal.getAirport5());
-                seg.setCarrierIataNo(sal.getCarrier4());
-                seg.setFareBasis(sal.getFareBasis4());
-                seg.setFlightNo(sal.getFlightNo4());
-                seg.setCouponUseIndi("F");
+                buildSeg4(seg, sal, "F");
                 list.add(seg);
             }
         }
+    }
+
+    private void buildSeg1(Segment seg, Sal sal, String couponUse){
+        fillNormalSeg(seg, sal);
+        seg.setCouponNo(1);
+        seg.setOriginAirportCode(sal.getAirport1());
+        seg.setDestinationAirportCode(sal.getAirport2());
+        seg.setCarrierIataNo(sal.getCarrier1());
+        seg.setFareBasis(sal.getFareBasis1());
+        seg.setFlightNo(sal.getFlightNo1());
+        seg.setServiceClass(sal.getSubClass1());
+        seg.setCouponUseIndi(couponUse);
+    }
+
+    private void buildSeg2(Segment seg, Sal sal, String couponUse){
+        fillNormalSeg(seg, sal);
+        seg.setCouponNo(2);
+        seg.setOriginAirportCode(sal.getAirport2());
+        seg.setDestinationAirportCode(sal.getAirport3());
+        seg.setCarrierIataNo(sal.getCarrier2());
+        seg.setFareBasis(sal.getFareBasis2());
+        seg.setFlightNo(sal.getFlightNo2());
+        seg.setServiceClass(sal.getSubClass2());
+        seg.setCouponUseIndi(couponUse);
+    }
+
+    private void buildSeg3(Segment seg, Sal sal, String couponUse){
+        fillNormalSeg(seg, sal);
+        seg.setCouponNo(3);
+        seg.setOriginAirportCode(sal.getAirport3());
+        seg.setDestinationAirportCode(sal.getAirport4());
+        seg.setCarrierIataNo(sal.getCarrier3());
+        seg.setFareBasis(sal.getFareBasis3());
+        seg.setFlightNo(sal.getFlightNo3());
+        seg.setServiceClass(sal.getSubClass3());
+        seg.setCouponUseIndi(couponUse);
+    }
+
+    private void buildSeg4(Segment seg, Sal sal, String couponUse){
+        fillNormalSeg(seg, sal);
+        seg.setCouponNo(4);
+        seg.setOriginAirportCode(sal.getAirport4());
+        seg.setDestinationAirportCode(sal.getAirport5());
+        seg.setCarrierIataNo(sal.getCarrier4());
+        seg.setFareBasis(sal.getFareBasis4());
+        seg.setFlightNo(sal.getFlightNo4());
+        seg.setServiceClass(sal.getSubClass4());
+        seg.setCouponUseIndi(couponUse);
     }
 
     private void fillNormalSeg(Segment seg, Sal sal){

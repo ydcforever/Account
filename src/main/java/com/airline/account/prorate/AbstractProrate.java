@@ -10,17 +10,11 @@ public abstract class AbstractProrate {
     public static final String COMPONENT_SPACER = ";";
 
     /**
-     * 库里取或者在线分摊
-     */
-    public abstract List<SegmentTax> getSegTax();
-
-    /**
      * 分摊方法
      * 二次分摊或者单纯格式转换
-     * @param list
      * @return
      */
-    public abstract Map<String, Map<String, SegmentTax>> handler(List<SegmentTax> list);
+    public abstract Map<String, Map<String, SegmentTax>> handler(List<SegmentTax> taxes);
 
     /**
      * 指定航段的税种汇总

@@ -2,6 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.airline.account.mapper.et.AuditorTicketMapper">
 
+    <resultMap type="com.airline.account.model.et.Ticket" id="Ticket">
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="DATE"/>
+        <result column="AGENT_IATA_NO" property="agentIataNo" jdbcType="DECIMAL"/>
+        <result column="TRANSACTION_CODE" property="transactionCode" jdbcType="VARCHAR"/>
+        <result column="COUPON_USE_INDICATOR" property="couponUseIndicator" jdbcType="VARCHAR"/>
+        <result column="CONJUNCTION_TICKET_INDICATOR" property="conjunctionTicketIndicator" jdbcType="VARCHAR"/>
+        <result column="CONJUNCTION_TICKET_STRING" property="conjunctionTicketString" jdbcType="VARCHAR"/>
+        <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
+        <result column="CNJ_TOTAL" property="cnjTotal" jdbcType="DECIMAL"/>
+        <result column="FIRST_TICKET_NO" property="firstTicketNo" jdbcType="VARCHAR"/>
+        <result column="TOUR_CODE" property="tourCode" jdbcType="VARCHAR"/>
+        <result column="INTERNATIONAL_SALE_INDICATOR" property="internationalSaleIndicator" jdbcType="VARCHAR"/>
+        <result column="COMMISSION_RATE" property="commissionRate" jdbcType="DECIMAL"/>
+        <result column="COMMISSION_AMOUNT" property="commissionAmount" jdbcType="DECIMAL"/>
+        <result column="ORIGINAL_ISSUE_DOCUMENT_NO" property="originalIssueDocumentNo" jdbcType="VARCHAR"/>
+        <result column="ORIGINAL_ISSUE_DATE" property="originalIssueDate" jdbcType="DATE"/>
+        <result column="ENDORSEMENT_RESTRICTION" property="endorsementRestriction" jdbcType="VARCHAR"/>
+        <result column="FARE" property="fare" jdbcType="DECIMAL"/>
+        <result column="FARE_CURRENCY_CODE" property="fareCurrencyCode" jdbcType="VARCHAR"/>
+        <result column="EQUIVALENT_FARE_PAID" property="equivalentFarePaid" jdbcType="DECIMAL"/>
+        <result column="EQUIVALENT_FARE_CURRENCY_CODE" property="equivalentFareCurrencyCode" jdbcType="VARCHAR"/>
+        <result column="TOTAL_FARE" property="totalFare" jdbcType="DECIMAL"/>
+        <result column="TOTAL_FARE_CURRENCY" property="totalFareCurrency" jdbcType="VARCHAR"/>
+        <result column="PASSENGER_NAME" property="passengerName" jdbcType="VARCHAR"/>
+        <result column="TICKET_SOURCE" property="ticketSource" jdbcType="VARCHAR"/>
+        <result column="OFFICE_ID" property="officeId" jdbcType="VARCHAR"/>
+        <result column="NATION_FLAG" property="nationFlag" jdbcType="VARCHAR"/>
+        <result column="GDS_CD" property="gdsCd" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
+        <result column="PRORATED_FLAG" property="proratedFlag" jdbcType="VARCHAR"/>
+        <result column="PRORATED_DATE" property="proratedDate" jdbcType="DATE"/>
+        <result column="EXCEPTION_FLAG" property="exceptionFlag" jdbcType="VARCHAR"/>
+        <result column="MANUAL_OPERATION_FLAG" property="manualOperationFlag" jdbcType="VARCHAR"/>
+        <result column="IT_FLAG" property="itFlag" jdbcType="VARCHAR"/>
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE"/>
+        <result column="UPDATE_ID" property="updateId" jdbcType="DECIMAL"/>
+        <result column="FARE_CALCULATION_AREA" property="fareCalculationArea" jdbcType="VARCHAR"/>
+        <result column="FF_NO" property="ffNo" jdbcType="VARCHAR"/>
+        <result column="PAX_TYPE" property="paxType" jdbcType="VARCHAR"/>
+        <result column="PAX_QTY" property="paxQty" jdbcType="DECIMAL"/>
+    </resultMap>
+
     <insert id="insertTicket">
         insert into AUDITOR_OFFICIAL_TICKETING
         (
@@ -95,4 +140,28 @@
             FROM dual
         </foreach>
     </insert>
+    
+    <select id="queryTicket" resultMap="Ticket">
+        select
+        <include refid="showCol"/>
+        from AUDITOR_OFFICIAL_TICKETING t
+        where 1 = 1
+        <if test= 'tkt.documentCarrierIataNo != null and tkt.documentCarrierIataNo != ""'>
+            and t.document_carrier_iata_no = #{tkt.documentCarrierIataNo}
+        </if>
+        <if test= 'tkt.documentNo != null and tkt.documentNo != ""'>
+            and t.document_no = #{tkt.documentNo}
+        </if>
+    </select>
+
+    <sql id="showCol">
+        DOCUMENT_CARRIER_IATA_NO,DOCUMENT_NO,DOCUMENT_TYPE,to_char(ISSUE_DATE,'yyyy-MM-dd'),
+        AGENT_IATA_NO,TRANSACTION_CODE,COUPON_USE_INDICATOR,CONJUNCTION_TICKET_INDICATOR,
+        CONJUNCTION_TICKET_STRING,CNJ_CURRENT,CNJ_TOTAL,FIRST_TICKET_NO,TOUR_CODE,
+        INTERNATIONAL_SALE_INDICATOR,COMMISSION_RATE,COMMISSION_AMOUNT,ORIGINAL_ISSUE_DOCUMENT_NO,
+        ORIGINAL_ISSUE_DATE,ENDORSEMENT_RESTRICTION,FARE,FARE_CURRENCY_CODE,EQUIVALENT_FARE_PAID,
+        EQUIVALENT_FARE_CURRENCY_CODE,TOTAL_FARE,TOTAL_FARE_CURRENCY,PASSENGER_NAME,TICKET_SOURCE,
+        OFFICE_ID,NATION_FLAG,GDS_CD,CREATE_DATE,PRORATED_FLAG,PRORATED_DATE,EXCEPTION_FLAG,
+        MANUAL_OPERATION_FLAG,IT_FLAG,UPDATE_DATE,UPDATE_ID,FARE_CALCULATION_AREA,FF_NO,PAX_TYPE,PAX_QTY
+    </sql>
 </mapper>

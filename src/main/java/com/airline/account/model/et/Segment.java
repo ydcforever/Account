@@ -75,7 +75,6 @@ public class Segment {
 
 
     public Segment(String documentCarrierIataNo, String documentNo, Integer couponNo) {
-        init();
         this.documentCarrierIataNo = documentCarrierIataNo;
         this.documentNo = documentNo;
         this.couponNo = couponNo;

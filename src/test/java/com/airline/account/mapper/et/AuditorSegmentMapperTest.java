@@ -27,4 +27,11 @@ public class AuditorSegmentMapperTest {
         list.add(seg2);
         auditorSegmentMapper.insertSegment(list);
     }
+
+    @Test
+    public void testQuerySegment() throws Exception {
+        Segment segment = new Segment("781", "3633959119", 1);
+        List<Segment> ticket = auditorSegmentMapper.querySegment(segment);
+        System.out.println(ticket.size());
+    }
 }
