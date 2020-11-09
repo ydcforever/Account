@@ -53,9 +53,9 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addSeg(segments, cnjSal);
-                List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-                addIpTax(auditorTaxes, taxIps);
             }
+            List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
+            addIpTax(auditorTaxes, taxIps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             auditorTaxMapper.insertTax(auditorTaxes);
@@ -77,9 +77,9 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addSeg(segments, cnjSal);
-                List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-                addDpTax(auditorTaxes, taxDps);
             }
+            List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
+            addDpTax(auditorTaxes, taxDps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             auditorTaxMapper.insertTax(auditorTaxes);
@@ -101,9 +101,9 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addSeg(segments, cnjSal);
-                List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-                addIpTax(auditorTaxes, taxIps);
             }
+            List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
+            addIpTax(auditorTaxes, taxIps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             auditorTaxMapper.insertTax(auditorTaxes);
@@ -125,9 +125,9 @@ public class MoveServiceImpl implements MoveService {
             for(Sal s : sals) {
                 addTicket(tickets, s);
                 addSeg(segments, cnjSal);
-                List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-                addDpTax(auditorTaxes, taxDps);
             }
+            List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
+            addDpTax(auditorTaxes, taxDps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             auditorTaxMapper.insertTax(auditorTaxes);

@@ -12,13 +12,7 @@ import java.util.List;
 @Repository
 public interface SalMapper {
 
-    //查询某段时间内的主票, 未完成
-//    public List<Sal> queryDIpCnj(String begin, String end);
-//    public List<Sal> queryDDpCnj(String begin, String end);
-//    public List<Sal> queryMIpCnj(String begin, String end);
-//    public List<Sal> queryMDpCnj(String begin, String end);
-
-    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("tbl") String table);
+    public List<Sal> queryCnj(@Param("table")String table, @Param("begin")String begin, @Param("end")String end);
 
     public List<Sal> queryDIpSal(@Param("sal") Sal cnjSal);
 
@@ -27,5 +21,8 @@ public interface SalMapper {
     public List<Sal> queryMIpSal(@Param("sal") Sal cnjSal);
 
     public List<Sal> queryMDpSal(@Param("sal") Sal cnjSal);
+
+
+    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("tbl") String table);
 
 }

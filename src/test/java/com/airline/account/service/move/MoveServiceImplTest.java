@@ -2,6 +2,7 @@ package com.airline.account.service.move;
 
 import com.airline.account.mapper.acca.SalMapper;
 import com.airline.account.model.acca.Sal;
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class MoveServiceImplTest {
+public class MoveServiceImplTest extends TestCase{
 
     @Autowired
     private MoveService moveService;
@@ -22,7 +23,10 @@ public class MoveServiceImplTest {
 
     @Test
     public void testMoveDIp() throws Exception {
-
+        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_IP_D", "20190330", "20190330");
+        for(Sal sal : sals){
+            moveService.moveDIp(sal);
+        }
     }
 
     @Test

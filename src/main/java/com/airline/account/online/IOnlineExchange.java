@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ydc on 2020/9/7.
  */
-public interface IOnlineExchange extends IOnlineRefund {
+public interface IOnlineExchange{
 
     /**
      * 新票计算

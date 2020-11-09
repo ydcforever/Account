@@ -19,5 +19,4 @@ public interface ITaxReport {
      */
     public List<Tax> doReport(String nation, String taxCode, String begin, String end);
 
-
 }

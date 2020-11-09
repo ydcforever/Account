@@ -25,4 +25,5 @@ public interface IAuditExchange{
      * @return
      */
     List<Tax> queryOrgTax(List<Exchange> list);
+
 }

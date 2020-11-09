@@ -17,4 +17,6 @@ public interface IOnlineRefund {
      */
     List<Tax> refundTax(List<Segment> list);
 
+    double exchange(double origin, String cur, String salCur, String date);
+
 }

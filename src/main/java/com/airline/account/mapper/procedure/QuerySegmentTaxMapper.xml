@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.airline.account.mapper.procedure.QuerySegmentTaxMapper">
-    <resultMap type="com.airline.account.prorate.SegmentTax" id="SegmentTax">
+    <resultMap type="com.airline.account.prorate.SegmentTax" id="ST">
         <!-- QueryTaxs的返回值 -->
         <result column="SEGMENT_NO" property="segNo" jdbcType="VARCHAR" />
         <result column="SALE_CURRENCY" property="saleCur" jdbcType="VARCHAR" />
@@ -49,7 +49,7 @@
         <!-- 燃油费已归入Tax -->
         <!--#{routing_yq_amount,mode=OUT,jdbcType=NUMERIC},-->
         <!--#{routing_yr_amount,mode=OUT,jdbcType=NUMERIC},-->
-        #{result_set,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=SegmentTax,mode=OUT},
+        #{result_set,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=ST,mode=OUT},
         <!-- resultMap游标支持一个或多个对象查询 -->
         #{return_label,mode=OUT,jdbcType=INTEGER}
         )}

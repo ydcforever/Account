@@ -34,10 +34,10 @@ public class OnlineProrateTest {
 
     @Test
     public void testHandler() throws Exception {
-        Ticket ticket = new Ticket("781","3633959119", "N", "2019-03-29");
+        Ticket ticket = new Ticket("781","2319427089", "N", "2019-03-30");
         Ticket route = auditorTicketMapper.queryTicket(ticket);
 
-        Segment segment = new Segment("781", "3633959119", 1);
+        Segment segment = new Segment("781", "2319427089", 1);
         List<Segment> segments = auditorSegmentMapper.querySegment(segment);
         HashMap taxMap = TaxUtil.procedure(route, segments);
         querySegmentTaxMapper.querySegmentTax(taxMap);

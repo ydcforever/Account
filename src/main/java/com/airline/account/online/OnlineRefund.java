@@ -20,4 +20,9 @@ public class OnlineRefund implements IOnlineRefund {
     public List<Tax> refundTax(List<Segment> list) {
         return null;
     }
+
+    @Override
+    public double exchange(double origin, String cur, String salCur, String date) {
+        return 0;
+    }
 }

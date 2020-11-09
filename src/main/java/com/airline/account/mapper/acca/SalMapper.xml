@@ -140,4 +140,13 @@
         FROM ACCA_SAL_DP_D t
         WHERE <include refid="cnjClause"/>
     </select>
+
+    <select id="queryCnj" resultMap="Sal">
+        SELECT
+        <include refid="showCol"/>
+        FROM ${table} t
+        WHERE t.issue_date >= #{begin}
+        and t.issue_date &lt;= #{end}
+        and t.cnj_no = 1
+    </select>
 </mapper>

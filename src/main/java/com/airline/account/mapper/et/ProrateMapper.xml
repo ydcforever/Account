@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.ProrateMapper">
+    <resultMap type="com.airline.account.prorate.SegmentTax" id="SegmentTax">
+        <result column="CONJUNCTION_TICKET_NO" property="conjunctionTicketNo" jdbcType="VARCHAR"/>
+        <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="COUPON_NO" property="couponNo" jdbcType="DECIMAL"/>
+        <result column="PRORATE_NO" property="prorateNo" jdbcType="DECIMAL"/>
+        <result column="TAX_CODE" property="taxCode" jdbcType="VARCHAR"/>
+        <result column="TAX_AMOUNT" property="taxAmount" jdbcType="DECIMAL"/>
+        <result column="PRORATE_UNION_NO" property="prorateUnionNo" jdbcType="VARCHAR"/>
+        <result column="UNION_AMOUNT" property="unionAmount" jdbcType="DECIMAL"/>
+        <result column="SALE_CURRENCY" property="saleCurrency" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="querySegmentTax" resultMap="SegmentTax">
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            select t.tax_code,t.tax_amount,t.sale_currency
+            from auditor_flight_tax t
+            where t.document_no = #{item.documentNo}
+            and t.coupon_no = #{item.couponNo}
+        </foreach>
+    </select>
+
+</mapper>

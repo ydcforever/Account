@@ -14,14 +14,14 @@ public abstract class AbstractAudit {
     public void taxDiff(List<Tax> received, List<Tax> due){
         for(Tax tax : due) {
             Tax r = TaxUtil.findTax(received, tax);
-            if(r != null) {
-//                update diff
+            if(r == null) {
+//                  insert 无实收
             } else {
-//                insert 无应收
+//              update diff
             }
         }
         for(Tax tax : received) {
-//            update 无实收
+//            update 无应收
         }
     }
 }

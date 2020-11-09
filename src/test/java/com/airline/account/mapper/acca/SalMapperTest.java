@@ -1,7 +1,6 @@
 package com.airline.account.mapper.acca;
 
 import com.airline.account.model.acca.Sal;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class SalMapperTest extends TestCase {
+public class SalMapperTest {
 
     @Autowired
     private SalMapper salMapper;
@@ -44,5 +43,11 @@ public class SalMapperTest extends TestCase {
     @Test
     public void testQueryMDpSal() throws Exception {
 
+    }
+
+    @Test
+    public void testQueryCnj() throws Exception {
+        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_IP_D", "20190330", "20190330");
+        System.out.println(sals.size());
     }
 }
