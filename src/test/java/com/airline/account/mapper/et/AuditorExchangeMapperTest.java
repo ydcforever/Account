@@ -19,7 +19,7 @@ public class AuditorExchangeMapperTest {
 
     @Test
     public void testQueryRelation() throws Exception {
-        Ticket ticket = new Ticket("781","2", "N" ,"2020-01-01");
+        Ticket ticket = new Ticket("781","2", "N" ,"2020-11-10");
         List<Exchange> list = auditorExchangeMapper.queryRelation(ticket);
         System.out.println(list.get(0));
     }

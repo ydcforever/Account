@@ -31,29 +31,25 @@ public class MoveServiceImplTest extends TestCase{
 
     @Test
     public void testMoveDDp() throws Exception {
-        Sal sal = new Sal();
-        sal.setAirline3code("781");
-        sal.setTicketNo("3633959119");
-        List<Sal> list = salMapper.queryDDpSal(sal);
-//        sal.setCnjNo(1);
-//        sal.setIssueDate("20190329");
-//        sal.setCouponUseIndicator("FVVV");
-//        sal.setAirport1("PVG");
-//        sal.setAirport2("PEK");
-//        Sal cnj = salMapper.testQuery(sal, "ACCA_SAL_DP_D");
-//        System.out.println(cnj.toString());
-        Sal t = list.get(0);
-//        System.out.println(t);
-        moveService.moveDDp(t);
+        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_DP_D", "20190390", "20190330");
+        for(Sal sal : sals){
+            moveService.moveDDp(sal);
+        }
     }
 
     @Test
     public void testMoveMIp() throws Exception {
-
+        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_IP_M", "20190390", "20190330");
+        for(Sal sal : sals){
+            moveService.moveMIp(sal);
+        }
     }
 
     @Test
     public void testMoveMDp() throws Exception {
-
+        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_DP_M", "20190390", "20190330");
+        for(Sal sal : sals){
+            moveService.moveMDp(sal);
+        }
     }
 }

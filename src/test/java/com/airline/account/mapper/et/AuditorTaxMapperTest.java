@@ -24,8 +24,8 @@ public class AuditorTaxMapperTest {
     @Test
     public void testInsertTax() throws Exception {
         List<AuditorTax> list = new ArrayList<>();
-        list.add(new AuditorTax("781", "001", "20200910", "CN", 90));
-        list.add(new AuditorTax("781", "001", "20200910", "HK", 10));
+        list.add(new AuditorTax("781", "001", "20200910", "CN", 90).taxSeqNo(1));
+        list.add(new AuditorTax("781", "001", "20200910", "HK", 10).taxSeqNo(1));
         auditorTaxMapper.insertTax(list);
     }
 

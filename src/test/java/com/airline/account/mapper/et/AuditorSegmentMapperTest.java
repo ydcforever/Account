@@ -20,17 +20,19 @@ public class AuditorSegmentMapperTest {
     @Test
     public void testInsertSegment() throws Exception {
         List<Segment> list = new ArrayList<>();
-        Segment seg1 = new Segment("781", "001", 1);
+        Segment seg1 = new Segment("781", "001", 2);
+        seg1.setIssueDate("20201111");
         list.add(seg1);
 
-        Segment seg2 = new Segment("781","002", 1);
+        Segment seg2 = new Segment("781","002", 2);
+        seg2.setIssueDate("20201110");
         list.add(seg2);
         auditorSegmentMapper.insertSegment(list);
     }
 
     @Test
     public void testQuerySegment() throws Exception {
-        Segment segment = new Segment("781", "3633959119", 1);
+        Segment segment = new Segment("781", "002", 1);
         List<Segment> ticket = auditorSegmentMapper.querySegment(segment);
         System.out.println(ticket.size());
     }

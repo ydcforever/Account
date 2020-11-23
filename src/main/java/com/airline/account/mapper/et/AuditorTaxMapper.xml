@@ -3,17 +3,19 @@
 <mapper namespace="com.airline.account.mapper.et.AuditorTaxMapper">
 
     <insert id="insertTax">
-        insert into AUDITOR_OFFICIAL_TAX
+        insert into ET_AUDITOR_COUPON_TAX
         (
         DOCUMENT_CARRIER_IATA_NO,
         DOCUMENT_NO,
         DOCUMENT_TYPE,
         ISSUE_DATE,
         TAX_CODE,
+        TAX_SEQ_NO,
         TAX_ALREADY_PAID_FLAG,
         TAX_AMOUNT,
         TAX_CURRENCY,
-        TAX_SEQ_NBR
+        TAX_ALLOCATION_INDICATOR,
+        INVALID_TAX_FLAG
         )
         <foreach collection="list" item="item" index="index" separator="UNION ALL">
             SELECT
@@ -23,10 +25,12 @@
 
             to_date(#{item.issueDate, jdbcType=DATE}, 'yyyyMMdd'),
             #{item.taxCode, jdbcType=VARCHAR},
+            #{item.taxSeqNo, jdbcType=DECIMAL},
             #{item.taxAlreadyPaidFlag, jdbcType=VARCHAR},
             #{item.taxAmount, jdbcType=DECIMAL},
             #{item.taxCurrency, jdbcType=VARCHAR},
-            #{item.taxSeqNbr, jdbcType=DECIMAL}
+            #{item.taxAllocationIndicator, jdbcType=VARCHAR},
+            #{item.invalidTaxFlag, jdbcType=VARCHAR}
             FROM DUAL
         </foreach>
     </insert>

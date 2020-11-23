@@ -5,22 +5,36 @@
     <resultMap type="com.airline.account.model.et.Ticket" id="Ticket">
         <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
         <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
-        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
         <result column="ISSUE_DATE" property="issueDate" jdbcType="DATE"/>
-        <result column="AGENT_IATA_NO" property="agentIataNo" jdbcType="DECIMAL"/>
-        <result column="TRANSACTION_CODE" property="transactionCode" jdbcType="VARCHAR"/>
-        <result column="COUPON_USE_INDICATOR" property="couponUseIndicator" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
         <result column="CONJUNCTION_TICKET_INDICATOR" property="conjunctionTicketIndicator" jdbcType="VARCHAR"/>
         <result column="CONJUNCTION_TICKET_STRING" property="conjunctionTicketString" jdbcType="VARCHAR"/>
+        <result column="CONJUNCTION_TICKET_NO" property="conjunctionTicketNo" jdbcType="VARCHAR"/>
         <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
         <result column="CNJ_TOTAL" property="cnjTotal" jdbcType="DECIMAL"/>
-        <result column="FIRST_TICKET_NO" property="firstTicketNo" jdbcType="VARCHAR"/>
+        <result column="SALES_REPORT_NO" property="salesReportNo" jdbcType="DECIMAL"/>
+        <result column="DOCUMENT_CHECK_DIGIT" property="documentCheckDigit" jdbcType="DECIMAL"/>
+        <result column="AUDITOR_COUPON_SOURCE" property="auditorCouponSource" jdbcType="VARCHAR"/>
+        <result column="AUDITOR_COUPON_TYPE" property="auditorCouponType" jdbcType="VARCHAR"/>
+        <result column="TRANSACTION_CODE" property="transactionCode" jdbcType="VARCHAR"/>
+        <result column="ADM_ACM_NO" property="admAcmNo" jdbcType="DECIMAL"/>
+        <result column="AGENT_IATA_NO" property="agentIataNo" jdbcType="VARCHAR"/>
+        <result column="COUPON_USE_INDICATOR" property="couponUseIndicator" jdbcType="VARCHAR"/>
         <result column="TOUR_CODE" property="tourCode" jdbcType="VARCHAR"/>
         <result column="INTERNATIONAL_SALE_INDICATOR" property="internationalSaleIndicator" jdbcType="VARCHAR"/>
+        <result column="MISCELLANEOUS_FEE_AMOUNT" property="miscellaneousFeeAmount" jdbcType="DECIMAL"/>
+        <result column="MISCELLANEOUS_FEE_CURRENCY_CD" property="miscellaneousFeeCurrencyCd" jdbcType="VARCHAR"/>
         <result column="COMMISSION_RATE" property="commissionRate" jdbcType="DECIMAL"/>
         <result column="COMMISSION_AMOUNT" property="commissionAmount" jdbcType="DECIMAL"/>
+        <result column="COMMISSION_CURRENCY_CODE" property="commissionCurrencyCode" jdbcType="VARCHAR"/>
+        <result column="VAT_ON_COMMISSION_FLAG" property="vatOnCommissionFlag" jdbcType="VARCHAR"/>
+        <result column="VAT_COUNTRY_ID" property="vatCountryId" jdbcType="DECIMAL"/>
+        <result column="VAT_ON_COMMISSION_AMOUNT" property="vatOnCommissionAmount" jdbcType="DECIMAL"/>
+        <result column="ORIGINAL_ISSUE_CARRIER_IATA_NO" property="originalIssueCarrierIataNo" jdbcType="VARCHAR"/>
         <result column="ORIGINAL_ISSUE_DOCUMENT_NO" property="originalIssueDocumentNo" jdbcType="VARCHAR"/>
         <result column="ORIGINAL_ISSUE_DATE" property="originalIssueDate" jdbcType="DATE"/>
+        <result column="ORIGINAL_ISSUE_AGENT_NO" property="originalIssueAgentNo" jdbcType="VARCHAR"/>
+        <result column="ORIGINAL_ISSUE_PLACE" property="originalIssuePlace" jdbcType="VARCHAR"/>
         <result column="ENDORSEMENT_RESTRICTION" property="endorsementRestriction" jdbcType="VARCHAR"/>
         <result column="FARE" property="fare" jdbcType="DECIMAL"/>
         <result column="FARE_CURRENCY_CODE" property="fareCurrencyCode" jdbcType="VARCHAR"/>
@@ -28,46 +42,83 @@
         <result column="EQUIVALENT_FARE_CURRENCY_CODE" property="equivalentFareCurrencyCode" jdbcType="VARCHAR"/>
         <result column="TOTAL_FARE" property="totalFare" jdbcType="DECIMAL"/>
         <result column="TOTAL_FARE_CURRENCY" property="totalFareCurrency" jdbcType="VARCHAR"/>
+        <result column="FARE_CALCULATION_AREA" property="fareCalculationArea" jdbcType="VARCHAR"/>
         <result column="PASSENGER_NAME" property="passengerName" jdbcType="VARCHAR"/>
-        <result column="TICKET_SOURCE" property="ticketSource" jdbcType="VARCHAR"/>
+        <result column="PERSONAL_OR_DUTY_INDICATOR" property="personalOrDutyIndicator" jdbcType="VARCHAR"/>
+        <result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR"/>
+        <result column="FORM_OF_PAYMENT_CODE" property="formOfPaymentCode" jdbcType="VARCHAR"/>
+        <result column="FORM_OF_PAYMENT_TYPE" property="formOfPaymentType" jdbcType="VARCHAR"/>
+        <result column="CREDIT_CARD_NO" property="creditCardNo" jdbcType="VARCHAR"/>
+        <result column="SALES_REPORT_POST_STATUS_NO" property="salesReportPostStatusNo" jdbcType="DECIMAL"/>
+        <result column="FARE_TO_NUC_RATE_OF_EXCHANGE" property="fareToNucRateOfExchange" jdbcType="DECIMAL"/>
+        <result column="EQV_FARE_PAID_FARE_EXCHANGE" property="eqvFarePaidFareExchange" jdbcType="DECIMAL"/>
+        <result column="EQV_FARE_PAID_BASE_EXCHANGE" property="eqvFarePaidBaseExchange" jdbcType="DECIMAL"/>
+        <result column="OUR_VALUE_FARE" property="ourValueFare" jdbcType="DECIMAL"/>
+        <result column="REFUND_EXCHANGE_UNMATCH_IND" property="refundExchangeUnmatchInd" jdbcType="VARCHAR"/>
+        <result column="FARE_CHECK_METHOD_INDICATOR" property="fareCheckMethodIndicator" jdbcType="VARCHAR"/>
+        <result column="PRORATION_INDICATOR" property="prorationIndicator" jdbcType="VARCHAR"/>
+        <result column="TAX_ALLOCATION_INDICATOR" property="taxAllocationIndicator" jdbcType="VARCHAR"/>
+        <result column="LOAD_TRANSACTION_CODE" property="loadTransactionCode" jdbcType="VARCHAR"/>
+        <result column="ADDITIONAL_COLLECTION_FLAG" property="additionalCollectionFlag" jdbcType="VARCHAR"/>
+        <result column="VOLUNTARY_REROUTING_FLAG" property="voluntaryReroutingFlag" jdbcType="VARCHAR"/>
+        <result column="JOURNEY_APPLICABLE_INDICATOR" property="journeyApplicableIndicator" jdbcType="VARCHAR"/>
+        <result column="JOURNEY" property="journey" jdbcType="VARCHAR"/>
+        <result column="JOURNEY_CODE" property="journeyCode" jdbcType="DECIMAL"/>
+        <result column="RESIDUAL_VALUE" property="residualValue" jdbcType="DECIMAL"/>
+        <result column="MCO_USED_INDICATOR" property="mcoUsedIndicator" jdbcType="VARCHAR"/>
+        <result column="STAT_OI_DOCUMENT_CARR_IATA_NO" property="statOiDocumentCarrIataNo" jdbcType="VARCHAR"/>
+        <result column="STAT_OI_DOCUMENT_NO" property="statOiDocumentNo" jdbcType="VARCHAR"/>
+        <result column="STAT_OI_PLACE" property="statOiPlace" jdbcType="VARCHAR"/>
+        <result column="STAT_OI_DATE" property="statOiDate" jdbcType="DATE"/>
+        <result column="STAT_OI_AGENT_IATA_NO" property="statOiAgentIataNo" jdbcType="VARCHAR"/>
+        <result column="EXPECTED_VALUE_OF_MCO" property="expectedValueOfMco" jdbcType="DECIMAL"/>
+        <result column="DATA_SOURCE" property="dataSource" jdbcType="VARCHAR"/>
         <result column="OFFICE_ID" property="officeId" jdbcType="VARCHAR"/>
         <result column="NATION_FLAG" property="nationFlag" jdbcType="VARCHAR"/>
-        <result column="GDS_CD" property="gdsCd" jdbcType="VARCHAR"/>
-        <result column="CREATE_DATE" property="createDate" jdbcType="DATE"/>
-        <result column="PRORATED_FLAG" property="proratedFlag" jdbcType="VARCHAR"/>
-        <result column="PRORATED_DATE" property="proratedDate" jdbcType="DATE"/>
-        <result column="EXCEPTION_FLAG" property="exceptionFlag" jdbcType="VARCHAR"/>
-        <result column="MANUAL_OPERATION_FLAG" property="manualOperationFlag" jdbcType="VARCHAR"/>
+        <result column="GDS_CODE" property="gdsCode" jdbcType="VARCHAR"/>
         <result column="IT_FLAG" property="itFlag" jdbcType="VARCHAR"/>
-        <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE"/>
-        <result column="UPDATE_ID" property="updateId" jdbcType="DECIMAL"/>
-        <result column="FARE_CALCULATION_AREA" property="fareCalculationArea" jdbcType="VARCHAR"/>
         <result column="FF_NO" property="ffNo" jdbcType="VARCHAR"/>
         <result column="PAX_TYPE" property="paxType" jdbcType="VARCHAR"/>
         <result column="PAX_QTY" property="paxQty" jdbcType="DECIMAL"/>
+        <result column="MANUAL_FLAG" property="manualFlag" jdbcType="VARCHAR"/>
+        <result column="ET_SOURCE" property="etSource" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertTicket">
-        insert into AUDITOR_OFFICIAL_TICKETING
+        insert into ET_AUDITOR_COUPON
         (
         DOCUMENT_CARRIER_IATA_NO,
         DOCUMENT_NO,
-        DOCUMENT_TYPE,
         ISSUE_DATE,
-        AGENT_IATA_NO,
-        TRANSACTION_CODE,
-        COUPON_USE_INDICATOR,
+        DOCUMENT_TYPE,
         CONJUNCTION_TICKET_INDICATOR,
         CONJUNCTION_TICKET_STRING,
+        CONJUNCTION_TICKET_NO,
         CNJ_CURRENT,
         CNJ_TOTAL,
-        FIRST_TICKET_NO,
+        SALES_REPORT_NO,
+        DOCUMENT_CHECK_DIGIT,
+        AUDITOR_COUPON_SOURCE,
+        AUDITOR_COUPON_TYPE,
+        TRANSACTION_CODE,
+        ADM_ACM_NO,
+        AGENT_IATA_NO,
+        COUPON_USE_INDICATOR,
         TOUR_CODE,
         INTERNATIONAL_SALE_INDICATOR,
+        MISCELLANEOUS_FEE_AMOUNT,
+        MISCELLANEOUS_FEE_CURRENCY_CD,
         COMMISSION_RATE,
         COMMISSION_AMOUNT,
+        COMMISSION_CURRENCY_CODE,
+        VAT_ON_COMMISSION_FLAG,
+        VAT_COUNTRY_ID,
+        VAT_ON_COMMISSION_AMOUNT,
+        ORIGINAL_ISSUE_CARRIER_IATA_NO,
         ORIGINAL_ISSUE_DOCUMENT_NO,
         ORIGINAL_ISSUE_DATE,
+        ORIGINAL_ISSUE_AGENT_NO,
+        ORIGINAL_ISSUE_PLACE,
         ENDORSEMENT_RESTRICTION,
         FARE,
         FARE_CURRENCY_CODE,
@@ -75,44 +126,81 @@
         EQUIVALENT_FARE_CURRENCY_CODE,
         TOTAL_FARE,
         TOTAL_FARE_CURRENCY,
+        FARE_CALCULATION_AREA,
         PASSENGER_NAME,
-        TICKET_SOURCE,
+        PERSONAL_OR_DUTY_INDICATOR,
+        EMPLOYEE_ID,
+        FORM_OF_PAYMENT_CODE,
+        FORM_OF_PAYMENT_TYPE,
+        CREDIT_CARD_NO,
+        SALES_REPORT_POST_STATUS_NO,
+        FARE_TO_NUC_RATE_OF_EXCHANGE,
+        EQV_FARE_PAID_FARE_EXCHANGE,
+        EQV_FARE_PAID_BASE_EXCHANGE,
+        OUR_VALUE_FARE,
+        REFUND_EXCHANGE_UNMATCH_IND,
+        FARE_CHECK_METHOD_INDICATOR,
+        PRORATION_INDICATOR,
+        TAX_ALLOCATION_INDICATOR,
+        LOAD_TRANSACTION_CODE,
+        ADDITIONAL_COLLECTION_FLAG,
+        VOLUNTARY_REROUTING_FLAG,
+        JOURNEY_APPLICABLE_INDICATOR,
+        JOURNEY,
+        JOURNEY_CODE,
+        RESIDUAL_VALUE,
+        MCO_USED_INDICATOR,
+        STAT_OI_DOCUMENT_CARR_IATA_NO,
+        STAT_OI_DOCUMENT_NO,
+        STAT_OI_PLACE,
+        STAT_OI_DATE,
+        STAT_OI_AGENT_IATA_NO,
+        EXPECTED_VALUE_OF_MCO,
+        DATA_SOURCE,
         OFFICE_ID,
         NATION_FLAG,
-        GDS_CD,
-        CREATE_DATE,
-        PRORATED_FLAG,
-        PRORATED_DATE,
-        EXCEPTION_FLAG,
-        MANUAL_OPERATION_FLAG,
+        GDS_CODE,
         IT_FLAG,
-        UPDATE_DATE,
-        UPDATE_ID,
-        FARE_CALCULATION_AREA,
         FF_NO,
         PAX_TYPE,
-        PAX_QTY
+        PAX_QTY,
+        MANUAL_FLAG,
+        ET_SOURCE
         )
         <foreach collection="list" item="item" index="index" separator="UNION ALL">
             SELECT
             #{item.documentCarrierIataNo, jdbcType=VARCHAR},
             #{item.documentNo, jdbcType=VARCHAR},
-            #{item.documentType, jdbcType=VARCHAR},
             to_date(#{item.issueDate, jdbcType=DATE}, 'yyyyMMdd'),
-            #{item.agentIataNo, jdbcType=DECIMAL},
-            #{item.transactionCode, jdbcType=VARCHAR},
-            #{item.couponUseIndicator, jdbcType=VARCHAR},
+            #{item.documentType, jdbcType=VARCHAR},
             #{item.conjunctionTicketIndicator, jdbcType=VARCHAR},
             #{item.conjunctionTicketString, jdbcType=VARCHAR},
+            #{item.conjunctionTicketNo, jdbcType=VARCHAR},
             #{item.cnjCurrent, jdbcType=DECIMAL},
             #{item.cnjTotal, jdbcType=DECIMAL},
-            #{item.firstTicketNo, jdbcType=VARCHAR},
+            #{item.salesReportNo, jdbcType=DECIMAL},
+            #{item.documentCheckDigit, jdbcType=DECIMAL},
+            #{item.auditorCouponSource, jdbcType=VARCHAR},
+            #{item.auditorCouponType, jdbcType=VARCHAR},
+            #{item.transactionCode, jdbcType=VARCHAR},
+            #{item.admAcmNo, jdbcType=DECIMAL},
+            #{item.agentIataNo, jdbcType=VARCHAR},
+            #{item.couponUseIndicator, jdbcType=VARCHAR},
             #{item.tourCode, jdbcType=VARCHAR},
             #{item.internationalSaleIndicator, jdbcType=VARCHAR},
+            #{item.miscellaneousFeeAmount, jdbcType=DECIMAL},
+            #{item.miscellaneousFeeCurrencyCd, jdbcType=VARCHAR},
             #{item.commissionRate, jdbcType=DECIMAL},
             #{item.commissionAmount, jdbcType=DECIMAL},
+            #{item.commissionCurrencyCode, jdbcType=VARCHAR},
+            #{item.vatOnCommissionFlag, jdbcType=VARCHAR},
+            #{item.vatCountryId, jdbcType=DECIMAL},
+            #{item.vatOnCommissionAmount, jdbcType=DECIMAL},
+            #{item.originalIssueCarrierIataNo, jdbcType=VARCHAR},
             #{item.originalIssueDocumentNo, jdbcType=VARCHAR},
             #{item.originalIssueDate, jdbcType=DATE},
+            #{item.originalIssueAgentNo, jdbcType=VARCHAR},
+            #{item.originalIssuePlace, jdbcType=VARCHAR},
             #{item.endorsementRestriction, jdbcType=VARCHAR},
             #{item.fare, jdbcType=DECIMAL},
             #{item.fareCurrencyCode, jdbcType=VARCHAR},
@@ -120,23 +208,46 @@
             #{item.equivalentFareCurrencyCode, jdbcType=VARCHAR},
             #{item.totalFare, jdbcType=DECIMAL},
             #{item.totalFareCurrency, jdbcType=VARCHAR},
+            #{item.fareCalculationArea, jdbcType=VARCHAR},
             #{item.passengerName, jdbcType=VARCHAR},
-            #{item.ticketSource, jdbcType=VARCHAR},
+            #{item.personalOrDutyIndicator, jdbcType=VARCHAR},
+            #{item.employeeId, jdbcType=VARCHAR},
+            #{item.formOfPaymentCode, jdbcType=VARCHAR},
+            #{item.formOfPaymentType, jdbcType=VARCHAR},
+            #{item.creditCardNo, jdbcType=VARCHAR},
+            #{item.salesReportPostStatusNo, jdbcType=DECIMAL},
+            #{item.fareToNucRateOfExchange, jdbcType=DECIMAL},
+            #{item.eqvFarePaidFareExchange, jdbcType=DECIMAL},
+            #{item.eqvFarePaidBaseExchange, jdbcType=DECIMAL},
+            #{item.ourValueFare, jdbcType=DECIMAL},
+            #{item.refundExchangeUnmatchInd, jdbcType=VARCHAR},
+            #{item.fareCheckMethodIndicator, jdbcType=VARCHAR},
+            #{item.prorationIndicator, jdbcType=VARCHAR},
+            #{item.taxAllocationIndicator, jdbcType=VARCHAR},
+            #{item.loadTransactionCode, jdbcType=VARCHAR},
+            #{item.additionalCollectionFlag, jdbcType=VARCHAR},
+            #{item.voluntaryReroutingFlag, jdbcType=VARCHAR},
+            #{item.journeyApplicableIndicator, jdbcType=VARCHAR},
+            #{item.journey, jdbcType=VARCHAR},
+            #{item.journeyCode, jdbcType=DECIMAL},
+            #{item.residualValue, jdbcType=DECIMAL},
+            #{item.mcoUsedIndicator, jdbcType=VARCHAR},
+            #{item.statOiDocumentCarrIataNo, jdbcType=VARCHAR},
+            #{item.statOiDocumentNo, jdbcType=VARCHAR},
+            #{item.statOiPlace, jdbcType=VARCHAR},
+            #{item.statOiDate, jdbcType=DATE},
+            #{item.statOiAgentIataNo, jdbcType=VARCHAR},
+            #{item.expectedValueOfMco, jdbcType=DECIMAL},
+            #{item.dataSource, jdbcType=VARCHAR},
             #{item.officeId, jdbcType=VARCHAR},
             #{item.nationFlag, jdbcType=VARCHAR},
-            #{item.gdsCd, jdbcType=VARCHAR},
-            #{item.createDate, jdbcType=DATE},
-            #{item.proratedFlag, jdbcType=VARCHAR},
-            #{item.proratedDate, jdbcType=DATE},
-            #{item.exceptionFlag, jdbcType=VARCHAR},
-            #{item.manualOperationFlag, jdbcType=VARCHAR},
+            #{item.gdsCode, jdbcType=VARCHAR},
             #{item.itFlag, jdbcType=VARCHAR},
-            #{item.updateDate, jdbcType=DATE},
-            #{item.updateId, jdbcType=DECIMAL},
-            #{item.fareCalculationArea, jdbcType=VARCHAR},
             #{item.ffNo, jdbcType=VARCHAR},
             #{item.paxType, jdbcType=VARCHAR},
-            #{item.paxQty, jdbcType=DECIMAL}
+            #{item.paxQty, jdbcType=DECIMAL},
+            #{item.manualFlag, jdbcType=VARCHAR},
+            #{item.etSource, jdbcType=VARCHAR}
             FROM dual
         </foreach>
     </insert>
@@ -144,7 +255,7 @@
     <select id="queryTicket" resultMap="Ticket">
         select
         <include refid="showCol"/>
-        from AUDITOR_OFFICIAL_TICKETING t
+        from ET_AUDITOR_COUPON t
         where 1 = 1
         <if test= 'tkt.documentCarrierIataNo != null and tkt.documentCarrierIataNo != ""'>
             and t.document_carrier_iata_no = #{tkt.documentCarrierIataNo}
@@ -155,13 +266,22 @@
     </select>
 
     <sql id="showCol">
-        DOCUMENT_CARRIER_IATA_NO,DOCUMENT_NO,DOCUMENT_TYPE,to_char(ISSUE_DATE,'yyyy-MM-dd'),
-        AGENT_IATA_NO,TRANSACTION_CODE,COUPON_USE_INDICATOR,CONJUNCTION_TICKET_INDICATOR,
-        CONJUNCTION_TICKET_STRING,CNJ_CURRENT,CNJ_TOTAL,FIRST_TICKET_NO,TOUR_CODE,
-        INTERNATIONAL_SALE_INDICATOR,COMMISSION_RATE,COMMISSION_AMOUNT,ORIGINAL_ISSUE_DOCUMENT_NO,
-        ORIGINAL_ISSUE_DATE,ENDORSEMENT_RESTRICTION,FARE,FARE_CURRENCY_CODE,EQUIVALENT_FARE_PAID,
-        EQUIVALENT_FARE_CURRENCY_CODE,TOTAL_FARE,TOTAL_FARE_CURRENCY,PASSENGER_NAME,TICKET_SOURCE,
-        OFFICE_ID,NATION_FLAG,GDS_CD,CREATE_DATE,PRORATED_FLAG,PRORATED_DATE,EXCEPTION_FLAG,
-        MANUAL_OPERATION_FLAG,IT_FLAG,UPDATE_DATE,UPDATE_ID,FARE_CALCULATION_AREA,FF_NO,PAX_TYPE,PAX_QTY
+         DOCUMENT_CARRIER_IATA_NO,DOCUMENT_NO,to_char(ISSUE_DATE,'yyyy-MM-dd') as ISSUE_DATE,
+         DOCUMENT_TYPE,CONJUNCTION_TICKET_INDICATOR,
+         CONJUNCTION_TICKET_STRING,CONJUNCTION_TICKET_NO,CNJ_CURRENT,CNJ_TOTAL,SALES_REPORT_NO,
+         DOCUMENT_CHECK_DIGIT,AUDITOR_COUPON_SOURCE,AUDITOR_COUPON_TYPE,TRANSACTION_CODE,ADM_ACM_NO,
+         AGENT_IATA_NO,COUPON_USE_INDICATOR,TOUR_CODE,INTERNATIONAL_SALE_INDICATOR,MISCELLANEOUS_FEE_AMOUNT,
+         MISCELLANEOUS_FEE_CURRENCY_CD,COMMISSION_RATE,COMMISSION_AMOUNT,COMMISSION_CURRENCY_CODE,
+         VAT_ON_COMMISSION_FLAG,VAT_COUNTRY_ID,VAT_ON_COMMISSION_AMOUNT,ORIGINAL_ISSUE_CARRIER_IATA_NO,
+         ORIGINAL_ISSUE_DOCUMENT_NO,ORIGINAL_ISSUE_DATE,ORIGINAL_ISSUE_AGENT_NO,ORIGINAL_ISSUE_PLACE,
+         ENDORSEMENT_RESTRICTION,FARE,FARE_CURRENCY_CODE,EQUIVALENT_FARE_PAID,EQUIVALENT_FARE_CURRENCY_CODE,
+         TOTAL_FARE,TOTAL_FARE_CURRENCY,FARE_CALCULATION_AREA,PASSENGER_NAME,PERSONAL_OR_DUTY_INDICATOR,
+         EMPLOYEE_ID,FORM_OF_PAYMENT_CODE,FORM_OF_PAYMENT_TYPE,CREDIT_CARD_NO,SALES_REPORT_POST_STATUS_NO,
+         FARE_TO_NUC_RATE_OF_EXCHANGE,EQV_FARE_PAID_FARE_EXCHANGE,EQV_FARE_PAID_BASE_EXCHANGE,OUR_VALUE_FARE,
+         REFUND_EXCHANGE_UNMATCH_IND,FARE_CHECK_METHOD_INDICATOR,PRORATION_INDICATOR,TAX_ALLOCATION_INDICATOR,
+         LOAD_TRANSACTION_CODE,ADDITIONAL_COLLECTION_FLAG,VOLUNTARY_REROUTING_FLAG,JOURNEY_APPLICABLE_INDICATOR,
+         JOURNEY,JOURNEY_CODE,RESIDUAL_VALUE,MCO_USED_INDICATOR,STAT_OI_DOCUMENT_CARR_IATA_NO,STAT_OI_DOCUMENT_NO,
+         STAT_OI_PLACE,STAT_OI_DATE,STAT_OI_AGENT_IATA_NO,EXPECTED_VALUE_OF_MCO,DATA_SOURCE,OFFICE_ID,NATION_FLAG,
+         GDS_CODE,IT_FLAG,FF_NO,PAX_TYPE,PAX_QTY,MANUAL_FLAG,ET_SOURCE
     </sql>
 </mapper>

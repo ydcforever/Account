@@ -11,21 +11,23 @@ public class Segment {
 
     private String documentNo;
 
-    private String firstTicketNo;
+    private String issueDate;
+
+    private String documentType;
 
     private Integer couponNo;
 
-    private Integer fcaNo;
+    private String conjunctionTicketNo;
 
-    private double fcaAmount;
+    private Integer cnjCurrent;
 
-    private String departureDate;
+    private String notValidBeforeDate;
 
-    private String arriveDate;
+    private String notValidAfterDate;
 
-    private String originAirportCode;
+    private String originCityCode;
 
-    private String destinationAirportCode;
+    private String destinationCityCode;
 
     private String carrierIataNo;
 
@@ -39,19 +41,21 @@ public class Segment {
 
     private String flightDate;
 
+    private String vatFlag;
+
+    private String vatCountryId;
+
     private String couponStatusIndicator;
 
-    private String couponBonusFlag;
+    private String couponValue;
 
-    private String issueDate;
+    private String atbpNo;
 
-    private String updateDate;
+    private String departureDate;
 
-    private String documentType;
+    private String arriveDate;
 
-    private String couponUseIndi;
-
-    private double cnjCurrent;
+    private String validCouponFlag;
 
     private String departureTerminal;
 
@@ -63,55 +67,15 @@ public class Segment {
 
     private String baggageAllowance;
 
-    private String notValidBefore;
-
-    private String notValidAfter;
-
     private String emdCouponStatus;
 
     private String optFlightNo;
 
     private String asrSeat;
 
-
     public Segment(String documentCarrierIataNo, String documentNo, Integer couponNo) {
         this.documentCarrierIataNo = documentCarrierIataNo;
         this.documentNo = documentNo;
         this.couponNo = couponNo;
-    }
-
-    public void init() {
-        this.documentCarrierIataNo = "";
-        this.documentNo = "";
-        this.firstTicketNo = "";
-        this.couponNo = 0;
-        this.fcaNo = 0;
-        this.fcaAmount = 0;
-        this.departureDate = "";
-        this.arriveDate = "";
-        this.originAirportCode = "";
-        this.destinationAirportCode = "";
-        this.carrierIataNo = "";
-        this.stopoverIndicator = "";
-        this.fareBasis = "";
-        this.flightNo = "";
-        this.serviceClass = "";
-        this.flightDate = "";
-        this.couponStatusIndicator = "";
-        this.issueDate = "";
-        this.updateDate = "";
-        this.documentType = "";
-        this.couponUseIndi = "";
-        this.cnjCurrent = 1;
-        this.departureTerminal = "";
-        this.arrivalTerminal = "";
-        this.involuntaryIndicator = "";
-        this.compartment = "";
-        this.baggageAllowance = "";
-        this.notValidBefore = "";
-        this.notValidAfter = "";
-        this.emdCouponStatus = "";
-        this.optFlightNo = "";
-        this.asrSeat = "";
     }
 }

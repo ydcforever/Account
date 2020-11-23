@@ -19,13 +19,17 @@ public class AuditorTax {
 
     private String taxCode;
 
+    private Integer taxSeqNo;
+
     private String taxAlreadyPaidFlag;
 
     private double taxAmount;
 
     private String taxCurrency;
 
-    private Integer taxSeqNbr;
+    private String taxAllocationIndicator;
+
+    private String invalidTaxFlag;
 
     public AuditorTax(String documentCarrierIataNo, String documentNo, String issueDate, String taxCode, double taxAmount) {
         this.documentCarrierIataNo = documentCarrierIataNo;
@@ -33,5 +37,10 @@ public class AuditorTax {
         this.issueDate = issueDate;
         this.taxCode = taxCode;
         this.taxAmount = taxAmount;
+    }
+
+    public AuditorTax taxSeqNo(Integer taxSeqNo){
+        this.taxSeqNo = taxSeqNo;
+        return this;
     }
 }

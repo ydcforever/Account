@@ -51,14 +51,16 @@ public class MoveServiceImpl implements MoveService {
             List<Segment> segments = new ArrayList<>();
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
-                addTicket(tickets, s);
+                addTicket(tickets, s, "ACCA_IP_D");
                 addSeg(segments, cnjSal);
             }
             List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-            addIpTax(auditorTaxes, taxIps);
+            addIpTax(auditorTaxes, taxIps, sals.get(0).getIssueDate());
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
-            auditorTaxMapper.insertTax(auditorTaxes);
+            if(auditorTaxes.size() > 0) {
+                auditorTaxMapper.insertTax(auditorTaxes);
+            }
         }
     }
 
@@ -75,14 +77,16 @@ public class MoveServiceImpl implements MoveService {
             List<Segment> segments = new ArrayList<>();
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
-                addTicket(tickets, s);
+                addTicket(tickets, s, "ACCA_DP_D");
                 addSeg(segments, cnjSal);
             }
             List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
             addDpTax(auditorTaxes, taxDps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
-            auditorTaxMapper.insertTax(auditorTaxes);
+            if(auditorTaxes.size() > 0) {
+                auditorTaxMapper.insertTax(auditorTaxes);
+            }
         }
     }
 
@@ -99,14 +103,16 @@ public class MoveServiceImpl implements MoveService {
             List<Segment> segments = new ArrayList<>();
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
-                addTicket(tickets, s);
+                addTicket(tickets, s, "ACCA_IP_M");
                 addSeg(segments, cnjSal);
             }
             List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-            addIpTax(auditorTaxes, taxIps);
+            addIpTax(auditorTaxes, taxIps, sals.get(0).getIssueDate());
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
-            auditorTaxMapper.insertTax(auditorTaxes);
+            if(auditorTaxes.size() > 0) {
+                auditorTaxMapper.insertTax(auditorTaxes);
+            }
         }
     }
 
@@ -123,14 +129,16 @@ public class MoveServiceImpl implements MoveService {
             List<Segment> segments = new ArrayList<>();
             List<AuditorTax> auditorTaxes = new ArrayList<>();
             for(Sal s : sals) {
-                addTicket(tickets, s);
+                addTicket(tickets, s, "ACCA_DP_M");
                 addSeg(segments, cnjSal);
             }
             List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
             addDpTax(auditorTaxes, taxDps);
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
-            auditorTaxMapper.insertTax(auditorTaxes);
+            if(auditorTaxes.size() > 0) {
+                auditorTaxMapper.insertTax(auditorTaxes);
+            }
         }
     }
 
@@ -139,7 +147,7 @@ public class MoveServiceImpl implements MoveService {
      * @param list
      * @param sal
      */
-    private void addTicket(List<Ticket> list, Sal sal){
+    private void addTicket(List<Ticket> list, Sal sal, String etSource){
         Ticket ticket = new Ticket();
         ticket.setDocumentCarrierIataNo(sal.getAirline3code());
         ticket.setDocumentNo(sal.getTicketNo());
@@ -147,10 +155,10 @@ public class MoveServiceImpl implements MoveService {
         ticket.setDocumentType(sal.getSaleType());
         ticket.setAgentIataNo(sal.getAgentNo());
         ticket.setCnjCurrent(sal.getCnjNo());
-        ticket.setFirstTicketNo(sal.getFirstTicketNo());
+        ticket.setConjunctionTicketNo(sal.getFirstTicketNo());
         ticket.setTourCode(sal.getTourCode());
-        ticket.setCommissionRate(sal.getAgentCommissionRate());
-        ticket.setCommissionAmount(sal.getAgentCommission());
+        ticket.setCommissionRate(new Double(sal.getAgentCommissionRate()).doubleValue());
+        ticket.setCommissionAmount(new Double(sal.getAgentCommission()).doubleValue());
         ticket.setEndorsementRestriction(sal.getEndorsementRestriction());
         ticket.setTotalFare(sal.getIncomePaxSc());
         ticket.setTotalFareCurrency(sal.getSaleCurrency());
@@ -158,6 +166,8 @@ public class MoveServiceImpl implements MoveService {
         ticket.setPaxQty(sal.getPaxQty());
         ticket.setFareCalculationArea(sal.getFca());
         ticket.setPassengerName(sal.getPaxName());
+        ticket.setDataSource(sal.getDataSource());
+        ticket.setEtSource(etSource);
         list.add(ticket);
     }
 
@@ -205,7 +215,7 @@ public class MoveServiceImpl implements MoveService {
         for(TaxDp dp : taxDps){
             if(dp.getTaxAmount1() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillNormalTax(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp);
                 auditorTax.setTaxCode(dp.getTaxType());
                 auditorTax.setTaxAmount(dp.getTaxAmount1());
                 auditorTaxes.add(auditorTax);
@@ -213,7 +223,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount2() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillNormalTax(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp);
                 auditorTax.setTaxCode(dp.getTaxType2());
                 auditorTax.setTaxAmount(dp.getTaxAmount2());
                 auditorTaxes.add(auditorTax);
@@ -221,7 +231,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount3() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillNormalTax(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp);
                 auditorTax.setTaxCode(dp.getTaxType3());
                 auditorTax.setTaxAmount(dp.getTaxAmount3());
                 auditorTaxes.add(auditorTax);
@@ -229,7 +239,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount4() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillNormalTax(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp);
                 auditorTax.setTaxCode(dp.getTaxType4());
                 auditorTax.setTaxAmount(dp.getTaxAmount4());
                 auditorTaxes.add(auditorTax);
@@ -237,7 +247,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount5() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillNormalTax(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp);
                 auditorTax.setTaxCode(dp.getTaxType5());
                 auditorTax.setTaxAmount(dp.getTaxAmount5());
                 auditorTaxes.add(auditorTax);
@@ -245,7 +255,7 @@ public class MoveServiceImpl implements MoveService {
         }
     }
 
-    private void fillNormalTax(AuditorTax tax, TaxDp dp){
+    private void fillDpTaxNormal(AuditorTax tax, TaxDp dp){
         tax.setDocumentCarrierIataNo(dp.getAirline3code());
         tax.setDocumentNo(dp.getTicketNo());
         tax.setDocumentType(dp.getSaleType());
@@ -281,55 +291,56 @@ public class MoveServiceImpl implements MoveService {
     private void buildSeg1(Segment seg, Sal sal, String couponUse){
         fillNormalSeg(seg, sal);
         seg.setCouponNo(1);
-        seg.setOriginAirportCode(sal.getAirport1());
-        seg.setDestinationAirportCode(sal.getAirport2());
+        seg.setOriginCityCode(sal.getAirport1());
+        seg.setDestinationCityCode(sal.getAirport2());
         seg.setCarrierIataNo(sal.getCarrier1());
         seg.setFareBasis(sal.getFareBasis1());
         seg.setFlightNo(sal.getFlightNo1());
         seg.setServiceClass(sal.getSubClass1());
-        seg.setCouponUseIndi(couponUse);
+        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg2(Segment seg, Sal sal, String couponUse){
         fillNormalSeg(seg, sal);
         seg.setCouponNo(2);
-        seg.setOriginAirportCode(sal.getAirport2());
-        seg.setDestinationAirportCode(sal.getAirport3());
+        seg.setOriginCityCode(sal.getAirport2());
+        seg.setDestinationCityCode(sal.getAirport3());
         seg.setCarrierIataNo(sal.getCarrier2());
         seg.setFareBasis(sal.getFareBasis2());
         seg.setFlightNo(sal.getFlightNo2());
         seg.setServiceClass(sal.getSubClass2());
-        seg.setCouponUseIndi(couponUse);
+        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg3(Segment seg, Sal sal, String couponUse){
         fillNormalSeg(seg, sal);
         seg.setCouponNo(3);
-        seg.setOriginAirportCode(sal.getAirport3());
-        seg.setDestinationAirportCode(sal.getAirport4());
+        seg.setOriginCityCode(sal.getAirport3());
+        seg.setDestinationCityCode(sal.getAirport4());
         seg.setCarrierIataNo(sal.getCarrier3());
         seg.setFareBasis(sal.getFareBasis3());
         seg.setFlightNo(sal.getFlightNo3());
         seg.setServiceClass(sal.getSubClass3());
-        seg.setCouponUseIndi(couponUse);
+        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg4(Segment seg, Sal sal, String couponUse){
         fillNormalSeg(seg, sal);
         seg.setCouponNo(4);
-        seg.setOriginAirportCode(sal.getAirport4());
-        seg.setDestinationAirportCode(sal.getAirport5());
+        seg.setOriginCityCode(sal.getAirport4());
+        seg.setDestinationCityCode(sal.getAirport5());
         seg.setCarrierIataNo(sal.getCarrier4());
         seg.setFareBasis(sal.getFareBasis4());
         seg.setFlightNo(sal.getFlightNo4());
         seg.setServiceClass(sal.getSubClass4());
-        seg.setCouponUseIndi(couponUse);
+        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void fillNormalSeg(Segment seg, Sal sal){
         seg.setDocumentCarrierIataNo(sal.getAirline3code());
         seg.setDocumentNo(sal.getTicketNo());
-        seg.setFirstTicketNo(sal.getFirstTicketNo());
+        seg.setDocumentType(sal.getSaleType());
+        seg.setConjunctionTicketNo(sal.getFirstTicketNo());
         seg.setIssueDate(sal.getIssueDate());
     }
 
@@ -338,11 +349,13 @@ public class MoveServiceImpl implements MoveService {
      * @param auditorTaxes
      * @param taxIps
      */
-    private void addIpTax(List<AuditorTax> auditorTaxes, List<TaxIp> taxIps){
+    private void addIpTax(List<AuditorTax> auditorTaxes, List<TaxIp> taxIps, String issueDate){
         for(TaxIp ip : taxIps){
             AuditorTax auditorTax = new AuditorTax();
+            auditorTax.setIssueDate(issueDate);
             auditorTax.setDocumentCarrierIataNo(ip.getAirline3code());
             auditorTax.setDocumentNo(ip.getTicketNo());
+            auditorTax.setDocumentType(ip.getSaleType());
             auditorTax.setTaxCode(ip.getTaxType());
             auditorTax.setTaxAmount(ip.getTaxAmount());
             auditorTax.setTaxCurrency(ip.getCurrency());

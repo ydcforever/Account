@@ -1,7 +1,7 @@
 package com.airline.account.audit;
 
 import com.airline.account.mapper.et.AuditorExchangeMapper;
-import com.airline.account.mapper.et.ProrateMapper;
+import com.airline.account.mapper.et.AuditorSegmentTaxMapper;
 import com.airline.account.model.et.Exchange;
 import com.airline.account.model.et.Ticket;
 import com.airline.account.ticket.Tax;
@@ -20,7 +20,7 @@ public class ExchangeAudit extends AbstractAudit implements IAuditExchange {
     private AuditorExchangeMapper mapper;
 
     @Autowired
-    private ProrateMapper prorateMapper;
+    private AuditorSegmentTaxMapper auditorSegmentTaxMapper;
 
 
     @Override

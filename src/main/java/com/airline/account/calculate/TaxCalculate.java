@@ -78,8 +78,8 @@ public class TaxCalculate {
                     .append("\"clazz\":\"").append(segment.getServiceClass())
                     .append("\",\"begin\":\"").append(segment.getDepartureDate())
                     .append("\",\"end\":\"").append(segment.getArriveDate())
-                    .append("\",\"from\":\"").append(segment.getOriginAirportCode())
-                    .append("\",\"to\":\"").append(segment.getDestinationAirportCode())
+                    .append("\",\"from\":\"").append(segment.getOriginCityCode())
+                    .append("\",\"to\":\"").append(segment.getDestinationCityCode())
                     .append("\",\"mcxr\":\"").append(segment.getCarrierIataNo());
             body.append("\",\"mfno\":\"").append(segment.getCarrierIataNo()).append(segment.getFlightNo());
 //            if (!"".equals(pt[0])) {

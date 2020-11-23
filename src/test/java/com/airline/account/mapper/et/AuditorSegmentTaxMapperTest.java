@@ -1,7 +1,7 @@
 package com.airline.account.mapper.et;
 
 import com.airline.account.model.et.Segment;
-import com.airline.account.prorate.SegmentTax;
+import com.airline.account.model.et.SegmentTax;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,17 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class ProrateMapperTest {
+public class AuditorSegmentTaxMapperTest {
 
     @Autowired
-    private ProrateMapper prorateMapper;
+    private AuditorSegmentTaxMapper auditorSegmentTaxMapper;
 
     @Test
     public void testQuerySegmentTax() throws Exception {
         List<Segment> segments = new ArrayList<>();
 //        segments.add(new Segment("781", "2402092990", 1));
         segments.add(new Segment("781", "2402092990", 2));
-        List<SegmentTax> taxes = prorateMapper.querySegmentTax(segments);
+        List<SegmentTax> taxes = auditorSegmentTaxMapper.querySegmentTax(segments);
         System.out.println(taxes);
     }
 }

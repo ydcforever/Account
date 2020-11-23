@@ -28,7 +28,7 @@
     <select id="queryRelation" resultMap="Exchange" parameterType="com.airline.account.model.et.Ticket">
         select
         <include refid="showCol"/>
-        from AUDITOR_OFFICIAL_EXCHANGE t
+        from ET_EXCHANGE_COUPON_USE t
         where t.DOCUMENT_CARRIER_IATA_NO = #{documentCarrierIataNo}
         and t.DOCUMENT_NO = #{documentNo}
         and t.ISSUE_DATE = to_date(#{issueDate}, 'yyyy-MM-dd')

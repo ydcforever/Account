@@ -27,8 +27,8 @@ public class AuditorTicketMapperTest {
 
     @Test
     public void testQueryTicket() throws Exception {
-        Ticket ticket = new Ticket("781","3633959119", "N", "2019-03-29");
+        Ticket ticket = new Ticket("781","001", "N", "2020-09-10");
         Ticket a = auditorTicketMapper.queryTicket(ticket);
-        System.out.println(a.getEndorsementRestriction());
+        System.out.println(a.getIssueDate());
     }
 }

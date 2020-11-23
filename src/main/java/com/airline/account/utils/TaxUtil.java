@@ -51,7 +51,7 @@ public final class TaxUtil {
         String deptDate="";
         String arriveDate="";
         for(Segment segment: segments) {
-            routing += segment.getOriginAirportCode() + "-" + segment.getDestinationAirportCode() + ";";
+            routing += segment.getOriginCityCode() + "-" + segment.getDestinationCityCode() + ";";
             mktCxr += segment.getCarrierIataNo() + ";";
             clazz += segment.getServiceClass() + ";";
             deptDate += segment.getDepartureDate() + ";";
