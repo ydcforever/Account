@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table id="condition">
+
+</table>
+<script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./js/layout.js"></script>
+<script type="text/javascript">
+    var queryExample = [
+        {
+            row: [
+                {
+                  title:"DP_D"
+                },
+                {
+                    type : "text",
+                    field : "dp_df",
+                    useDataList : true,
+                    initUrl : './et/listFile.do?tableName="ACCA_SAL_DP_D"'
+                }, {
+                    type : "button",
+                    field : "btn_dp_df",
+                    value : "迁移"
+                }, {
+                    type : "text",
+                    field : "dp_df_status"
+                }]
+        }, {
+            row:[
+                {
+                   title:"IP_D"
+                }, {
+                    type:"text",
+                    field: 'ip_df',
+                    useDataList: true,
+                    initUrl: './et/listFile.do?tableName="ACCA_SAL_IP_D"'
+                }, {
+                    type : "button",
+                    field : "btn_ip_df",
+                    value : "迁移"
+                }, {
+                    type : "text",
+                    field : "ip_df_status"
+                }]
+        }, {
+            row:[
+                {
+                   title : "DP_M"
+                }, {
+                    type:"text",
+                    field: 'dp_mf',
+                    useDataList: true,
+                    initUrl: './et/listFile.do?tableName="ACCA_SAL_DP_M"'
+                }, {
+                    type : "button",
+                    field : "btn_dp_mf",
+                    value : "迁移"
+                }, {
+                    type : "text",
+                    field : "dp_mf_status"
+                }]
+        }, {
+            row:[
+                {
+                   title : "IP_M"
+                }, {
+                    type:"text",
+                    field: 'ip_mf',
+                    useDataList: true,
+                    initUrl: './et/listFile.do?tableName="ACCA_SAL_IP_M"'
+                }, {
+                    type : "button",
+                    field : "btn_ip_mf",
+                    value : "迁移"
+                }, {
+                    type : "text",
+                    field : "ip_mf_status"
+                }]
+        }
+    ];
+    loadLayout($("#condition"), queryExample, "acca");
+
+    move($("#btn_dp_df"), "./et/moveDDp.do", $("#dp_df"), $("#dp_df_status"));
+    move($("#btn_ip_df"), "./et/moveDIp.do", $("#ip_df"), $("#ip_df_status"));
+    move($("#btn_dp_mf"), "./et/moveMDp.do", $("#dp_mf"), $("#dp_mf_status"));
+    move($("#btn_ip_mf"), "./et/moveMIp.do", $("#ip_mf"), $("#ip_mf_status"));
+
+    function move($btn, url, $name, $status){
+        $btn.click(function(){
+            $status.val("开始迁移");
+            $.ajax({
+                type:"POST",
+                url : url,
+                data:{fileName : $name.val()},
+                dataType:"json",
+                success :function(){
+                    $status.val("迁移成功");
+                },
+                error:function(){
+                    $status.val("迁移失败");
+                }
+            });
+        });
+    }
+</script>
+</body>
+</html>

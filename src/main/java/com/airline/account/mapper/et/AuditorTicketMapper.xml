@@ -82,6 +82,9 @@
         <result column="PAX_QTY" property="paxQty" jdbcType="DECIMAL"/>
         <result column="MANUAL_FLAG" property="manualFlag" jdbcType="VARCHAR"/>
         <result column="ET_SOURCE" property="etSource" jdbcType="VARCHAR"/>
+        <result column="PNR_NO" property="pnrNo" jdbcType="VARCHAR"/>
+        <result column="GP_FLAG" property="gpFlag" jdbcType="VARCHAR"/>
+        <result column="AUTO_TICKET_FLAG" property="autoTicketFlag" jdbcType="VARCHAR"/>
     </resultMap>
 
     <insert id="insertTicket">
@@ -165,7 +168,10 @@
         PAX_TYPE,
         PAX_QTY,
         MANUAL_FLAG,
-        ET_SOURCE
+        ET_SOURCE,
+        PNR_NO,
+        GP_FLAG,
+        AUTO_TICKET_FLAG
         )
         <foreach collection="list" item="item" index="index" separator="UNION ALL">
             SELECT
@@ -247,7 +253,10 @@
             #{item.paxType, jdbcType=VARCHAR},
             #{item.paxQty, jdbcType=DECIMAL},
             #{item.manualFlag, jdbcType=VARCHAR},
-            #{item.etSource, jdbcType=VARCHAR}
+            #{item.etSource, jdbcType=VARCHAR},
+            #{item.pnrNo, jdbcType=VARCHAR},
+            #{item.gpFlag, jdbcType=VARCHAR},
+            #{item.autoTicketFlag, jdbcType=VARCHAR}
             FROM dual
         </foreach>
     </insert>

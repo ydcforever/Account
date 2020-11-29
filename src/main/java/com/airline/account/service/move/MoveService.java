@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MoveService {
 
-    public void moveDIp(Sal cnjSal);
+    public void moveDIp(Sal cnjSal) throws Exception;
 
-    public void moveDDp(Sal cnjSal);
+    public void moveDDp(Sal cnjSal) throws Exception;
 
-    public void moveMIp(Sal cnjSal);
+    public void moveMIp(Sal cnjSal) throws Exception;
 
-    public void moveMDp(Sal cnjSal);
+    public void moveMDp(Sal cnjSal) throws Exception;
 }

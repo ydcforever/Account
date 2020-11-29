@@ -165,6 +165,12 @@ public class Ticket {
 
     private String etSource;
 
+    private String pnrNo;
+
+    private String gpFlag;
+
+    private String autoTicketFlag;
+
     public Ticket(String documentCarrierIataNo, String documentNo, String documentType, String issueDate) {
         this.documentCarrierIataNo = documentCarrierIataNo;
         this.documentNo = documentNo;

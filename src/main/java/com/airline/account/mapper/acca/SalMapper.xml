@@ -149,4 +149,16 @@
         and t.issue_date &lt;= #{end}
         and t.cnj_no = 1
     </select>
+
+    <select id="queryCnjByFile" resultMap="Sal">
+        SELECT
+        <include refid="showCol"/>
+        FROM ${table} t
+        WHERE t.source_name = #{name}
+    </select>
+
+    <select id="queryFile" resultType="String">
+        SELECT DISTINCT t.source_name
+        FROM ${table} t
+    </select>
 </mapper>

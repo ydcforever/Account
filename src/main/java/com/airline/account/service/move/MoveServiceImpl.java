@@ -11,8 +11,12 @@ import com.airline.account.model.acca.TaxIp;
 import com.airline.account.model.et.AuditorTax;
 import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
+import com.airline.account.utils.EtFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +47,8 @@ public class MoveServiceImpl implements MoveService {
      * @param cnjSal
      */
     @Override
-    public void moveDIp(Sal cnjSal) {
+    @Transactional(isolation = Isolation.DEFAULT, propagation= Propagation.REQUIRED, rollbackFor=Exception.class)
+    public void moveDIp(Sal cnjSal) throws Exception{
         List<Sal> sals = salMapper.queryDIpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
@@ -69,7 +74,7 @@ public class MoveServiceImpl implements MoveService {
      * @param cnjSal
      */
     @Override
-    public void moveDDp(Sal cnjSal) {
+    public void moveDDp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryDDpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
@@ -81,7 +86,7 @@ public class MoveServiceImpl implements MoveService {
                 addSeg(segments, cnjSal);
             }
             List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-            addDpTax(auditorTaxes, taxDps);
+            addDpTax(auditorTaxes, taxDps, sals.get(0).getIssueDate());
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             if(auditorTaxes.size() > 0) {
@@ -95,7 +100,7 @@ public class MoveServiceImpl implements MoveService {
      * @param cnjSal
      */
     @Override
-    public void moveMIp(Sal cnjSal) {
+    public void moveMIp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryMIpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
@@ -121,7 +126,7 @@ public class MoveServiceImpl implements MoveService {
      * @param cnjSal
      */
     @Override
-    public void moveMDp(Sal cnjSal) {
+    public void moveMDp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryMDpSal(cnjSal);
         //连票是否齐全，这里后续添加check的过程
         if(cnjSal.getCnjNo() == sals.size()){
@@ -133,7 +138,7 @@ public class MoveServiceImpl implements MoveService {
                 addSeg(segments, cnjSal);
             }
             List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-            addDpTax(auditorTaxes, taxDps);
+            addDpTax(auditorTaxes, taxDps, sals.get(0).getIssueDate());
             auditorTicketMapper.insertTicket(tickets);
             auditorSegmentMapper.insertSegment(segments);
             if(auditorTaxes.size() > 0) {
@@ -160,16 +165,22 @@ public class MoveServiceImpl implements MoveService {
         ticket.setCommissionRate(new Double(sal.getAgentCommissionRate()).doubleValue());
         ticket.setCommissionAmount(new Double(sal.getAgentCommission()).doubleValue());
         ticket.setEndorsementRestriction(sal.getEndorsementRestriction());
-        ticket.setTotalFare(sal.getIncomePaxSc());
+        ticket.setEquivalentFarePaid(new Double(sal.getIncomePaxSc()).doubleValue());
+        ticket.setEquivalentFareCurrencyCode(sal.getSaleCurrency());
+        ticket.setTotalFare(sal.getIncomePaySc());
         ticket.setTotalFareCurrency(sal.getSaleCurrency());
-        ticket.setPaxType(sal.getPaxType());
+        ticket.setPaxType(EtFormat.psgTypeFormat(sal.getPaxType()));
         ticket.setPaxQty(sal.getPaxQty());
         ticket.setFareCalculationArea(sal.getFca());
         ticket.setPassengerName(sal.getPaxName());
         ticket.setDataSource(sal.getDataSource());
         ticket.setEtSource(etSource);
+        ticket.setPnrNo(sal.getPnrNo());
+        ticket.setGpFlag(sal.getGpFlag());
+        ticket.setAutoTicketFlag(sal.getAutoTicketFlag());
         list.add(ticket);
     }
+
 
     private void addSeg(List<Segment> list, Sal sal){
         if(isNumber(sal.getCouponUseIndicator())){
@@ -211,11 +222,11 @@ public class MoveServiceImpl implements MoveService {
      * @param auditorTaxes
      * @param taxDps
      */
-    private void addDpTax(List<AuditorTax> auditorTaxes, List<TaxDp> taxDps){
+    private void addDpTax(List<AuditorTax> auditorTaxes, List<TaxDp> taxDps, String issueDate){
         for(TaxDp dp : taxDps){
             if(dp.getTaxAmount1() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp, issueDate);
                 auditorTax.setTaxCode(dp.getTaxType());
                 auditorTax.setTaxAmount(dp.getTaxAmount1());
                 auditorTaxes.add(auditorTax);
@@ -223,7 +234,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount2() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp, issueDate);
                 auditorTax.setTaxCode(dp.getTaxType2());
                 auditorTax.setTaxAmount(dp.getTaxAmount2());
                 auditorTaxes.add(auditorTax);
@@ -231,7 +242,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount3() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp, issueDate);
                 auditorTax.setTaxCode(dp.getTaxType3());
                 auditorTax.setTaxAmount(dp.getTaxAmount3());
                 auditorTaxes.add(auditorTax);
@@ -239,7 +250,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount4() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp, issueDate);
                 auditorTax.setTaxCode(dp.getTaxType4());
                 auditorTax.setTaxAmount(dp.getTaxAmount4());
                 auditorTaxes.add(auditorTax);
@@ -247,7 +258,7 @@ public class MoveServiceImpl implements MoveService {
 
             if(dp.getTaxAmount5() != 0){
                 AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp);
+                fillDpTaxNormal(auditorTax, dp, issueDate);
                 auditorTax.setTaxCode(dp.getTaxType5());
                 auditorTax.setTaxAmount(dp.getTaxAmount5());
                 auditorTaxes.add(auditorTax);
@@ -255,10 +266,11 @@ public class MoveServiceImpl implements MoveService {
         }
     }
 
-    private void fillDpTaxNormal(AuditorTax tax, TaxDp dp){
+    private void fillDpTaxNormal(AuditorTax tax, TaxDp dp, String issueDate){
         tax.setDocumentCarrierIataNo(dp.getAirline3code());
         tax.setDocumentNo(dp.getTicketNo());
         tax.setDocumentType(dp.getSaleType());
+        tax.setIssueDate(issueDate);
         tax.setTaxCurrency(dp.getCurrency());
     }
 
@@ -281,7 +293,6 @@ public class MoveServiceImpl implements MoveService {
                 buildSeg3(seg, sal, "F");
                 list.add(seg);
             } else if ("4".equals(s)){
-                fillNormalSeg(seg, sal);
                 buildSeg4(seg, sal, "F");
                 list.add(seg);
             }
@@ -289,59 +300,62 @@ public class MoveServiceImpl implements MoveService {
     }
 
     private void buildSeg1(Segment seg, Sal sal, String couponUse){
-        fillNormalSeg(seg, sal);
+        fillNormalSeg(seg, sal, couponUse);
         seg.setCouponNo(1);
         seg.setOriginCityCode(sal.getAirport1());
         seg.setDestinationCityCode(sal.getAirport2());
         seg.setCarrierIataNo(sal.getCarrier1());
         seg.setFareBasis(sal.getFareBasis1());
         seg.setFlightNo(sal.getFlightNo1());
+        seg.setFlightDate(EtFormat.fltDateFormat(sal.getFlightDt1()));
         seg.setServiceClass(sal.getSubClass1());
-        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg2(Segment seg, Sal sal, String couponUse){
-        fillNormalSeg(seg, sal);
+        fillNormalSeg(seg, sal, couponUse);
         seg.setCouponNo(2);
         seg.setOriginCityCode(sal.getAirport2());
         seg.setDestinationCityCode(sal.getAirport3());
         seg.setCarrierIataNo(sal.getCarrier2());
         seg.setFareBasis(sal.getFareBasis2());
         seg.setFlightNo(sal.getFlightNo2());
+        seg.setFlightDate(EtFormat.fltDateFormat(sal.getFlightDt2()));
         seg.setServiceClass(sal.getSubClass2());
-        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg3(Segment seg, Sal sal, String couponUse){
-        fillNormalSeg(seg, sal);
+        fillNormalSeg(seg, sal, couponUse);
         seg.setCouponNo(3);
         seg.setOriginCityCode(sal.getAirport3());
         seg.setDestinationCityCode(sal.getAirport4());
         seg.setCarrierIataNo(sal.getCarrier3());
         seg.setFareBasis(sal.getFareBasis3());
         seg.setFlightNo(sal.getFlightNo3());
+        seg.setFlightDate(EtFormat.fltDateFormat(sal.getFlightDt3()));
         seg.setServiceClass(sal.getSubClass3());
-        seg.setCouponStatusIndicator(couponUse);
     }
 
     private void buildSeg4(Segment seg, Sal sal, String couponUse){
-        fillNormalSeg(seg, sal);
+        fillNormalSeg(seg, sal, couponUse);
         seg.setCouponNo(4);
         seg.setOriginCityCode(sal.getAirport4());
         seg.setDestinationCityCode(sal.getAirport5());
         seg.setCarrierIataNo(sal.getCarrier4());
         seg.setFareBasis(sal.getFareBasis4());
         seg.setFlightNo(sal.getFlightNo4());
+        seg.setFlightDate(EtFormat.fltDateFormat(sal.getFlightDt4()));
         seg.setServiceClass(sal.getSubClass4());
-        seg.setCouponStatusIndicator(couponUse);
     }
 
-    private void fillNormalSeg(Segment seg, Sal sal){
+    private void fillNormalSeg(Segment seg, Sal sal, String couponUse){
         seg.setDocumentCarrierIataNo(sal.getAirline3code());
         seg.setDocumentNo(sal.getTicketNo());
         seg.setDocumentType(sal.getSaleType());
         seg.setConjunctionTicketNo(sal.getFirstTicketNo());
+        seg.setCnjCurrent(sal.getCnjNo());
         seg.setIssueDate(sal.getIssueDate());
+        seg.setCouponStatusIndicator("S");
+        seg.setValidCouponFlag(couponUse);
     }
 
     /**
