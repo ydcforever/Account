@@ -56,9 +56,5 @@ public class TaxDp {
 
     private double taxAmount5;
 
-//    private String carrier;
-//
-//    private double flagid;
-//
 //    private String sourceName;
 }

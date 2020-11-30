@@ -26,6 +26,6 @@ public interface SalMapper {
 
     public List<Sal> queryMDpSal(@Param("sal") Sal cnjSal);
 
-    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("tbl") String table);
+    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("table")String table);
 
 }

@@ -134,11 +134,12 @@
         where <include refid="cnjClause"/>
     </select>
 
-    <select id="testQuery" resultType="com.airline.account.model.acca.Sal">
+    <select id="testQuery" resultMap="Sal">
         SELECT
-        <include refid="showCol"/>
-        FROM ACCA_SAL_DP_D t
-        WHERE <include refid="cnjClause"/>
+          <include refid="showCol"/>
+        FROM ${table} t
+        WHERE t.airline_3code = #{sal.airline3code}
+        and t.ticket_no = #{sal.ticketNo}
     </select>
 
     <select id="queryCnj" resultMap="Sal">
@@ -155,6 +156,7 @@
         <include refid="showCol"/>
         FROM ${table} t
         WHERE t.source_name = #{name}
+        and t.cnj_no = 1
     </select>
 
     <select id="queryFile" resultType="String">

@@ -1,6 +1,7 @@
 package com.airline.account.model.et;
 
 import lombok.Data;
+import org.apache.commons.lang.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class MoveLog {
     public MoveLog(String airlineCode, String firstTicketNo, String excp) {
         this.airlineCode = airlineCode;
         this.firstTicketNo = firstTicketNo;
-        this.excp = excp.length() > 2000 ? excp.substring(0, 2000) : excp;
+        this.excp = StringUtils.isBlank(excp) ? "" : excp.length() > 2000 ? excp.substring(0, 2000) : excp;
         this.createTime = SDF_HMS.format(new Date());
     }
 }

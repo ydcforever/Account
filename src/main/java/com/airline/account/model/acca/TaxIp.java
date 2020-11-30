@@ -32,9 +32,4 @@ public class TaxIp {
 
     private double taxAmount;
 
-//    private String carrier;
-//
-//    private double flagid;
-//
-//    private String sourceName;
 }
