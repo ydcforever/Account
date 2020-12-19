@@ -1,7 +1,7 @@
 package com.airline.account.online;
 
 import com.airline.account.model.et.Segment;
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class OnlineRefund implements IOnlineRefund {
      * @return
      */
     @Override
-    public List<Tax> refundTax(List<Segment> list) {
+    public List<ETax> refundTax(List<Segment> list) {
         return null;
     }
 

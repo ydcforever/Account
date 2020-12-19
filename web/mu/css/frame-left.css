@@ -1,0 +1,137 @@
+.left-body{
+	background: #dde1ea;
+}
+.bg-left {
+	height: 100%;
+	background-color: rgb(40, 81, 144);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 5px;
+	z-index: 11;
+}
+
+.aside-on-off {
+	height: 60px;
+	width: 15px;
+	position: fixed;
+	top: 255px;
+	left: 0px;
+	background-color: rgb(40, 81, 144);
+	cursor: pointer;
+	z-index: 12;
+}
+
+.aside-on-off img {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	margin-top: -50%;
+}
+
+.rotate {
+	transform: rotate(180deg);
+	transition: all .1s;
+}
+
+.aside-hide {
+	display: none;
+}
+
+aside>ul {
+	width: 100%;
+	margin-left: 5px;
+	font-size: 14px;
+	position: relative;
+	left: -5px;
+	/*border-right: 1px solid rgb(190,200,216);*/
+}
+aside>ul>li {
+	cursor: pointer;
+	height: 35px;
+	line-height: 35px;
+	font-size: 13px;
+	text-indent: 30px;
+	background: url(../images/Catalogbg.png) no-repeat;
+	background-size: cover;
+	border-bottom: 1px solid white;
+	position: relative;
+}
+/*内层ul设置*/
+
+aside ul ul li{
+	line-height: 33px;
+	padding-left: 36px;
+	border-bottom: 1px solid whitesmoke;
+	border-right: 1px solid #E3E3E3;
+}
+aside ul ul li a{
+	color: black;
+	cursor: pointer;
+}
+aside ul ul li:hover{
+	background-color: whitesmoke;
+}
+li.li-active{
+	background-color: rgb(192,165,85) !important;
+	color: white;
+}
+li.li-active span,
+li.li-active a{
+	color: white;
+}
+aside ul ul {
+	background: white;
+	display: none;
+}
+.ul-click-bg {
+	position: absolute;
+	right: 5px;
+}
+
+.ul-focus-b {
+	display: inline-block;
+	width: 5px;
+	height: 36px;
+	background-color: rgb(192, 165, 85);
+	position: absolute;
+	z-index: 11;
+	left: 0px;
+	top: -1px;
+}
+.pop-bg{
+	display: none;
+	position: fixed;
+	opacity: 0.5;
+	background: black;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+/*规则制定设置*/
+.left-rule{
+	height: 100%;
+	background: rgb(231,234,240);
+}
+.left-rule,
+.left-rule ul,
+.left-rule li{
+	width: 195px;
+}
+.left-rule li{
+	height: 33px;
+	line-height: 33px;
+	border-bottom: 1px solid white;
+}
+.left-rule a{
+	color: black;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: -19px;
+}

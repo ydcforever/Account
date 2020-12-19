@@ -1,0 +1,467 @@
+/*一级弹窗*/
+.pop1{
+	width: 100%;
+	height: 100%;
+}
+.cont1{
+	padding-top: 35px;
+	margin-bottom: 90px
+}
+.pop1 h3{
+	text-indent: 16px;
+	width: 100%;
+	font-size: 16px;
+	line-height: 35px;
+	background: linear-gradient(180deg,rgb(236,239,243),rgb(217,221,230));
+}
+.pop1>h3{
+	position: fixed;
+	top: 0;
+	z-index: 10;
+}
+.pop1 h4 a{
+	display: inline-block;
+	font-size: 14px;
+}
+.pop1 .cont1>*{
+	width: 97%;
+	margin: 0 auto;
+	margin-top: 10px;
+	min-width: 930px;
+}
+.pop1 div.div-hide{
+	display: none;
+}
+.pop1 label{
+	display: inline-block;
+}
+.pop1 input[type="text"]{
+	height: 22px;
+	border: 1px solid #ddd;
+}
+.pop1 select{
+	border: 1px solid #ddd;
+}
+.pop1 .cont-d1-tab1 input[type="text"]{
+	width: 180px;
+	border: none;
+	outline: none;
+}
+.pop1 .table-oth span{
+	margin-left: 3px;
+	margin-right: 5px;
+}
+.pop1 h4{
+	line-height: 41px;
+	margin-bottom: 10px;
+	min-width: 930px;
+}
+.pop1 .cont-d1-tab2 h4{
+	min-width: auto;
+	margin-bottom: 0;
+	border-bottom: none !important;
+}
+.pop1 .cont-d1>h4{
+	color: white;
+	background-color: rgb(40,81,144);
+}
+.pop1 .h4-bg1,
+.pop1 .tab2-tr2 #h4-down{
+	width: 12px;
+	height: 12px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-image: url(../images/Untitled2.png);
+}
+.pop1 .h4-bg2,
+.pop1 .tab2-tr2 .h4-bg2{
+	width: 30px;
+	height: 30px;
+	background-image: url(../images/span-substact.png);
+	float: right;
+	position: relative;
+	top: 6px;
+	right: 10px;
+	cursor: pointer;
+}
+.pop1 h4{
+	border-bottom: 1px solid rgb(40,81,144);
+}
+.pop1 h4:not(.h4-1){
+	background-color: rgb(242,244,248);
+}
+.pop1 h4 a img{
+	margin: 0 10px;
+}
+.pop1 h4:not(.h4-1) .h4-bg2{
+	background-image: url(../images/span-add.png);
+}
+.pop1 .cont-d1 table tr:not(.table-bg){
+	/*background: red;*/
+}
+
+.pop1 .cont-d1 table tr:nth-child(2) td:nth-child(2) input{
+	border: none;
+	outline: none;
+}
+
+.pop1 #sale-num{
+	width: 100px;
+}
+.pop1 .cont-d1 tr:nth-child(1) td:last-child span{
+	margin-right: 0;
+}
+.pop1 .i-hov{
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	background-image: url(../images/help2.png);
+	margin-left: 12px;
+	position: relative;
+	top: 3px;
+	cursor: pointer;
+}
+/*.pop1 .cont-d1 tr:nth-child(3) td:last-child span{
+	margin-right: 6px;
+}*/
+.pop1 .cont-d1 .more-click{
+	float: right;
+	position: relative;
+	top: 1px;
+	right: 13px;
+}
+.pop1 .cont-d1 a i{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	background-image: url(../images/more.png);
+}
+
+
+/*点击更多*/
+.more{
+	border-right: none;
+}
+.more>div{
+	overflow: hidden;
+	width: 100%;
+	height: 19px;
+}
+.more>div.more-div{
+	height: 100%;
+}
+/*.more>div label.lab{
+	padding: 5px 0;
+}*/
+
+
+
+.pop1 .cont-d1 .cont-d1-tab1 .table-tr td:last-child{
+	width: 6%;
+	border-left: none;
+}
+.pop1 .cont-d1 tr:nth-child(5) p{
+	display: inline-block;
+}
+.pop1 .span-hover{
+	position: relative;
+}
+
+.pop1 .span-hover b{
+	display: none;
+	border: 1px solid #ddd;
+	background-color: rgb(250,251,252);
+	color: rgb(218,86,102);
+	font-size: 12px;
+	padding: 5px 3px;
+	position: absolute;
+	line-height: 15px;
+	white-space: nowrap;
+	top: -2px;
+	left: 38px;
+}
+.pop1 .cont-d3 input[type="text"]{
+	border: none;
+}
+.pop1 .cont-d3-tab tr:last-child td:last-child{
+	position: relative;
+}
+/*.pop1 .cont-d1 tr:nth-child(12) span{
+	margin-right: 20px;
+	margin-left: 10px;
+}*/
+.pop1 .cont-d1>p{
+	text-align: center;
+	font-size: 12px;
+	line-height: 30px;
+}
+.pop1 .cont-d1>p span{
+	font-weight: bold;
+	margin-right: 20px;
+}
+.pop1 .cont-d1>p input{
+	/*vertical-align: middle;*/
+	width: auto;
+}
+/*第一块第二个table*/
+
+.pop1 .cont-d1 .cont-d1-tab2{
+	/*display: none;*/
+}
+.pop1 .cont-d1 .cont-d1-tab2 .table-bg{
+	width: 5%;
+}
+.pop1 .cont-d1-tab2 .tab2-tr1,
+.tr-template{
+	height: 80px;
+}
+
+/*上边框*/
+.pop1 .cont-d1 .cont-d1-tab2 tr:first-child td{
+	border-top: 1px solid rgb(40,81,144);
+}
+/*左边框*/
+.pop1 .cont-d1 .cont-d1-tab2 tr td:first-child{
+	border-left: 1px solid rgb(40,81,144);
+}
+/*有边框*/
+.pop1 .cont-d1 .cont-d1-tab2 tr td:last-child{
+	border-right: 1px solid rgb(40,81,144);
+}
+/*下边框*/
+.pop1 .cont-d1 .cont-d1-tab2 tr:last-child td{
+	border-bottom: 1px solid rgb(40,81,144);
+}
+/*.cont-d1 .cont-d1-tab2 .tab2-tr4>td{
+	border-bottom: none;
+}*/
+.pop1 .tab2-tr1-td6{
+	width: 8%;
+}
+.pop1 .import1,
+.pop1 .import2{
+	height: 60px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	position: relative;
+	top: 2px;
+}
+.pop1 .import1,
+.pop1 .import2{
+	display: inline-block;
+	width: 63%;
+}
+.cont-d1-tab2 .import1{
+	width: 79% !important;
+}
+.pop1 .cont-d1-tab1 .import1{
+	width: 65%;
+}
+
+.pop1 .import2{
+	width: 79%;
+}
+.pop1 .cont-d1-tab1 .import2{
+	width: 86%;
+}
+.pop1 .tab-import1 div,
+.pop1 .tab-import2 div{
+	float: right;
+	/*width: 80px;*/
+	position: relative;
+	top: 6px;
+	right: 8px;
+}
+.pop1 .tab-import1 p,
+.pop1 .tab-import2 p{
+	cursor: pointer;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 3px;
+	margin-bottom: 5px;
+}
+.pop1 .tab2-tr2 h4{
+	line-height: 42px;
+	background-color: rgb(40,81,144);
+	color: white;
+}
+
+.pop1 .tab2-tr2 #h4-down{
+	background-image: url(../images/Untitled2.png);
+	width: 12px;
+	height: 12px;
+}
+
+.pop1 .tab2-tr2 .h4-bg2{
+	background-image: url(../images/span-add.png);
+}
+
+/*
+.pop1 .tab2-tr3>td:nth-child(2)>div,
+.pop1 .tab2-tr4>td:nth-child(2)>div{
+	display: inline-block;
+}
+.pop1 .tab2-tr3-td2 div:first-child,
+.pop1 .tab2-tr4-td2 div:first-child{
+	width: 28%;
+}
+.pop1 .tab2-tr3-td2 div:first-child select,
+.pop1 .tab2-tr4-td2 div:first-child select{
+	width: 95%;
+	margin-left: 8px;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(2),
+.pop1 .tab2-tr4-td2 div:nth-child(2){
+	width: 35%;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(2) input,
+.pop1 .tab2-tr4-td2 div:nth-child(2) input{
+	width: 95%;
+	margin-left: 6px;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(3),
+.pop1 .tab2-tr4-td2 div:nth-child(3){
+	width: 20%;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(3) select{
+	width: 100%;
+	margin-left: 3px;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(4){
+	width: 12%;
+}
+.pop1 .tab2-tr3-td2 div:nth-child(4) label{
+	margin-left: 3px;
+}
+.pop1 .tab2-tr4-td2 div:last-child label{
+	margin-left: 3px;
+}
+.pop1 .cont-d1-tab2  input[type="checkbox"]{
+	margin-right: 2px;
+}
+.pop1 .tab2-tr3-td4 input[type='text']{
+	width: 20%;
+}
+.pop1 .tab2-tr4-td4 input[type='text']{
+	width: 15%;
+}
+.pop1 .tab2-tr3-td4>*,
+.pop1 .tab2-tr4-td4>*{
+	margin-left: 8px;
+}
+.pop1 .tab2-tr3-td4 select,
+.pop1 .tab2-tr4-td4 select{
+	width: 80px;
+}*/
+
+.tab2-tr3 td:nth-child(2n),
+.tab2-tr4 td:nth-child(2n){
+	padding-left: 10px;
+}
+.tab2-tr3 td:last-child{
+	background: none;
+	padding-left: 0;
+}
+.pop1 .tab-delete,
+.pop1 .tab2-delete{
+	width: 18px;
+	height: 20px;
+	background-image: url(../images/recycle-bin.png);
+	cursor: pointer;
+}
+.cont-border span.tab-delete{
+	float: right;
+	margin-right: 50px;
+}
+/*.pop1 .tab2-delete{
+	margin-left: 38px;
+	margin-top: 6px;
+}
+.pop1 div:not(.cont-d1)>table tr:last-child td:last-child{
+	border-right: none;
+}
+.pop1 div:not(.cont-d1)>table .tab-delete{
+	margin-left: 20px;
+}
+.pop1 div:not(.cont-d1)>table select{
+	width: 70px;
+}
+.pop1 div:not(.cont-d1)>table tr:first-child td:nth-child(4) select{
+	width: 50px;
+	margin: 0 10px;
+}
+.pop1 div:not(.cont-d1)>table input{
+	width: 105px;
+}
+
+.pop1 .cont-d2-tab tr:last-child td:nth-child(2n) input{
+	width: 66%;
+}*/
+
+.pop1 .cont-d2-tab input{
+	background: url(../images/calendar.png) no-repeat 98% 3px;
+}
+
+.pop1 .cont-d3 input{
+	border: none;
+	outline: none;
+}
+.cont-d>div>table{
+	display: none;
+}
+
+.pop1 .cont-d>*{
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+
+/*提示信息设置*/
+.pop1 div.prompt{
+	margin-top: 0;
+	display: none;
+	min-width: auto !important;
+	width: 350px;
+	height: 150px;
+	border: 1px solid #ddd;
+	box-shadow: 1px 1px 1px #DDDDDD;
+	border-radius: 3px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-65%);
+	z-index: 10;
+	background: white;
+	font-size: 14px;
+}
+.prompt>div{
+	width: 280px;
+	margin: 0 auto;
+}
+.prompt>div>p{
+	margin: 20px 0 15px;
+}
+.prompt p span{
+	margin-right: 8px;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 4px;
+	right: 5px;
+	background: url(../images/prompt.png);
+}
+.prompt p b{
+	color: rgb(218,86,102);
+}
+.prompt input[type="button"]{
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+	line-height: 35px;
+	border-radius: 3px;
+	color: white;
+	border: 1px solid rgb(219,87,102);
+	background: linear-gradient(180deg,rgb(225,109,122),rgb(219,87,102));
+}

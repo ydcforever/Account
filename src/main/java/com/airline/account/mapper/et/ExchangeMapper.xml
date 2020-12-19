@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.ExchangeMapper">
+    <resultMap type="com.airline.account.model.et.Exchange" id="Exchange">
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
+        <result column="ISSUE_IN_EXCH_CARRIER_IATA_NO" property="issueInExchCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_IN_EXCH_DOCUMENT_NO" property="issueInExchDocumentNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_IN_EXCH_DOCUMENT_TYPE" property="issueInExchDocumentType" jdbcType="VARCHAR"/>
+        <result column="EXCHANGE_COUPON_USE_INDICATOR" property="exchangeCouponUseIndicator" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="VARCHAR"/>
+        <result column="ISSUE_IN_EXCH_DATE" property="issueInExchDate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="showCol">
+        DOCUMENT_CARRIER_IATA_NO,
+        DOCUMENT_NO,
+        DOCUMENT_TYPE,
+        ISSUE_IN_EXCH_CARRIER_IATA_NO,
+        ISSUE_IN_EXCH_DOCUMENT_NO,
+        ISSUE_IN_EXCH_DOCUMENT_TYPE,
+        EXCHANGE_COUPON_USE_INDICATOR,
+        to_char(ISSUE_DATE, 'yyyy-MM-dd') as ISSUE_DATE,
+        to_char(ISSUE_IN_EXCH_DATE, 'yyyy-MM-dd') as ISSUE_IN_EXCH_DATE
+    </sql>
+
+    <select id="queryRelation" resultMap="Exchange" parameterType="com.airline.account.model.et.Ticket">
+        select
+        <include refid="showCol"/>
+        from ET_EXCHANGE_COUPON_USE t
+        where t.DOCUMENT_CARRIER_IATA_NO = #{documentCarrierIataNo}
+        and t.DOCUMENT_NO = #{documentNo}
+        and t.ISSUE_DATE = to_date(#{issueDate}, 'yyyy-MM-dd')
+    </select>
+
+    <!--<insert id="insertUser">-->
+        <!--insert into AUDITOR_OFFICIAL_EXCHANGE-->
+        <!--(-->
+        <!--DOCUMENT_CARRIER_IATA_NO,-->
+        <!--DOCUMENT_NO,-->
+        <!--DOCUMENT_TYPE,-->
+        <!--ISSUE_IN_EXCH_CARRIER_IATA_NO,-->
+        <!--ISSUE_IN_EXCH_DOCUMENT_NO,-->
+        <!--ISSUE_IN_EXCH_DOCUMENT_TYPE,-->
+        <!--EXCHANGE_COUPON_USE_INDICATOR,-->
+        <!--ISSUE_DATE,-->
+        <!--ISSUE_IN_EXCH_DATE,-->
+        <!--CREATE_DATE,-->
+        <!--UPDATE_DATE-->
+        <!--)-->
+        <!--values-->
+        <!--(-->
+        <!--#{documentCarrierIataNo, jdbcType=VARCHAR},-->
+        <!--#{documentNo, jdbcType=VARCHAR},-->
+        <!--#{documentType, jdbcType=VARCHAR},-->
+        <!--#{issueInExchCarrierIataNo, jdbcType=VARCHAR},-->
+        <!--#{issueInExchDocumentNo, jdbcType=VARCHAR},-->
+        <!--#{issueInExchDocumentType, jdbcType=VARCHAR},-->
+        <!--#{exchangeCouponUseIndicator, jdbcType=VARCHAR},-->
+        <!--#{issueDate, jdbcType=DATE},-->
+        <!--#{issueInExchDate, jdbcType=DATE},-->
+        <!--#{createDate, jdbcType=DATE},-->
+        <!--#{updateDate, jdbcType=DATE}-->
+        <!--)-->
+    <!--</insert>-->
+</mapper>

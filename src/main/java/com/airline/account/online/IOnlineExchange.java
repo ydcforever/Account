@@ -1,6 +1,6 @@
 package com.airline.account.online;
 
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public interface IOnlineExchange{
      * 新票计算
      * @return
      */
-    public List<Tax> compute();
+    public List<ETax> compute();
 
 }

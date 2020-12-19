@@ -1,0 +1,136 @@
+/*二级弹窗*/
+.pop1-1{
+	width: 100%;
+}
+.pop1-1,.pop1-2{
+	background: white;
+}
+.pop1-1 h3,
+.pop1-2 h3{
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	text-indent: 16px;
+	width: 100%;
+	font-size: 16px;
+	line-height: 45px;
+	background: linear-gradient(180deg,rgb(236,239,243),rgb(217,221,230));
+}
+.pop1-1 .tab-scroll,
+.pop1-2 .tab-scroll{
+	width: 100%;
+	padding-bottom: 65px;
+	padding-top: 45px;
+}
+.pop1-2 .tab-scroll{
+	padding-top: 66px;
+}
+.pop1-1>div>*,
+.pop1-2>div>*{
+	width: 85%;
+	margin: 0 auto;
+	/*text-align: center;*/
+}
+.pop1-1 table,.pop1-2 table{
+	text-align: center;
+}
+.pop1-1 table td:nth-child(1),
+.pop1-1 table td:nth-child(4),
+.pop1-2 table td:first-child,
+.pop1-2 table td:nth-child(3){
+	background: rgb(250,251,252);
+}
+
+.pop1-1 label{
+	cursor: pointer;
+}
+.skip{
+	height: 60px;
+	background: rgb(237,240,245);
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-top: none;
+	font-size: 12px;
+}
+.skip p,.skip ul{
+	display: inline-block;
+}
+.skip li{
+	float: left;
+}
+.skip p span{
+	color: rgb(40,81,144);
+	padding: 0 3px;
+}
+.pop1-1 .skip-info{
+	padding-left: 5px;
+}
+.skip-page{
+	padding-left: 30px;
+}
+.skip ul{
+	height: 30px;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	position: relative;
+	top: 11px;
+	margin-left: 10px;
+}
+.skip li{
+	line-height: 30px;
+	width: 33px;
+	text-align: center;
+	border-right: 1px solid #ddd;
+}
+.skip li:last-child{
+	border-right: none;
+}
+.skip select{
+	width: 50px;
+	height: 30px;
+	margin: 0 10px;
+	text-indent: 15px;
+	background: rgb(250,250,250);
+}
+.pop1-1 .skip3{
+	min-width: auto;
+	border: none;
+	background: none;
+	/*margin-top: 10px;
+	margin-bottom: 10px;*/
+}
+.skip3-page input{
+	width: 50px;
+}
+.pop1-1 select{
+	background: white;
+	height: 25px;
+}
+.pop1-1-search input{
+	text-indent: 10px;
+	outline: none;
+	width: 100%;
+	height: 40px;
+	border: 1px solid rgb(40,81,144);
+	border-radius: 0;
+}
+.pop1-1-search{
+	position: relative;
+	padding: 12px 0;
+}
+.pop1-1-search span{
+	width: 38px;
+	height: 38px;
+	background: url(../images/search.png);
+	position: absolute;
+	right: 0;
+	top: 14px;
+	cursor: pointer;
+}
+/*三级弹窗*/
+.pop1-2{
+	width: 100%;
+}
+.pop1-2>div{
+	padding-bottom: 0;
+}

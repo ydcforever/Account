@@ -1,7 +1,7 @@
 package com.airline.account.online;
 
 import com.airline.account.model.et.Segment;
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface IOnlineRefund {
      * @param list 原票被改签段
      * @return
      */
-    List<Tax> refundTax(List<Segment> list);
+    List<ETax> refundTax(List<Segment> list);
 
     double exchange(double origin, String cur, String salCur, String date);
 

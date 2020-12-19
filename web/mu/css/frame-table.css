@@ -1,0 +1,486 @@
+article table{
+	white-space: nowrap;
+	text-align: center;
+}
+.art-sel{
+	width: 100%;
+}
+/*art-text（h3）设置*/
+.art-text{
+	font-size: 24px;
+	line-height: 70px;
+	margin-top: 40px;
+}
+.art-text .btn-add{
+	width: auto !important;
+	float: right !important;
+	padding: 0 10px !important;
+	line-height: 30px !important;
+	border-radius: 3px !important;
+	border: 1px solid rgb(190,200,216) !important;
+	background-color: rgb(242,245,249) !important;
+	margin-top: 25px !important;
+	font-size: 14px !important;
+}
+.btn-add span{
+	display: inline-block !important;
+	width: 10px !important;
+	height: 10px !important;
+	background-image: url(../images/add.png) !important;
+	position: relative !important;
+	top: -1px !important;
+	/*left: 5px;*/
+}
+
+/*中间表格部分设置*/
+.art-sel{
+	border: 1px solid rgb(190,200,216);
+	border-top: 3px solid rgb(40,81,144);
+	font-size: 14px;
+	padding-top: 6px;
+}
+.art-sel tr:first-child td{
+	border-top: none;
+}
+.art-sel td{
+	border: none;
+	text-align: center;
+}
+table.art-sel tr{
+	height: 33px;
+}
+.art-sel select,.art-sel input[type="text"]{
+	height: 24px;
+	background-color: rgb(252,252,252);
+	border: 1px solid rgb(190,200,216) !important;
+}
+.art-sel select,
+.art-sel input[type="text"]{
+	width: 150px;
+}
+.art-sel input[type="text"]{
+	text-indent: 6px;
+}
+.art-sel input[type="button"],
+.art-sel input[type="submit"],
+.art-sel input[type="reset"]{
+	width: 100px;
+	height: 24px;
+	border-radius: 3px;
+	color: white;
+}
+/*日历*/
+.tr-bg input[type="text"]{
+	background-image: url(../images/calendar.png);
+	background-repeat: no-repeat;
+	background-position: 97% 6px;
+}
+.td-down input[type=text]{
+	width: 200px;
+}
+.td-down td:nth-child(1),.td-down td:nth-child(3){
+	text-align: right;
+}
+tr.td-dowm-up{
+	color: #e0b979;
+	height: 35px;
+}
+.downUp{
+	transform: rotate(180deg);
+	transition: all .1s;
+}
+.td-dowm-up span{
+	margin-right: 5px;
+}
+.td-down{
+	display: none;
+}
+/*表格中间a跳转设置*/
+.tab-head{
+	box-sizing: border-box;
+	margin: 2px auto 1px;
+	border: 1px solid rgb(40,81,144);
+}
+.tab-head a{
+	line-height: 35px;
+	padding: 3px 12px;
+	border-radius: 3px;
+	margin: 0 8px;
+	color: rgb(40,81,144);
+	letter-spacing: 3px;
+	border: 1px solid rgb(40,81,144);
+}
+.tab-head input[type="button"]{
+	background: none;
+	padding: 3px 12px;
+	border-radius: 3px;
+	margin: 13px 8px;
+	color: rgb(40,81,144);
+	letter-spacing: 3px;
+	border: 1px solid rgb(40,81,144);
+}
+/*右侧表格设置*/
+.tab-grid td{
+    font-size: 13px;
+    color: #004276;
+}
+.tab-grid th{
+	background-color: rgb(40,81,144);
+	color: white;
+	font-size: 13px;
+	/*font-weight: bold;*/
+}
+.tab-grid th a{
+	/*font-weight: bold;*/
+	font-size: 13px;
+	position: relative;
+	top: -1px;
+}
+.tab-grid th>*{
+	/*font-weight: bold;*/
+}
+.tab-grid thead tr{
+	height: 26px !important;
+}
+.tab-grid tr:first-child{
+	height: 26px !important;
+}
+.tab-grid tr{
+	height: 26px !important;
+}
+.tab-grid tr:hover{
+	background: #acc8f3;
+}
+.tab-grid .trChecked{
+	background: #acc8f3;
+}
+.gun>div{
+	box-sizing: border-box;
+	width: 50%;
+}
+.point1,#check-a{
+	cursor: pointer;
+}
+.point a{
+	color: white;
+}
+/*英文太窄*/
+.id{
+	padding: 0 5px;
+}
+.rise-fall{
+	width: 12px;
+	height: 16px;
+	position: relative;
+	top: 3px;
+	left: 3px;
+	background-image: url(../images/rise-fall.png);
+	background-repeat: no-repeat;
+}
+
+/*1.双表格*/
+.gun{
+	box-sizing: border-box;
+	border-right: 1px solid #DDDDDD;
+	background: rgb(237,240,245);
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+}
+.gun0{
+	background: rgb(237,240,245);
+	border-left: 1px solid #DDDDDD;
+}
+.gun0 table tr>*:nth-child(1) {
+    border-left: none;
+}
+.gun table,
+.gun0 table,
+.gun1 table,
+.gun2 table{
+	background: white;
+}
+.gun1 table td:first-child,
+.gun1 table th:first-child{
+	border-left: none;
+}
+.gun1 table td:last-child,
+.gun1 table th:last-child{
+	border-right: none;
+}
+
+.gun2{
+	position: relative;
+	z-index: 1;
+	overflow-x: auto;
+	background: white;
+}
+/*手指设置*/
+.tab-grid2 tr td:not(:first-child){
+	/*cursor: pointer;*/
+}
+.tab-grid3 th{
+	padding: 0 5px;
+}
+.skip2{
+	height: initial !important;
+	line-height: initial !important;
+}
+
+/*2.单表格*/
+article table.tab-grid1{
+	text-align: center;
+}
+table.tab-grid1 tr td:last-child{
+	width: 15%;
+}
+/*tab-grid头部图片*/
+.tab-grid th img{
+	position: relative;
+	top: 3px;
+	left: 4px;
+}
+.tab-grid1 td:last-child a{
+	display: inline-block;
+	/*padding: 0 8px;*/
+	width: 15%;
+}
+.point img{
+	margin-right: 5px;
+}
+.tab-grid1 td:last-child a{
+	position: relative;
+	top: 2px;
+}
+/*手指设置*/
+/*.tab-grid1 td:not(:first-child){
+	cursor: pointer;
+}
+.tab-grid1 td:last-child{
+	cursor: auto;
+}*/
+/*浮动图片上提示内容*/
+.tab-grid1 td p{
+	font-size: 12px;
+	position: absolute;
+	border: 1px solid #DDDDDD;
+	background: white;
+	width: 50px;
+	padding: 3px;
+	display: none;
+	z-index: 10;
+	top: 30px;
+	left: 30px;
+}
+.tab-grid1 td a:nth-child(4) p{
+	left: -50px;
+}
+.tab-grid1 td a:nth-child(5) p{
+	left: -60px;
+}
+
+/*底部翻页*/
+.skip{
+	height: 40px;
+	line-height: 40px;
+	background: rgb(237,240,245);
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-top: none;
+	font-size: 12px;
+}
+.skip p,
+.skip ul,
+.skip li{
+	display: inline-block;
+}
+.skip p span,
+.pgs a{
+	display: inline-block;
+	color: rgb(40,81,144);
+	padding: 0 3px;
+	cursor: pointer;
+}
+.skip-info{
+	padding-left: 20px;
+}
+.skip-page{
+	padding-left: 30px;
+}
+.skip-page input{
+	text-indent: 0;
+	text-align: center;
+	border: 1px solid #DDDDDD;
+	border-radius: 3px;
+	width: 50px;
+	outline: none;
+}
+.skip ul{
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	margin-left: 10px;
+	vertical-align: middle;
+	position: relative;
+	top: -2px;
+}
+.skip li{
+	cursor: pointer;
+	height: 30px;
+	width: 33px;
+	text-align: center;
+	border-right: 1px solid #ddd;
+	float: left;
+}
+.skip li img{
+	margin-top: 12px;
+}
+.skip li:last-child{
+	border-right: none;
+}
+.skip select{
+	width: 50px;
+	height: 30px;
+	margin: 0 10px;
+	text-indent: 15px;
+	background: rgb(250,250,250);
+}
+
+
+/*航程图right5*/
+.right5 .art-sel td{
+	width: 11%;
+}
+
+
+/*ec系统right表格界面数据来源按钮*/
+.art-text button.btn-suc{
+	margin-right: 10px;
+}
+
+article>form{
+	padding-top: 42px;
+}
+article form td:nth-child(2n) {
+    text-align: left;
+    padding-left: 10px;
+}
+article form td:nth-child(2n+1) {
+    text-align: right;
+}
+article form td:last-child{
+	text-align: left !important;
+	padding-left: 10px !important;
+}
+article form tr td.td-center{
+	text-align: center !important;
+}
+.td-label{
+	white-space: normal;
+}
+.td-label label,
+.td-label span{
+	display: inline-block;
+	width: 100px;
+}
+.divbor{
+	border: none !important;
+}
+.gun1{
+	overflow: auto;
+	border-right: 1px solid #ddd !important;
+	border-left: 1px solid #ddd !important;
+	box-sizing: border-box;
+}
+
+/*right-new.html设置*/
+.outdiv td input[type="text"],
+.outdiv td input[type="number"]{
+	width: 95%;
+	height: 26px;
+	box-sizing: border-box;
+	border-radius: 0;
+	border: none;
+	outline: none;
+	background: rgb(237,240,245);
+}
+.outdiv select{
+	width: 90%;
+	height: 19px;
+}
+.linkage{
+	background: cornflowerblue;
+}
+.linkage1{
+	border-right-style: hidden;
+}
+/*pop-new1设置*/
+.outdiv th{
+	padding: 0 5px;
+	white-space: nowrap;
+	text-align: center;
+}
+.outdiv td{
+	text-align: center;
+}
+.outdiv select{
+	/*width: 50px;*/
+}
+.td-click{
+	position: relative;
+}
+.td-click span{
+	position: absolute;
+	cursor: pointer;
+	right: 5px;
+	bottom: 2px;
+}
+/*pop-new2设置*/
+.new-poptab tr{
+	height: 36px;
+}
+.new-poptab th{
+	background: rgb(250,251,252);
+}
+.new-poptab th,
+.new-poptab td{
+	width: 10%;
+	text-align: center;
+}
+.new-poptab input[type="text"],
+.new-poptab input[type="number"],
+.new-poptab select{
+	/*width: 100px;*/
+	width: 90%;
+}
+.new-poptab .td-inpText{
+	/*text-align: right;
+	padding-right: 5px;*/
+	white-space: nowrap;
+	position: relative;
+}
+.new-poptab .td-inpText span {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.new-poptab .td-inpText input[type="text"]{
+	width: 68%;
+}
+.new-poptab .td-inpText input[type="button"]{
+	height: 22px;
+}
+ td input[type="number"]{
+ 	width: 100px;
+ 	height: 22px;
+ 	border: 1px solid #DDDDDD;
+ }
+.tab-grid .operate_btn {
+    height: 18px !important;
+    border: 1px solid rgb(40,81,144) !important;
+    color: rgb(40,81,144) !important;
+    background: none !important;
+    padding: 0 8px !important;
+}

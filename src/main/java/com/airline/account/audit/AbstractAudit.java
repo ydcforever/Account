@@ -1,6 +1,6 @@
 package com.airline.account.audit;
 
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 import com.airline.account.utils.TaxUtil;
 
 import java.util.List;
@@ -11,16 +11,16 @@ import java.util.List;
  */
 public abstract class AbstractAudit {
 
-    public void taxDiff(List<Tax> received, List<Tax> due){
-        for(Tax tax : due) {
-            Tax r = TaxUtil.findTax(received, tax);
+    public void taxDiff(List<ETax> received, List<ETax> due){
+        for(ETax tax : due) {
+            ETax r = TaxUtil.findTax(received, tax);
             if(r == null) {
 //                  insert 无实收
             } else {
 //              update diff
             }
         }
-        for(Tax tax : received) {
+        for(ETax tax : received) {
 //            update 无应收
         }
     }

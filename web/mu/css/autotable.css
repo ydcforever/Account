@@ -1,0 +1,72 @@
+.outdiv table tr{
+	height: 30px;
+}
+.outdiv table td{
+	box-sizing: border-box !important;
+}
+
+.tab1,
+.tab2{
+	width: 100%;
+	text-align: center;
+	border-spacing: 0;
+}
+.tab1{
+	width: 100% !important;
+}
+.tab2{
+	white-space: initial;
+	word-break: break-all;
+}
+.table-head{
+	width: 100%;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	border-bottom: none;
+	box-sizing: border-box;
+	white-space: nowrap;
+}
+.table-head .tab-head-inner,
+.tab-head .tab1{
+	background: rgb(40,81,144);
+}
+.table-body{
+	overflow: auto;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+}
+.tab1 th{
+	color: white;
+	border-bottom: none;
+	border-top: none;
+	min-width: 50px;
+	padding: 0 5px;
+	font-size: 13px;
+	box-sizing: content-box !important;
+}
+.tab2 td{
+	font-size: 13px;
+	white-space: normal !important;
+	word-break: break-all !important;
+}
+.tab1 th:last-child{
+	border-right: none;
+}
+.tab1 th:first-child{
+	border-left: none;
+}
+.tab2 td:first-child{
+	border-left: none;
+}
+.tab2 tr:first-child td{
+	border-top: none;
+}
+.tab2 tr:last-child td{
+	border-bottom: none;
+}
+.tab2 td:last-child{
+	border-right: none;
+}
+
+
+

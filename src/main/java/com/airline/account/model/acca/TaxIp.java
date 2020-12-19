@@ -32,4 +32,8 @@ public class TaxIp {
 
     private double taxAmount;
 
+    public TaxIp(String taxType, double taxAmount) {
+        this.taxType = taxType;
+        this.taxAmount = taxAmount;
+    }
 }

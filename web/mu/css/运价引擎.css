@@ -1,0 +1,52 @@
+
+/****************运价引擎**********/
+
+/******1.运价计算****/
+#priceAction_doStr .cont-d3-tab td:first-child {
+	padding-left: 10px;
+}
+#priceAction_doStr .cont-d3-tab p {
+	height: 36px;
+	line-height: 36px;
+}
+#priceAction_doStr .cont-d3-tab td>input[type=text] {
+	margin: 10px;
+}
+#priceAction_doStr .cont-d3-tab p input {
+	width: 50px !important;
+	margin: 0 3px;
+}
+#priceAction_doStr .cont-d3-tab p img {
+	position: relative;
+	top: 4px;
+}
+.cont-d3-tab:not(:first-child) td {
+	border-top: none;
+}
+/******2.od计算引擎****/
+#priceAction_doOdQuery .cont-d3-tab td:nth-child(2) {
+	float: none !important;
+}
+#priceAction_doOdQuery .cont-d3-tab tr:first-child td:first-child,
+#priceAction_doOdQuery .cont-d3-tab tr:first-child td:last-child {
+	width: 100px;
+}
+
+#priceAction_doOdQuery .cont-d3-tab tr:last-child td:first-child,
+#priceAction_doOdQuery .cont-d3-tab tr:last-child td:last-child,
+#priceAction_doOdQuery .cont-d3-tab tr:first-child td:nth-child(2),
+#priceAction_doOdQuery .cont-d3-tab tr:first-child td:nth-child(3) {
+	padding-left: 10px !important;
+}
+
+#priceAction_doOdQuery table.cont-d3-tab input[type=text] {
+	margin-left: 10px;
+}
+
+#priceAction_doOdQuery .cont-d3-tab tr:first-child td:nth-child(2) input {
+	margin-left: 22px;
+}
+
+#priceAction_doOdQuery .cont-d3-tab input[type=text] {
+	width: 150px;
+}

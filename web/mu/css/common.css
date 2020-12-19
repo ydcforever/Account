@@ -1,0 +1,46 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	font-weight: normal;
+	font-size: 12px;
+}
+button{
+	outline: none;
+	border: none;
+}
+button,a{
+	cursor: pointer;
+	text-decoration: none !important;
+}
+span{
+	display: inline-block;
+}
+body,html{
+	height: 100%;
+	width: 100%;
+}
+body{
+	/*position: relative;*/
+}
+ul,li{
+	list-style: none;
+}
+input[type="button"]{
+	outline: none;
+	cursor: pointer;
+}
+label{
+	cursor: pointer;
+}
+select,input{
+	border-radius: 3px;
+}
+.art-head span{
+	font-size: 14px;
+}
+.table-bg,
+.table_normal th,
+.new-poptab th{
+	background: rgb(247,247,249) !important;
+}

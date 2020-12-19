@@ -11,18 +11,16 @@ import java.util.List;
 @Service
 public interface SalService {
 
-    public List<Sal> queryCnj(String table, String begin, String end);
+    List<Sal> queryPrimaryByFile(String table, String fileName);
 
-    public List<Sal> queryCnjByFile(String table, String fileName);
+    List<String> querySourceName(String table);
 
-    public List<String> queryFile(String table);
+    List<Sal> queryDIpSal(Sal cnjSal);
 
-    public List<Sal> queryDIpSal(Sal cnjSal);
+    List<Sal> queryDDpSal(Sal cnjSal);
 
-    public List<Sal> queryDDpSal(Sal cnjSal);
+    List<Sal> queryMIpSal(Sal cnjSal);
 
-    public List<Sal> queryMIpSal(Sal cnjSal);
-
-    public List<Sal> queryMDpSal(Sal cnjSal);
+    List<Sal> queryMDpSal(Sal cnjSal);
 
 }

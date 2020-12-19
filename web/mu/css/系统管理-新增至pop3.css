@@ -1,0 +1,56 @@
+
+.pop3 .pop-tab input[type="text"]{
+	width: 150px;
+}
+/************系统管理************/
+#add_form .pop3 .pop-tab{
+	padding-top: 50px;
+}
+#add_form .pop3 .pop-tab input[type=text]{
+	height: 26px;
+}
+#add_form .pop3 .pop-tab th {
+	width: 12%;
+}
+/*角色管理新增页面*/
+#add_form .pop3 .pop-tab tr:last-child div{
+	white-space: initial;
+}
+/*权限管理*/
+#add_form .pop3 .pop-tab input[type=text] {
+	width: 150px;
+}
+/*修改密码*/
+#updatePwd .pop-tab input[type=password]{
+	width: 150px;
+	height: 26px;
+	border: 1px solid #DDDDDD;
+}
+.txt_red{
+	color: red;
+}
+#updatePwd select,
+#add_form select{
+	width: 150px;
+	height: 24px;
+}
+#add_form textarea,
+#updatePwd textarea{
+	vertical-align: middle;
+	margin: 3px 0;
+}
+
+h1{
+	font-size: 11pt;
+	color: #0066CC;
+	border: 1px solid rgb(190,200,216);
+	border-top: none;
+	line-height: 40px;
+	/* text-align: center; */
+	text-indent: 60px;
+	font-size: 14px;
+}
+div#title td:nth-child(2n) {
+    width: 40%;
+    padding-left: 10px;
+}

@@ -26,8 +26,8 @@ public class MoveServiceImplTest {
     private MoveLogMapper moveLogMapper;
 
     @Test
-    public void testMoveDIp() throws Exception {
-        List<Sal> sals = salMapper.queryCnjByFile("ACCA_SAL_IP_D", "D_IP_SAL_20190412.csv");
+    public void testMoveDIp() {
+        List<Sal> sals = salMapper.queryPrimaryByFile("ACCA_SAL_IP_D", "D_IP_SAL_20190401.csv");
         for (Sal sal : sals){
             try{
                 moveService.moveDIp(sal);
@@ -40,8 +40,8 @@ public class MoveServiceImplTest {
     }
 
     @Test
-    public void testMoveDDp() throws Exception {
-        List<Sal> sals = salMapper.queryCnjByFile("ACCA_SAL_DP_D", "D_DP_SAL_20190403.csv");
+    public void testMoveDDp() {
+        List<Sal> sals = salMapper.queryPrimaryByFile("ACCA_SAL_DP_D", "D_DP_SAL_20190403.csv");
         for(Sal sal : sals){
             try{
                 moveService.moveDDp(sal);
@@ -54,7 +54,7 @@ public class MoveServiceImplTest {
 
     @Test
     public void testMoveMIp() throws Exception {
-        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_IP_M", "20190390", "20190330");
+        List<Sal> sals = salMapper.queryPrimaryByFile("ACCA_SAL_DP_D", "D_DP_SAL_20190403.csv");
         for(Sal sal : sals){
             moveService.moveMIp(sal);
         }
@@ -62,18 +62,9 @@ public class MoveServiceImplTest {
 
     @Test
     public void testMoveMDp() throws Exception {
-        List<Sal> sals = salMapper.queryCnj("ACCA_SAL_DP_M", "20190390", "20190330");
+        List<Sal> sals = salMapper.queryPrimaryByFile("ACCA_SAL_DP_D", "D_DP_SAL_20190403.csv");
         for(Sal sal : sals){
             moveService.moveMDp(sal);
         }
-    }
-
-    @Test
-    public void test() throws Exception {
-        Sal sal = new Sal();
-        sal.setAirline3code("781");
-        sal.setTicketNo("2319925641");
-        Sal s = salMapper.testQuery(sal, "ACCA_SAL_IP_D");
-        moveService.moveDIp(s);
     }
 }

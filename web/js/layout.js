@@ -107,7 +107,7 @@ function tr(id) {
 
 function td(colspan) {
     var td = document.createElement("td");
-    if (colspan != undefined) td.setAttribute("colspan", colspan);
+    if (colspan !== undefined) td.setAttribute("colspan", colspan);
     return td;
 }
 

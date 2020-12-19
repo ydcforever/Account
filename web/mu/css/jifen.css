@@ -1,0 +1,33 @@
+#FORM1 .table-bg .tab-delete{
+	float: initial;
+	margin-right: initial;
+}
+#FORM1 .cont-d4 td:nth-child(2n+1){
+	width: 72px;
+}
+#FORM1 .cont-d4 td:nth-child(2n){
+	padding-left: 10px;
+}
+
+/*选框*/
+td.tdInput{
+	position: relative;
+}
+td.tdInput input{
+	position: absolute;
+	top: 12px;
+	right: 0;
+}
+
+
+#queryForm td.huanhang{
+	/*width: 160px;*/
+	white-space: initial !important;
+}
+#queryForm td.huanhang input:first-child,
+#queryForm td.huanhang select:first-child{
+	margin-bottom: 7px;
+}
+
+
+

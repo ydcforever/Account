@@ -17,18 +17,13 @@ public class SalServiceImpl implements SalService {
     private SalMapper salMapper;
 
     @Override
-    public List<Sal> queryCnj(String table, String begin, String end) {
-        return salMapper.queryCnj(table, begin, end);
+    public List<Sal> queryPrimaryByFile(String table, String fileName) {
+        return salMapper.queryPrimaryByFile(table, fileName);
     }
 
     @Override
-    public List<Sal> queryCnjByFile(String table, String fileName) {
-        return salMapper.queryCnjByFile(table, fileName);
-    }
-
-    @Override
-    public List<String> queryFile(String table) {
-       return salMapper.queryFile(table);
+    public List<String> querySourceName(String table) {
+       return salMapper.querySourceName(table);
     }
 
     @Override

@@ -1,0 +1,71 @@
+.header {
+	overflow: hidden;
+	width: 100%;
+	white-space: nowrap;
+	height: 60px !important;
+	background-color: rgb(40, 81, 144);
+	display: flex;
+	justify-content: space-between;
+}
+.head-d1 {
+	height: 100%;
+	/*float: left;*/
+}
+
+.head-d1 img {
+	margin: 10px !important;
+}
+
+.head-d1 span {
+	position: relative;
+	top: -25px;
+	font-size: 26px;
+	color: white;
+}
+
+.head-d2 {
+	height: 100%;
+	color: white;
+	font-size: 14px;
+}
+
+#timer {
+	display: inline-block;
+	width: 150px;
+}
+
+#week{
+	margin-right: 15px;
+}
+.new-mess {
+	font-size: 12px;
+	display: inline-block;
+	padding: 5px;
+	border-radius: 2px;
+	background-color: rgb(246, 163, 38);
+}
+
+.head-d2 a {
+	display: inline-block;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.head-d2 a img {
+	position: relative;
+	top: 4px;
+	right: 7px;
+}
+
+.head-d2 div {
+	display: inline-block;
+	height: 100%;
+	padding: 0 20px;
+	line-height: 60px !important;
+	border-left: 1px solid rgb(65, 98, 150);
+	border-right: 1px solid rgb(65, 98, 150);
+}
+
+.head-a2 {
+	margin-left: 20px;
+}

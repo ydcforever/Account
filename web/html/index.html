@@ -1,112 +1,162 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Move</title>
 </head>
 <body>
-<table id="condition">
-
-</table>
+<table id="job"></table>
 <script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="./js/layout.js"></script>
 <script type="text/javascript">
-    var queryExample = [
-        {
-            row: [
-                {
-                  title:"DP_D"
-                },
-                {
-                    type : "text",
-                    field : "dp_df",
-                    useDataList : true,
-                    initUrl : './et/listFile.do?tableName="ACCA_SAL_DP_D"'
-                }, {
-                    type : "button",
-                    field : "btn_dp_df",
-                    value : "迁移"
-                }, {
-                    type : "text",
-                    field : "dp_df_status"
-                }]
-        }, {
-            row:[
-                {
-                   title:"IP_D"
-                }, {
-                    type:"text",
-                    field: 'ip_df',
-                    useDataList: true,
-                    initUrl: './et/listFile.do?tableName="ACCA_SAL_IP_D"'
-                }, {
-                    type : "button",
-                    field : "btn_ip_df",
-                    value : "迁移"
-                }, {
-                    type : "text",
-                    field : "ip_df_status"
-                }]
-        }, {
-            row:[
-                {
-                   title : "DP_M"
-                }, {
-                    type:"text",
-                    field: 'dp_mf',
-                    useDataList: true,
-                    initUrl: './et/listFile.do?tableName="ACCA_SAL_DP_M"'
-                }, {
-                    type : "button",
-                    field : "btn_dp_mf",
-                    value : "迁移"
-                }, {
-                    type : "text",
-                    field : "dp_mf_status"
-                }]
-        }, {
-            row:[
-                {
-                   title : "IP_M"
-                }, {
-                    type:"text",
-                    field: 'ip_mf',
-                    useDataList: true,
-                    initUrl: './et/listFile.do?tableName="ACCA_SAL_IP_M"'
-                }, {
-                    type : "button",
-                    field : "btn_ip_mf",
-                    value : "迁移"
-                }, {
-                    type : "text",
-                    field : "ip_mf_status"
-                }]
-        }
-    ];
-    loadLayout($("#condition"), queryExample, "acca");
+    $(function () {
+        let queryExample = [
+            {
+                row: [
+                    {
+                        title:"ACCA_SAL_DP_D"
+                    },{
+                        type : "button",
+                        field : "dp_d_start",
+                        value : "开启"
+                    }, {
+                        type : "text",
+                        field : "dp_d_cron",
+                        initData:"0/5 * * * * ?",
+                        classify: "start"
+                    }, {
+                        type : "button",
+                        field : "dp_d_stop",
+                        value : "停止",
+                        classify: "stop"
+                    }]
+            }, {
+                row:[
+                    {
+                        title:"ACCA_SAL_IP_D"
+                    }, {
+                        type : "button",
+                        field : "ip_d_start",
+                        value : "开启",
+                        classify: "start"
+                    }, {
+                        type : "text",
+                        field : "ip_d_cron"
+                    }, {
+                        type : "button",
+                        field : "ip_d_stop",
+                        value : "停止",
+                        classify: "stop"
+                    }]
+            }, {
+                row:[
+                    {
+                        title : "ACCA_SAL_DP_M"
+                    }, {
+                        type : "button",
+                        field : "dp_m_start",
+                        value : "开启",
+                        classify: "start"
+                    }, {
+                        type : "text",
+                        field : "dp_m_cron"
+                    }, {
+                        type : "button",
+                        field : "dp_m_stop",
+                        value : "停止",
+                        classify: "stop"
+                    }]
+            }, {
+                row:[
+                    {
+                        title : "ACCA_SAL_IP_M"
+                    }, {
+                        type : "button",
+                        field : "ip_m_start",
+                        value : "开启",
+                        classify: "start"
+                    }, {
+                        type : "text",
+                        field : "ip_m_cron"
+                    }, {
+                        type : "button",
+                        field : "ip_m_stop",
+                        value : "停止",
+                        classify : "stop"
+                    }]
+            }, {
+                row:[
+                    {
+                        title : "Refund"
+                    }, {
+                        type : "button",
+                        field : "ref_start",
+                        value : "开启",
+                        classify: "start"
+                    }, {
+                        type : "text",
+                        field : "ref_cron"
+                    }, {
+                        type : "button",
+                        field : "ref_stop",
+                        value : "停止",
+                        classify : "stop"
+                    }]
+            }
+        ];
+        loadLayout($("#job"), queryExample, "acca");
 
-    move($("#btn_dp_df"), "./et/moveDDp.do", $("#dp_df"), $("#dp_df_status"));
-    move($("#btn_ip_df"), "./et/moveDIp.do", $("#ip_df"), $("#ip_df_status"));
-    move($("#btn_dp_mf"), "./et/moveMDp.do", $("#dp_mf"), $("#dp_mf_status"));
-    move($("#btn_ip_mf"), "./et/moveMIp.do", $("#ip_mf"), $("#ip_mf_status"));
+        job($("#ip_m_start"), $("#ip_m_stop"), "ACCA_SAL_IP_M", $("#ip_m_cron"));
+        job($("#dp_m_start"), $("#dp_m_stop"), "ACCA_SAL_DP_M", $("#dp_m_cron"));
+        job($("#ip_d_start"), $("#ip_d_stop"), "ACCA_SAL_IP_D", $("#ip_d_cron"));
+        job($("#dp_d_start"), $("#dp_d_stop"), "ACCA_SAL_DP_D", $("#dp_d_cron"));
+        job($("#ref_start"), $("#ref_stop"), "Refund", $("#ref_cron"));
 
-    function move($btn, url, $name, $status){
-        $btn.click(function(){
-            $status.val("开始迁移");
-            $.ajax({
-                type:"POST",
-                url : url,
-                data:{fileName : $name.val()},
-                dataType:"json",
-                success :function(){
-                    $status.val("迁移成功");
-                },
-                error:function(){
-                    $status.val("迁移失败");
+        function job($start, $stop, id, $cron) {
+            $start.click(function () {
+                let cron = $cron.val();
+                if (cron == null || cron == "") {
+                    $.ajax({
+                        type: "POST",
+                        url: './job/start.do',
+                        data : {id : id},
+                        success: function () {
+                            alert(id + "开启定时")
+                        },
+                        error: function () {
+
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: './job/modify.do',
+                        data : {id : id, cron : cron},
+                        success: function () {
+                            alert(id + "开启定时");
+                        },
+                        error: function () {
+
+                        }
+                    });
                 }
             });
-        });
-    }
+
+            $stop.click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: './job/stop.do',
+                    data : {id : id},
+                    success: function () {
+                        alert(id + "定时停止");
+                    },
+                    error: function () {
+
+                    }
+                });
+            });
+        }
+    });
 </script>
 </body>
 </html>

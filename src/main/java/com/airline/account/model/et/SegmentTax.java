@@ -22,15 +22,26 @@ public class SegmentTax {
 
     private Integer couponNo;
 
-    private String taxCode;
+    private String feeCode;
 
-    private double taxAmount;
+    private double feeAmount;
 
-    private String taxCurrency;
+    private String saleCurrency;
 
     private Integer prorateNo;
 
     private String prorateUnionNo;
 
     private double unionAmount;
+
+    private String couponStatus;
+
+    private String optCarrier;
+
+    private String taxInterlinableFlag;
+
+    private String prorateTime;
+
+    private String mktCarrier;
+
 }

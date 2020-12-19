@@ -1,0 +1,12 @@
+.fixed-table-container {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+
+span.pagination-info {
+    float: initial;
+}
+.dropdown-toggle {
+    padding: 6px 12px !important;
+}

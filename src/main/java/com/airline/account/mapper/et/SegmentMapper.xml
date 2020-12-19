@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.SegmentMapper">
+
+    <resultMap type="com.airline.account.model.et.Segment" id="Segment">
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="DATE"/>
+        <result column="DOCUMENT_TYPE" property="documentType" jdbcType="VARCHAR"/>
+        <result column="COUPON_NO" property="couponNo" jdbcType="DECIMAL"/>
+        <result column="CONJUNCTION_TICKET_NO" property="conjunctionTicketNo" jdbcType="VARCHAR"/>
+        <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
+        <result column="NOT_VALID_BEFORE_DATE" property="notValidBeforeDate" jdbcType="DATE"/>
+        <result column="NOT_VALID_AFTER_DATE" property="notValidAfterDate" jdbcType="DATE"/>
+        <result column="ORIGIN_CITY_CODE" property="originCityCode" jdbcType="VARCHAR"/>
+        <result column="DESTINATION_CITY_CODE" property="destinationCityCode" jdbcType="VARCHAR"/>
+        <result column="CARRIER_IATA_NO" property="carrierIataNo" jdbcType="VARCHAR"/>
+        <result column="STOPOVER_INDICATOR" property="stopoverIndicator" jdbcType="VARCHAR"/>
+        <result column="FARE_BASIS" property="fareBasis" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_NO" property="flightNo" jdbcType="VARCHAR"/>
+        <result column="SERVICE_CLASS" property="serviceClass" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_DATE" property="flightDate" jdbcType="DATE"/>
+        <result column="VAT_FLAG" property="vatFlag" jdbcType="VARCHAR"/>
+        <result column="VAT_COUNTRY_ID" property="vatCountryId" jdbcType="DECIMAL"/>
+        <result column="COUPON_STATUS_INDICATOR" property="couponStatusIndicator" jdbcType="VARCHAR"/>
+        <result column="COUPON_VALUE" property="couponValue" jdbcType="DECIMAL"/>
+        <result column="ATBP_NO" property="atbpNo" jdbcType="DECIMAL"/>
+        <result column="DEPARTURE_DATE" property="departureDate" jdbcType="VARCHAR"/>
+        <result column="ARRIVE_DATE" property="arriveDate" jdbcType="VARCHAR"/>
+        <result column="VALID_COUPON_FLAG" property="validCouponFlag" jdbcType="VARCHAR"/>
+        <result column="DEPARTURE_TERMINAL" property="departureTerminal" jdbcType="VARCHAR"/>
+        <result column="ARRIVAL_TERMINAL" property="arrivalTerminal" jdbcType="VARCHAR"/>
+        <result column="INVOLUNTARY_INDICATOR" property="involuntaryIndicator" jdbcType="VARCHAR"/>
+        <result column="COMPARTMENT" property="compartment" jdbcType="VARCHAR"/>
+        <result column="BAGGAGE_ALLOWANCE" property="baggageAllowance" jdbcType="VARCHAR"/>
+        <result column="EMD_COUPON_STATUS" property="emdCouponStatus" jdbcType="VARCHAR"/>
+        <result column="OPT_FLIGHT_NO" property="optFlightNo" jdbcType="VARCHAR"/>
+        <result column="ASR_SEAT" property="asrSeat" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="insertSegment">
+        insert into ET_FLIGHT_COUPON
+        (
+        DOCUMENT_CARRIER_IATA_NO,
+        DOCUMENT_NO,
+        ISSUE_DATE,
+        DOCUMENT_TYPE,
+        COUPON_NO,
+        CONJUNCTION_TICKET_NO,
+        CNJ_CURRENT,
+        NOT_VALID_BEFORE_DATE,
+        NOT_VALID_AFTER_DATE,
+        ORIGIN_CITY_CODE,
+        DESTINATION_CITY_CODE,
+        CARRIER_IATA_NO,
+        STOPOVER_INDICATOR,
+        FARE_BASIS,
+        FLIGHT_NO,
+        SERVICE_CLASS,
+        FLIGHT_DATE,
+        VAT_FLAG,
+        VAT_COUNTRY_ID,
+        COUPON_STATUS_INDICATOR,
+        COUPON_VALUE,
+        ATBP_NO,
+        DEPARTURE_DATE,
+        ARRIVE_DATE,
+        VALID_COUPON_FLAG,
+        DEPARTURE_TERMINAL,
+        ARRIVAL_TERMINAL,
+        INVOLUNTARY_INDICATOR,
+        COMPARTMENT,
+        BAGGAGE_ALLOWANCE,
+        EMD_COUPON_STATUS,
+        OPT_FLIGHT_NO,
+        ASR_SEAT
+        )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.documentCarrierIataNo, jdbcType=VARCHAR},
+            #{item.documentNo, jdbcType=VARCHAR},
+            to_date(#{item.issueDate, jdbcType=DATE},'yyyyMMdd'),
+            #{item.documentType, jdbcType=VARCHAR},
+            #{item.couponNo, jdbcType=DECIMAL},
+            #{item.conjunctionTicketNo, jdbcType=VARCHAR},
+            #{item.cnjCurrent, jdbcType=DECIMAL},
+            #{item.notValidBeforeDate, jdbcType=DATE},
+            #{item.notValidAfterDate, jdbcType=DATE},
+            #{item.originCityCode, jdbcType=VARCHAR},
+            #{item.destinationCityCode, jdbcType=VARCHAR},
+            #{item.carrierIataNo, jdbcType=VARCHAR},
+            #{item.stopoverIndicator, jdbcType=VARCHAR},
+            #{item.fareBasis, jdbcType=VARCHAR},
+            #{item.flightNo, jdbcType=VARCHAR},
+            #{item.serviceClass, jdbcType=VARCHAR},
+            to_date(#{item.flightDate, jdbcType=DATE}, 'yyyyMMdd'),
+            #{item.vatFlag, jdbcType=VARCHAR},
+            #{item.vatCountryId, jdbcType=DECIMAL},
+            #{item.couponStatusIndicator, jdbcType=VARCHAR},
+            #{item.couponValue, jdbcType=DECIMAL},
+            #{item.atbpNo, jdbcType=DECIMAL},
+            #{item.departureDate, jdbcType=VARCHAR},
+            #{item.arriveDate, jdbcType=VARCHAR},
+            #{item.validCouponFlag, jdbcType=VARCHAR},
+            #{item.departureTerminal, jdbcType=VARCHAR},
+            #{item.arrivalTerminal, jdbcType=VARCHAR},
+            #{item.involuntaryIndicator, jdbcType=VARCHAR},
+            #{item.compartment, jdbcType=VARCHAR},
+            #{item.baggageAllowance, jdbcType=VARCHAR},
+            #{item.emdCouponStatus, jdbcType=VARCHAR},
+            #{item.optFlightNo, jdbcType=VARCHAR},
+            #{item.asrSeat, jdbcType=VARCHAR}
+            FROM DUAL
+        </foreach>
+    </insert>
+
+    <select id="querySegment" resultMap="Segment">
+        select <include refid="showCol"/>
+        from ET_FLIGHT_COUPON t
+        where 1 = 1
+         <if test='seg.documentCarrierIataNo != null and seg.documentCarrierIataNo != ""'>
+             and t.DOCUMENT_CARRIER_IATA_NO = #{seg.documentCarrierIataNo}
+         </if>
+        <if test='seg.documentNo != null and seg.documentNo !=""'>
+            and t.DOCUMENT_NO = #{seg.documentNo}
+        </if>
+        <if test='seg.conjunctionTicketNo != null and seg.conjunctionTicketNo != ""'>
+            and t.CONJUNCTION_TICKET_NO = #{seg.conjunctionTicketNo}
+        </if>
+        <if test='seg.cnjCurrent != null and seg.cnjCurrent != ""'>
+            and t.CNJ_CURRENT = #{seg.cnjCurrent}
+        </if>
+    </select>
+
+    <sql id="showCol">
+        DOCUMENT_CARRIER_IATA_NO,DOCUMENT_NO,to_char(ISSUE_DATE,'yyyy-MM-dd') as ISSUE_DATE,DOCUMENT_TYPE,
+        COUPON_NO,CONJUNCTION_TICKET_NO,CNJ_CURRENT,NOT_VALID_BEFORE_DATE,NOT_VALID_AFTER_DATE,
+        ORIGIN_CITY_CODE,DESTINATION_CITY_CODE,CARRIER_IATA_NO,STOPOVER_INDICATOR,FARE_BASIS,FLIGHT_NO,
+        SERVICE_CLASS,FLIGHT_DATE,VAT_FLAG,VAT_COUNTRY_ID,COUPON_STATUS_INDICATOR,COUPON_VALUE,ATBP_NO,
+        DEPARTURE_DATE,ARRIVE_DATE,VALID_COUPON_FLAG,DEPARTURE_TERMINAL,ARRIVAL_TERMINAL,
+        INVOLUNTARY_INDICATOR,COMPARTMENT,BAGGAGE_ALLOWANCE,EMD_COUPON_STATUS,OPT_FLIGHT_NO,ASR_SEAT
+    </sql>
+</mapper>

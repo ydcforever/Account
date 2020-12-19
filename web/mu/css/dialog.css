@@ -1,0 +1,294 @@
+/*jquery-ui自带dialog设置*/
+.ui-dialog{
+	font-size: 12px;
+    border-radius: 5px !important;
+    padding: 2.5px !important;
+    box-sizing: border-box;
+    border-radius: 5px !important;
+    border: 1px solid #ddd !important;
+    width: 300px !important;
+    height: 150px !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: auto !important;
+}
+.ui-dialog-titlebar {
+    padding: 0 !important;
+    background: rgb(40,75,145) !important;
+    color: white !important;
+    line-height: 25px !important;
+    border-radius: 4px !important;
+    text-indent: 12px !important;
+    border: none !important;
+}
+
+.ui-dialog-titlebar button {
+    display: none !important;
+}
+.ui-dialog-content{
+	min-height: 50px;
+	/*padding: 0 !important;*/
+}
+.ui-dialog-content p {
+    /*margin: 0 !important;*/
+}
+.ui-dialog-buttonpane {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 1px solid #ddd !important;
+}
+
+.ui-dialog-buttonset {
+    width: 100% !important;
+    height: 25px !important;
+    float: initial !important;
+}
+.ui-dialog-buttonset button:first-child{
+	margin-right: 20px !important;
+}
+.ui-dialog-buttonset button {
+    margin: 0 !important;
+    width: 80px !important;
+    height: 25px !important;
+    color: white !important;
+    border-radius: 3px !important;
+    border: 1px solid #496fac !important;
+    outline: none !important;
+    background: linear-gradient(180deg, #4f77b7, #496fac) !important;
+}
+.ui-dialog-buttonset span {
+    padding: 0 !important;
+    line-height: 23px !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.ui-dialog-buttonset {
+    display: flex !important;
+    width: 100% !important;
+    margin: 10px 0 8px !important;
+    justify-content: center !important;
+}
+
+
+
+
+/*ec系统*/
+#disableBakDiv{
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    height: 100% !important;
+    width: 100% !important;
+    background: black !important;
+    opacity: 0.7 !important;
+    z-index: 111 !important;
+}
+.ui-widget-overlay{
+	opacity: 0.7 !important;
+	background: black !important;
+}
+.dialog,
+.dialog_excel,
+.dialog_time,
+.dialog_inter{
+	position: fixed !important;
+	z-index: 1111 !important;
+	border: 1px solid #DDDDDD !important;
+	box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5) !important;
+	width: 316px !important;
+	left: 50% !important;
+	top: 50% !important;
+	margin-left: -158px !important;
+	margin-top: -50px !important;
+	border-radius: 5px !important;
+	box-sizing: border-box !important;
+	padding: 2.5px !important;
+	background: white !important;
+	font-size: 12px !important;
+	font-family: "微软雅黑";
+}
+.dialog .div-bt input[type=button],
+.dialog_excel .div-bt input[type=button]{
+	padding: 0 !important;
+}
+.dialog p,
+.dialog_excel p,
+.dialog_inter .title,
+.dialog_time .title{
+	background: rgb(40,75,145) !important;
+	color: white !important;
+	line-height: 25px !important;
+	border-radius: 4px !important;
+	text-indent: 12px !important;
+}
+.dialog_inter p,
+.dialog_time p{
+	text-align: center;
+}
+.dialog dl{
+	text-align: center !important;
+	height: 50px !important;
+	line-height: 50px !important;
+	width: 100% !important;
+}
+.dialog dl>*{
+	display: inline-block !important;
+	width: 45% !important;
+	box-sizing: border-box;
+	/*text-align: center;*/
+}
+.dialog dl dt{
+    margin-left: 0 !important;
+    text-align: right;
+    padding-right: 10px;
+}
+.dialog dl dd{
+	text-align: left;
+	/*padding-left: 10px;*/
+}
+
+.dialog .div-bt,
+.dialog_excel .div-bt,
+.dialog_time .div-bt,
+.dialog_inter .div-bt{
+	display: flex;
+	justify-content: center;
+	padding-top: 10px !important;
+    border-top: 1px solid #ddd !important;
+    margin-bottom: 8px !important;
+}
+
+/*.dialog .div-bt input,
+.dialog_excel .div-bt input,
+.dialog_inter input,
+.dialog_time input{
+	border: 1px solid #496fac !important;
+	background: linear-gradient(180deg, #4f77b7, #496fac) !important;
+}*/
+.dialog select,
+.dialog_excel select,
+.dialog_inter select{
+	height: 22px !important;
+	border: 1px solid #DDDDDD !important;
+	border-radius: 3px !important;
+	width: 86px !important;
+}
+.dialog .div-bt input[type=button],
+.dialog_excel .div-bt input[type=button],
+.dialog_time .div-bt input[type=button],
+.dialog_inter .div-bt input[type=button]{
+	width: 80px !important;
+	height: 25px !important;
+	color: white !important;
+	border-radius: 3px !important;
+	border: 1px solid #496fac !important;
+	background: linear-gradient(180deg, #4f77b7, #496fac) !important;
+}
+.dialog .div-bt input:first-child,
+.dialog_excel .div-bt input:first-child{
+	margin-right: 20px !important;
+	/*border: 1px solid #4CA15B !important;
+	background: linear-gradient(180deg,#6ab078,#4ca15b) !important;*/
+}
+.dialog div input:last-child{
+	/*background: linear-gradient(180deg,#55b7d4,#3aa0bd) !important;
+	border: 1px solid #3aa0bd !important;*/
+}
+.dialog_excel .dia-cont{
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+.dialog_excel .dia-cont input.operate_btn{
+	color: #333 !important;
+}
+
+
+
+/*alert弹窗css*/
+/*阴影设置*/
+.pop-outBg{
+	position: fixed;
+	z-index: 11111;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: black;
+	opacity: 0.7;
+}
+/*最外层设置*/
+.pop-content{
+	position: fixed;
+	z-index: 111111;
+	width: 316px;
+	left: 0;
+	right: 0;
+	top: 220px;
+	/*bottom: 0;*/
+	margin: auto;
+	background-color: white;
+	text-align: center;
+	border-radius: 5px;
+	box-sizing: border-box;
+	padding: 2.5px;
+	overflow: hidden;
+}
+.pop-title{
+	background: rgb(40,81,143);
+	height: 25px;
+	line-height: 25px;
+	text-align: left;
+	text-indent: 15px;
+	color: white;
+	border-radius: 4px;
+}
+/*span.pop-close{
+	float: right;
+	margin-right: 8px;
+	margin-top: 6px;
+	width: 12px;
+	height: 12px;
+	cursor: pointer;
+	background: url(../images/close.png);
+}*/
+/*弹出信息内容设置*/
+.pop-msg {
+    font-size: 14px;
+    text-align: center;
+	height: 50px;
+	line-height: 50px;
+}
+/*确定-取消外层按钮设置*/
+.pop-sele {
+	padding: 10px 0 8px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	border-top: 1px solid #ddd;
+}
+
+.pop-sele a {
+	font-size: 12px;
+	line-height: 25px;
+	display: inline-block;
+	color: white;
+	width: initial !important;
+	height: initial !important;
+	width: 80px !important;
+	height: 25px !important;
+	border-radius: 3px;
+	border: none !important;
+}
+.pop-sele a:hover {
+    color: white;
+}
+#btn_no{
+	margin-left: 20px;
+}
+

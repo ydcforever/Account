@@ -17,14 +17,8 @@ public class SalServiceTest {
     private SalService salService;
 
     @Test
-    public void testQueryCnj() throws Exception {
-        List<Sal> sals = salService.queryCnj("ACCA_SAL_IP_D", "20190330", "20190330");
-        System.out.println(sals.size());
-    }
-
-    @Test
     public void testQueryCnjByFile() throws Exception {
-        List<Sal> sals = salService.queryCnjByFile("ACCA_SAL_IP_D", "D_IP_SAL_20190401.csv");
+        List<Sal> sals = salService.queryPrimaryByFile("ACCA_SAL_IP_D", "D_IP_SAL_20190401.csv");
         System.out.println(sals.size());
     }
 
@@ -58,7 +52,7 @@ public class SalServiceTest {
 
     @Test
     public void testQueryFile() throws Exception {
-        List<String> list = salService.queryFile("ACCA_SAL_DP_D");
+        List<String> list = salService.querySourceName("ACCA_SAL_DP_D");
         System.out.println(list);
     }
 }

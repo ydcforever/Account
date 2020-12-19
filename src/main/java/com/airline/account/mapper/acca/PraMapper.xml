@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.acca.PraMapper">
+    <resultMap type="com.airline.account.model.acca.Pra" id="Pra">
+        <result column="DATA_TYPE" property="dataType" jdbcType="VARCHAR"/>
+        <result column="SRC_SYSTEM" property="srcSystem" jdbcType="VARCHAR"/>
+        <result column="PRA_MONTH" property="praMonth" jdbcType="VARCHAR"/>
+        <result column="PRA_DATE" property="praDate" jdbcType="VARCHAR"/>
+        <result column="VOUCHER_CARRIER" property="voucherCarrier" jdbcType="VARCHAR"/>
+        <result column="TICKET_NO" property="ticketNo" jdbcType="VARCHAR"/>
+        <result column="COUPON_NO" property="couponNo" jdbcType="DECIMAL"/>
+        <result column="SALE_TYPE" property="saleType" jdbcType="VARCHAR"/>
+        <result column="TICKET_TYPE" property="ticketType" jdbcType="VARCHAR"/>
+        <result column="TICKET_DATE" property="ticketDate" jdbcType="VARCHAR"/>
+        <result column="AGENT_NO" property="agentNo" jdbcType="VARCHAR"/>
+        <result column="MARKET_CARRIER" property="marketCarrier" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_NO" property="flightNo" jdbcType="VARCHAR"/>
+        <result column="FLIGHT_DATE" property="flightDate" jdbcType="VARCHAR"/>
+        <result column="ORI_AIRPORT" property="oriAirport" jdbcType="VARCHAR"/>
+        <result column="DEST_AIRPOT" property="destAirpot" jdbcType="VARCHAR"/>
+        <result column="CABIN" property="cabin" jdbcType="VARCHAR"/>
+        <result column="SUB_CLASS" property="subClass" jdbcType="VARCHAR"/>
+        <result column="FARE_BASIS" property="fareBasis" jdbcType="VARCHAR"/>
+        <result column="PAX_NUM" property="paxNum" jdbcType="DECIMAL"/>
+        <result column="PRA_NET_REVENUE" property="praNetRevenue" jdbcType="DECIMAL"/>
+        <result column="AGENT_COMMISSION" property="agentCommission" jdbcType="DECIMAL"/>
+        <result column="AGENT_EX_COMMISSION" property="agentExCommission" jdbcType="DECIMAL"/>
+        <result column="TAX_CN" property="taxCn" jdbcType="DECIMAL"/>
+        <result column="TAX_YQ" property="taxYq" jdbcType="DECIMAL"/>
+        <result column="SPA_CODE" property="spaCode" jdbcType="VARCHAR"/>
+        <result column="SCHEDULE_CARRIER_CD" property="scheduleCarrierCd" jdbcType="VARCHAR"/>
+        <result column="SCHEDULE_FLT_NBR" property="scheduleFltNbr" jdbcType="VARCHAR"/>
+        <result column="SALE_CURRENCY_CD" property="saleCurrencyCd" jdbcType="VARCHAR"/>
+        <result column="AVIATION_INSURANCE" property="aviationInsurance" jdbcType="DECIMAL"/>
+        <result column="PRA_INCOME" property="praIncome" jdbcType="DECIMAL"/>
+        <result column="SOURCE_NAME" property="sourceName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="showCol">
+        DATA_TYPE,SRC_SYSTEM,PRA_MONTH,PRA_DATE,VOUCHER_CARRIER,TICKET_NO,COUPON_NO,SALE_TYPE,TICKET_TYPE,
+        TICKET_DATE,AGENT_NO,MARKET_CARRIER,FLIGHT_NO,FLIGHT_DATE,ORI_AIRPORT,DEST_AIRPOT,CABIN,SUB_CLASS,
+        FARE_BASIS,PAX_NUM,PRA_NET_REVENUE,AGENT_COMMISSION,AGENT_EX_COMMISSION,TAX_CN,TAX_YQ,SPA_CODE,
+        SCHEDULE_CARRIER_CD,SCHEDULE_FLT_NBR,SALE_CURRENCY_CD,AVIATION_INSURANCE,PRA_INCOME,SOURCE_NAME
+    </sql>
+
+    <sql id="tktClause">
+        t.voucher_carrier = #{sal.airline3code}
+        and t.ticket_no = #{sal.ticketNo}
+        and t.ticket_date = #{sal.issueDate}
+        and t.market_carrier <![CDATA[ <> ]]> 'V'
+    </sql>
+    <select id="queryDDpPra" resultMap="Pra">
+        select <include refid="showCol"/>
+        from ACCA_PRA_DP_D t
+        WHERE<include refid="tktClause"/>
+    </select>
+
+    <select id="queryDIpPra" resultMap="Pra">
+        select <include refid="showCol"/>
+        from ACCA_PRA_IP_D t
+        WHERE <include refid="tktClause"/>
+    </select>
+</mapper>

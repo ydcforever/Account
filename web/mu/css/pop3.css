@@ -1,0 +1,117 @@
+.pop3{
+	width: 100%;
+	height: 100%;
+}
+.pop3 table{
+	white-space: nowrap;
+}
+.pop3 .pop-tab{
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 30px;
+	margin-bottom: 90px;
+}
+.pop3 .pop-tab>*{
+	margin: 0 auto;
+	width: 97%;
+}
+/*提示信息*/
+#failMessage{
+	margin-bottom: 10px;
+}
+.pop3 table tr{
+	height: 30px !important;
+}
+
+
+.pop3 th{
+	text-align: right;
+	padding-right: 25px;
+}
+.pop3 .pop-tab input[type="text"]{
+	width: 150px;
+	height: 26px;
+}
+.pop3 .pop-tab table input{
+	/*margin: 5px;*/
+
+}
+
+
+
+
+.pop3 .table_normal th{
+	width: 30%;
+}
+
+
+/*ec系统运价录入*/
+.price-in tr:first-child td{
+	padding: 5px 0 5px 10px;
+}
+.price-in tr:first-child td select{
+	margin-bottom: 3px;
+}
+.pop3 .price-in th{
+	width: 15%;
+}
+.price-in tr{
+	height: 40px;
+}
+#divSimulte textarea{
+	height: 24px;
+	width: 450px;
+	border: 1px solid #DDDDDD;
+}
+#divSimulte{
+	position: relative;
+}
+#divSimulte iframe{
+	display: none;
+	background: white;
+	border: none;
+	position: absolute;
+	top: 30px;
+	left: 0;
+	z-index: 11;
+	width: 450px;
+	height: 339px;
+}
+
+/*改签设置*/
+.pop3 .cont table.table_normal tr{
+	height: 40px;
+}
+.cont .cont-litab{
+	margin-top: 30px;
+	padding-bottom: 10px;
+	position: relative;
+}
+.tab-scroll{
+	overflow-x: auto;
+}
+table.limit-editor1 tr{
+	height: 30px;
+}
+table.limit-editor1 tr>*{
+	text-align: center;
+}
+table.limit-editor1 th{
+	background: rgb(40,81,144);
+	padding-right: 0;
+	color: white;
+}
+.pop3 table.limit-editor2 th{
+	width: 20%;
+}
+.main-bg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background:black;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+	
+}
