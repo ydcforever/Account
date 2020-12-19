@@ -2,7 +2,7 @@ package com.airline.account.audit;
 
 import com.airline.account.model.et.Exchange;
 import com.airline.account.model.et.Ticket;
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.List;
 
@@ -24,6 +24,6 @@ public interface IAuditExchange{
      * @param list 改签关系
      * @return
      */
-    List<Tax> queryOrgTax(List<Exchange> list);
+    List<ETax> queryOrgTax(List<Exchange> list);
 
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.acca.RelationMapper">
+    <resultMap type="com.airline.account.model.acca.Relation" id="ERelation">
+        <result column="CNJ_TICKET_NO" property="primaryTicketNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="VARCHAR"/>
+        <result column="CNJ_NO" property="cnjNo" jdbcType="VARCHAR"/>
+        <result column="ORG_TICKET_NO" property="orgTicketNo" jdbcType="VARCHAR"/>
+        <result column="EXCHANGE_STATUS" property="couponStatus" jdbcType="VARCHAR"/>
+        <result column="ORG_ISSUE_DATE" property="orgIssueDate" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="com.airline.account.model.acca.Relation" id="RRelation">
+        <result column="CNJ_TICKET_NO" property="primaryTicketNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="VARCHAR"/>
+        <result column="TICKET_NO_STRING" property="ticketNoStr" jdbcType="VARCHAR"/>
+        <result column="REFUND_STATUS" property="couponStatus" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="showE">
+        CNJ_TICKET_NO, ISSUE_DATE, CNJ_NO, ORG_TICKET_NO, EXCHANGE_STATUS, ORG_ISSUE_DATE
+    </sql>
+
+    <sql id="showR">
+        CNJ_TICKET_NO, ISSUE_DATE, TICKET_NO_STRING, REFUND_STATUS
+    </sql>
+
+    <select id="queryExchange" resultMap="ERelation" parameterType="com.airline.account.model.acca.Sal">
+        select
+        <include refid="showE"/>
+        from ITAX_AUDITOR_EXCHANGE t
+        where t.CNJ_TICKET_NO = #{airline3code} || #{ticketNo}
+    </select>
+
+    <select id="queryRefund" resultMap="RRelation" resultType="java.lang.String">
+        select
+        <include refid="showR"/>
+        from ITAX_AUDITOR_REFUND t
+        where t.ORI_SOURCE = #{sourceName}
+    </select>
+
+    <update id="updateStatus">
+        update ET_FLIGHT_COUPON t
+        set t.COUPON_STATUS_INDICATOR = #{status}
+        where t.DOCUMENT_CARRIER_IATA_NO = #{cxr}
+        and t.DOCUMENT_NO = #{docNo}
+        and t.COUPON_NO = #{cpnNo}
+        and t.COUPON_STATUS_INDICATOR = 'S'
+    </update>
+</mapper>

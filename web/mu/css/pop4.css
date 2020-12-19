@@ -1,0 +1,57 @@
+.pop4{
+	width: 100%;
+	height: 100%;
+}
+.pop4 .cont-d1-tab tr:first-child td:nth-child(2) input{
+	width: 96%;
+}
+.pop4 .table-oth span{
+	margin-left: 3px;
+	margin-right: 5px;
+}
+.pop4 .cont-d1 .table_normal th{
+	width: 20%;
+}
+.pop4 .cont-d1 .table_normal td{
+	padding-left: 10px;
+}
+.pop4 .cont-d1-tab tr:last-child{
+	height: 80px;
+}
+.pop4 .cont-d1-tab tr:last-child textarea{
+	width: 98%;
+	height: 90%;
+	margin-top: 5px;
+	text-indent: 5px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	outline: none;
+}
+.pop4 .cont-d2-tab2{
+	margin-top: 10px;
+}
+.pop4 .cont-div table td:not(.table-bg){
+	text-align: center;
+}
+.pop4 .cont-div table input[type="button"]{
+	border: 1px solid rgb(162,173,197);
+	border-radius: 3px;
+	padding: 5px;
+	background: none;
+}
+.pop4 .cont-d2-tab2 input[type="text"]{
+	width: 50px;
+}
+.pop4 .cont-div .table-bg{
+	width: 14%;
+}
+.pop4 .cont-div td:not(.table-bg){
+	width: 9%;
+}
+.pop4 .cont-div td:not(.table-bg) input{
+	/*background: ghostwhite;*/
+}
+
+.pop4 .cont-div table tr:first-child td:not(td:first){
+	background: rgb(250,251,252);
+}

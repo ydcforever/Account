@@ -10,6 +10,14 @@ import java.text.ParseException;
  */
 public final class EtFormat {
 
+    public static String taxCodeFormat(String taxCode) {
+        if(taxCode.contains("XF")){
+            return "XF";
+        } else {
+            return taxCode;
+        }
+    }
+
     public static String psgTypeFormat(String psg) {
         switch (psg) {
             case "A":
@@ -26,9 +34,10 @@ public final class EtFormat {
     public static double numberFormat(String str){
         return StringUtils.isBlank(str) ? 0 : new Double(str);
     }
+
     public static String fltDateFormat(String date) {
         return date.equals("99999999") ? "30001230" : dateFormat(date, "30001230", "yyyyMMdd");
-    };
+    }
 
     private static String dateFormat(String date, String defaultDate, String... parsePatterns) {
         try {
@@ -37,9 +46,5 @@ public final class EtFormat {
         } catch (ParseException e) {
             return defaultDate;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(fltDateFormat("99999999"));
     }
 }

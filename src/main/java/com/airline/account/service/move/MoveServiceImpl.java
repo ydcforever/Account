@@ -1,16 +1,17 @@
 package com.airline.account.service.move;
 
 import com.airline.account.mapper.acca.SalMapper;
-import com.airline.account.mapper.acca.TaxMapper;
-import com.airline.account.mapper.et.AuditorSegmentMapper;
-import com.airline.account.mapper.et.AuditorTaxMapper;
-import com.airline.account.mapper.et.AuditorTicketMapper;
+import com.airline.account.mapper.acca.TaxDIMapper;
+import com.airline.account.mapper.et.SegmentMapper;
+import com.airline.account.mapper.et.TaxMapper;
+import com.airline.account.mapper.et.TicketMapper;
 import com.airline.account.model.acca.Sal;
 import com.airline.account.model.acca.TaxDp;
 import com.airline.account.model.acca.TaxIp;
-import com.airline.account.model.et.AuditorTax;
 import com.airline.account.model.et.Segment;
+import com.airline.account.model.et.Tax;
 import com.airline.account.model.et.Ticket;
+import com.airline.account.service.acca.RelationService;
 import com.airline.account.utils.EtFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ydc on 2020/9/17.
@@ -28,19 +31,26 @@ import java.util.List;
 public class MoveServiceImpl implements MoveService {
 
     @Autowired
-    private AuditorTicketMapper auditorTicketMapper;
+    private TicketMapper ticketMapper;
 
     @Autowired
-    private AuditorSegmentMapper auditorSegmentMapper;
+    private SegmentMapper segmentMapper;
 
     @Autowired
-    private AuditorTaxMapper auditorTaxMapper;
+    private TaxDIMapper taxDIMapper;
 
     @Autowired
     private SalMapper salMapper;
 
     @Autowired
     private TaxMapper taxMapper;
+
+    @Autowired
+    private RelationService relationService;
+
+    private static boolean isNumber(String str) {
+        return str.matches(".*[0-9]+.*");
+    }
 
     /**
      * SAL国际日数据迁移
@@ -49,21 +59,24 @@ public class MoveServiceImpl implements MoveService {
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void moveDIp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryDIpSal(cnjSal);
+        String cnjTktString = getCnjTktString(sals);
         //连票是否齐全，这里后续添加check的过程
-
         List<Ticket> tickets = new ArrayList<>();
         List<Segment> segments = new ArrayList<>();
-        List<AuditorTax> auditorTaxes = new ArrayList<>();
         for (Sal s : sals) {
-            addTicket(tickets, s, "ACCA_IP_D");
+            addTicket(tickets, s, cnjTktString, "ACCA_IP_D");
             addSeg(segments, s);
         }
-        List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-        addIpTax(auditorTaxes, taxIps, cnjSal.getIssueDate());
-        auditorTicketMapper.insertTicket(tickets);
-        auditorSegmentMapper.insertSegment(segments);
-        if (auditorTaxes.size() > 0) {
-            auditorTaxMapper.insertTax(auditorTaxes);
+        List<TaxIp> taxIps = taxDIMapper.queryDTaxIp(cnjSal);
+        List<Tax> taxes = getIpTax(taxIps, cnjSal.getIssueDate());
+        ticketMapper.insertTicket(tickets);
+        segmentMapper.insertSegment(segments);
+        if (taxes.size() > 0) {
+            taxMapper.insertTax(taxes);
+        }
+
+        if ("E".equals(cnjSal.getSaleType())) {
+            relationService.updateE(cnjSal);
         }
     }
 
@@ -74,23 +87,26 @@ public class MoveServiceImpl implements MoveService {
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void moveDDp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryDDpSal(cnjSal);
+        String cnjTktString = getCnjTktString(sals);
         //连票是否齐全，这里后续添加check的过程
 
         List<Ticket> tickets = new ArrayList<>();
         List<Segment> segments = new ArrayList<>();
-        List<AuditorTax> auditorTaxes = new ArrayList<>();
         for (Sal s : sals) {
-            addTicket(tickets, s, "ACCA_DP_D");
+            addTicket(tickets, s, cnjTktString, "ACCA_DP_D");
             addSeg(segments, s);
         }
-        List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-        addDpTax(auditorTaxes, taxDps, cnjSal.getIssueDate());
-        auditorTicketMapper.insertTicket(tickets);
-        auditorSegmentMapper.insertSegment(segments);
-        if (auditorTaxes.size() > 0) {
-            auditorTaxMapper.insertTax(auditorTaxes);
+        List<TaxDp> taxDps = taxDIMapper.queryDTaxDp(cnjSal);
+        List<Tax> taxes = getDpTax(taxDps, cnjSal.getIssueDate());
+        ticketMapper.insertTicket(tickets);
+        segmentMapper.insertSegment(segments);
+        if (taxes.size() > 0) {
+            taxMapper.insertTax(taxes);
         }
 
+        if ("E".equals(cnjSal.getSaleType())) {
+            relationService.updateE(cnjSal);
+        }
     }
 
     /**
@@ -100,23 +116,26 @@ public class MoveServiceImpl implements MoveService {
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void moveMIp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryMIpSal(cnjSal);
+        String cnjTktString = getCnjTktString(sals);
         //连票是否齐全，这里后续添加check的过程
 
         List<Ticket> tickets = new ArrayList<>();
         List<Segment> segments = new ArrayList<>();
-        List<AuditorTax> auditorTaxes = new ArrayList<>();
         for (Sal s : sals) {
-            addTicket(tickets, s, "ACCA_IP_M");
+            addTicket(tickets, s, cnjTktString, "ACCA_IP_M");
             addSeg(segments, s);
         }
-        List<TaxIp> taxIps = taxMapper.queryDTaxIp(cnjSal);
-        addIpTax(auditorTaxes, taxIps, cnjSal.getIssueDate());
-        auditorTicketMapper.insertTicket(tickets);
-        auditorSegmentMapper.insertSegment(segments);
-        if (auditorTaxes.size() > 0) {
-            auditorTaxMapper.insertTax(auditorTaxes);
+        List<TaxIp> taxIps = taxDIMapper.queryDTaxIp(cnjSal);
+        List<Tax> taxes = getIpTax(taxIps, cnjSal.getIssueDate());
+        ticketMapper.insertTicket(tickets);
+        segmentMapper.insertSegment(segments);
+        if (taxes.size() > 0) {
+            taxMapper.insertTax(taxes);
         }
 
+        if ("E".equals(cnjSal.getSaleType())) {
+            relationService.updateE(cnjSal);
+        }
     }
 
     /**
@@ -126,30 +145,51 @@ public class MoveServiceImpl implements MoveService {
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void moveMDp(Sal cnjSal) throws Exception {
         List<Sal> sals = salMapper.queryMDpSal(cnjSal);
+        String cnjTktString = getCnjTktString(sals);
         //连票是否齐全，这里后续添加check的过程
 
         List<Ticket> tickets = new ArrayList<>();
         List<Segment> segments = new ArrayList<>();
-        List<AuditorTax> auditorTaxes = new ArrayList<>();
         for (Sal s : sals) {
-            addTicket(tickets, s, "ACCA_DP_M");
+            addTicket(tickets, s, cnjTktString, "ACCA_DP_M");
             addSeg(segments, s);
         }
-        List<TaxDp> taxDps = taxMapper.queryDTaxDp(cnjSal);
-        addDpTax(auditorTaxes, taxDps, cnjSal.getIssueDate());
-        auditorTicketMapper.insertTicket(tickets);
-        auditorSegmentMapper.insertSegment(segments);
-        if (auditorTaxes.size() > 0) {
-            auditorTaxMapper.insertTax(auditorTaxes);
+        List<TaxDp> taxDps = taxDIMapper.queryDTaxDp(cnjSal);
+        List<Tax> taxes = getDpTax(taxDps, cnjSal.getIssueDate());
+        ticketMapper.insertTicket(tickets);
+        segmentMapper.insertSegment(segments);
+        if (taxes.size() > 0) {
+            taxMapper.insertTax(taxes);
         }
 
+        if ("E".equals(cnjSal.getSaleType())) {
+            relationService.updateE(cnjSal);
+        }
+    }
+
+    private String getCnjTktString(List<Sal> sals) {
+        StringBuilder cnjTktString = new StringBuilder();
+        int i = 0;
+        for (Sal sal : sals) {
+            if (sal.getCnjNo() > 1) {
+                if(i > 0) {
+                    cnjTktString.append(";");
+                }
+                cnjTktString.append(sal.getTicketNo());
+                i++;
+            }
+        }
+        return cnjTktString.toString();
     }
 
     /**
      * SAL票面映射
      */
-    private void addTicket(List<Ticket> list, Sal sal, String etSource) {
+    private void addTicket(List<Ticket> list, Sal sal, String cnjTktString, String etSource) {
         Ticket ticket = new Ticket();
+        if (sal.getCnjNo() == 1) {
+            ticket.setConjunctionTicketString(cnjTktString);
+        }
         ticket.setDocumentCarrierIataNo(sal.getAirline3code());
         ticket.setDocumentNo(sal.getTicketNo());
         ticket.setIssueDate(sal.getIssueDate());
@@ -176,7 +216,6 @@ public class MoveServiceImpl implements MoveService {
         ticket.setAutoTicketFlag(sal.getAutoTicketFlag());
         list.add(ticket);
     }
-
 
     private void addSeg(List<Segment> list, Sal sal) {
         if (isNumber(sal.getCouponUseIndicator())) {
@@ -213,58 +252,59 @@ public class MoveServiceImpl implements MoveService {
     /**
      * 国内税费映射
      */
-    private void addDpTax(List<AuditorTax> auditorTaxes, List<TaxDp> taxDps, String issueDate) {
+    private List<Tax> getDpTax(List<TaxDp> taxDps, String issueDate) {
+        List<Tax> taxes = new ArrayList<>();
         for (TaxDp dp : taxDps) {
             if (dp.getTaxAmount1() != 0) {
-                AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp, issueDate);
-                auditorTax.setTaxCode(dp.getTaxType());
-                auditorTax.setTaxAmount(dp.getTaxAmount1());
-                auditorTaxes.add(auditorTax);
+                Tax tax = new Tax();
+                fillDpTaxNormal(tax, dp, issueDate);
+                tax.setTaxCode(dp.getTaxType());
+                tax.setTaxAmount(dp.getTaxAmount1());
+                taxes.add(tax);
             }
 
             if (dp.getTaxAmount2() != 0) {
-                AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp, issueDate);
-                auditorTax.setTaxCode(dp.getTaxType2());
-                auditorTax.setTaxAmount(dp.getTaxAmount2());
-                auditorTaxes.add(auditorTax);
+                Tax tax = new Tax();
+                fillDpTaxNormal(tax, dp, issueDate);
+                tax.setTaxCode(dp.getTaxType2());
+                tax.setTaxAmount(dp.getTaxAmount2());
+                taxes.add(tax);
             }
 
             if (dp.getTaxAmount3() != 0) {
-                AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp, issueDate);
-                auditorTax.setTaxCode(dp.getTaxType3());
-                auditorTax.setTaxAmount(dp.getTaxAmount3());
-                auditorTaxes.add(auditorTax);
+                Tax tax = new Tax();
+                fillDpTaxNormal(tax, dp, issueDate);
+                tax.setTaxCode(dp.getTaxType3());
+                tax.setTaxAmount(dp.getTaxAmount3());
+                taxes.add(tax);
             }
 
             if (dp.getTaxAmount4() != 0) {
-                AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp, issueDate);
-                auditorTax.setTaxCode(dp.getTaxType4());
-                auditorTax.setTaxAmount(dp.getTaxAmount4());
-                auditorTaxes.add(auditorTax);
+                Tax tax = new Tax();
+                fillDpTaxNormal(tax, dp, issueDate);
+                tax.setTaxCode(dp.getTaxType4());
+                tax.setTaxAmount(dp.getTaxAmount4());
+                taxes.add(tax);
             }
 
             if (dp.getTaxAmount5() != 0) {
-                AuditorTax auditorTax = new AuditorTax();
-                fillDpTaxNormal(auditorTax, dp, issueDate);
-                auditorTax.setTaxCode(dp.getTaxType5());
-                auditorTax.setTaxAmount(dp.getTaxAmount5());
-                auditorTaxes.add(auditorTax);
+                Tax tax = new Tax();
+                fillDpTaxNormal(tax, dp, issueDate);
+                tax.setTaxCode(dp.getTaxType5());
+                tax.setTaxAmount(dp.getTaxAmount5());
+                taxes.add(tax);
             }
         }
+        return taxes;
     }
 
-    private void fillDpTaxNormal(AuditorTax tax, TaxDp dp, String issueDate) {
+    private void fillDpTaxNormal(Tax tax, TaxDp dp, String issueDate) {
         tax.setDocumentCarrierIataNo(dp.getAirline3code());
         tax.setDocumentNo(dp.getTicketNo());
         tax.setDocumentType(dp.getSaleType());
         tax.setIssueDate(issueDate);
         tax.setTaxCurrency(dp.getCurrency());
     }
-
 
     private void addNumberSeg(List<Segment> list, Sal sal) {
         String[] status = sal.getCouponUseIndicator().split("");
@@ -363,21 +403,33 @@ public class MoveServiceImpl implements MoveService {
     /**
      * 国际税费映射
      */
-    private void addIpTax(List<AuditorTax> auditorTaxes, List<TaxIp> taxIps, String issueDate) {
+    private List<Tax> getIpTax(List<TaxIp> taxIps, String issueDate) {
+        List<Tax> taxes = new ArrayList<>();
+        Map<String, Tax> map = new HashMap<>(taxIps.size());
         for (TaxIp ip : taxIps) {
-            AuditorTax auditorTax = new AuditorTax();
-            auditorTax.setIssueDate(issueDate);
-            auditorTax.setDocumentCarrierIataNo(ip.getAirline3code());
-            auditorTax.setDocumentNo(ip.getTicketNo());
-            auditorTax.setDocumentType(ip.getSaleType());
-            auditorTax.setTaxCode(ip.getTaxType());
-            auditorTax.setTaxAmount(ip.getTaxAmount());
-            auditorTax.setTaxCurrency(ip.getCurrency());
-            auditorTaxes.add(auditorTax);
+            Tax tax = new Tax();
+            tax.setIssueDate(issueDate);
+            tax.setDocumentCarrierIataNo(ip.getAirline3code());
+            tax.setDocumentNo(ip.getTicketNo());
+            tax.setDocumentType(ip.getSaleType());
+            tax.setTaxAmount(ip.getTaxAmount());
+            tax.setTaxCurrency(ip.getCurrency());
+            String taxCode = EtFormat.taxCodeFormat(ip.getTaxType());
+            tax.setTaxCode(taxCode);
+            if (taxCode.equals("FR")) {
+                tax.setTaxSeqNo(taxes.size() + 1);
+                taxes.add(tax);
+            } else {
+                Tax tax1 = map.get(taxCode);
+                if (tax1 == null) {
+                    tax.setTaxSeqNo(1);
+                    map.put(taxCode, tax);
+                } else {
+                    tax1.setTaxAmount(tax1.getTaxAmount() + ip.getTaxAmount());
+                }
+            }
         }
-    }
-
-    private static boolean isNumber(String str) {
-        return str.matches(".*[0-9]+.*");
+        taxes.addAll(map.values());
+        return taxes;
     }
 }

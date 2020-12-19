@@ -11,5 +11,5 @@ import java.util.HashMap;
 @Repository
 @Switch("ydc")
 public interface QueryTaxMapper {
-    public void queryTax(HashMap map);
+    void queryTax(HashMap map);
 }

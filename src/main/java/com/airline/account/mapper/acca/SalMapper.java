@@ -12,20 +12,16 @@ import java.util.List;
 @Repository
 public interface SalMapper {
 
-    public List<Sal> queryCnj(@Param("table")String table, @Param("begin")String begin, @Param("end")String end);
+    List<Sal> queryPrimaryByFile(@Param("table") String table, @Param("name") String fileName);
 
-    public List<Sal> queryCnjByFile(@Param("table")String table, @Param("name")String fileName);
+    List<String> querySourceName(@Param("table") String table);
 
-    public List<String> queryFile(@Param("table")String table);
+    List<Sal> queryDIpSal(Sal cnjSal);
 
-    public List<Sal> queryDIpSal(@Param("sal") Sal cnjSal);
+    List<Sal> queryDDpSal(Sal cnjSal);
 
-    public List<Sal> queryDDpSal(@Param("sal") Sal cnjSal);
+    List<Sal> queryMIpSal(Sal cnjSal);
 
-    public List<Sal> queryMIpSal(@Param("sal") Sal cnjSal);
-
-    public List<Sal> queryMDpSal(@Param("sal") Sal cnjSal);
-
-    public Sal testQuery(@Param("sal") Sal cnjSal, @Param("table")String table);
+    List<Sal> queryMDpSal(Sal cnjSal);
 
 }

@@ -1,0 +1,211 @@
+/*一级弹窗*/
+.pop2{
+	width: 100%;
+	height: 100%;
+}
+/*.pop2 label,span{
+	display: inline-block;
+}*/
+.pop2 select,.pop2 input[type='text']{
+	box-sizing: border-box;
+	height: 22px;
+}
+.pop2>h3>div{
+	width: 96%;
+	margin: 0 auto;
+}
+.pop2 .cont2{
+	padding-top: 40px;
+}
+.pop2 .cont2-d1,
+.pop2 .cont2-d2{
+	width: 97%;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.pop2 .cont2-d1-tab input{
+	border: none;
+	outline: none;
+}
+.pop2 .cont2-d1-tab tr:first-child td:nth-child(2) input{
+	width: 100%;
+}
+.pop2 input.time{
+	width: 85px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin: 0 10px;
+}
+.pop2 .table-oth span{
+	margin-left: 3px;
+	margin-right: 5px;
+}
+.pop2 .file input{
+	border: 1px solid #ddd;
+}
+.pop2 .file input[type='text']{
+	width: 105px;
+}
+.pop2 .file input[type='button']{
+	background: #f2f5f9;
+	padding: 1px 2px;
+	margin-left: 3px;
+}
+.pop2 .cont2-d1-tab tr:last-child{
+	height: 80px;
+}
+.pop2 .cont2-d1-tab tr:last-child textarea{
+	width: 98%;
+	height: 90%;
+	margin-top: 5px;
+	text-indent: 5px;
+	border: none;
+}
+.pop2 h4{
+	line-height: 42px;
+	margin-bottom: 10px;
+	color: white;
+	background-color: rgb(40,81,144);
+}
+.pop2 .h4-2{
+	margin-top: 10px;
+}
+.pop2 .h4-bg1{
+	width: 12px;
+	height: 12px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-image: url(../images/Untitled2.png);
+}
+.pop2 .h4-bg2{
+	width: 30px;
+	height: 30px;
+	background-image: url(../images/span-substact.png);
+	float: right;
+	position: relative;
+	top: 6px;
+	right: 10px;
+	cursor: pointer;
+}
+/*div.pop2 .cont2-d1 table.cont2-d1-tab .table-tr td:last-child{
+	width: 7%;
+	border-left: none;
+}*/
+.pop2 .table-tr #table-td-more{
+	width: 7%;
+	border-left: none;
+}
+.pop2 .cont2-d1 a{
+	float: right;
+	position: relative;
+	top: 1px;
+	right: 13px;
+}
+.pop2 .cont2-d1 a i{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+	background-image: url(../images/more.png);
+}
+/*点击更多*/
+.pop2 .more>div{
+	overflow: hidden;
+	width: 100%;
+	height: 19px;
+}
+.pop2 .more>div.more-div{
+	height: 100%;
+}
+.more{
+	border-right: none;
+}
+
+/*第二个表格设置*/
+/*.pop2 .cont2-d2-tab input{
+	border: none;
+	outline: none;
+}*/
+.pop2 .cont2-d2-tab tr:first-child input{
+	width: 100%;
+	border: none;
+	outline: none;
+	text-indent: 6px;
+}
+.pop2 .cont2-d2-tab #upfile2{
+	width: 30px;
+}
+.pop2 .cont2-d2-tab tr:last-child input{
+	width: 200px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+/*底部设置*/
+.pop2-bot{
+	width: 97%;
+	margin: 15px auto;
+	margin-bottom: 90px;
+}
+
+.pop2 .h4-add{
+	line-height: 40px;
+	background-color: #f2f4f8;
+	border-bottom: 1px solid rgb(40,81,144);
+}
+.pop2 .h4-add a{
+	color: #9D9D9D;
+}
+.pop2 .h4-add span.span-add{
+	width: 30px;
+	height: 30px;
+	margin-right: 20px;
+	background-image: url(../images/span-add.png);
+	position: relative;
+	top: 8px;
+	left: 11px;
+}
+/*提示信息设置*/
+div.prompt{
+	display: none;
+	width: 350px;
+	height: 150px;
+	border: 1px solid #ddd;
+	box-shadow: 1px 1px 1px #DDDDDD;
+	border-radius: 3px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-65%);
+	z-index: 10;
+	background: white;
+	font-size: 14px;
+}
+.prompt>div{
+	width: 280px;
+	margin: 0 auto;
+}
+.prompt>div>p{
+	margin: 20px 0 15px;
+}
+.prompt p span{
+	margin-right: 8px;
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 4px;
+	right: 5px;
+	background: url(../images/prompt.png);
+}
+.prompt p b{
+	color: rgb(218,86,102);
+}
+.prompt input[type="button"]{
+	display: block;
+	margin: 0 auto;
+	width: 100px;
+	line-height: 35px;
+	border-radius: 3px;
+	color: white;
+	border: 1px solid rgb(219,87,102);
+	background: linear-gradient(180deg,rgb(225,109,122),rgb(219,87,102));
+}

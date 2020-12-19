@@ -1,0 +1,604 @@
+.pop5 .table thead{
+	margin-top: 10px;
+}
+.pop5 .table tbody{
+	margin-bottom: 10px;
+}
+.pop5 .table_normal tr:nth-child(2) td{
+	padding-left: 0;
+	text-align: center;
+}
+.pop5 .table{
+	width: 98%;
+	margin: 10px auto;
+}
+.pop5 .table a{
+	position: relative;
+	top: 1px;
+}
+.pop5 .line-map th{
+	width: 7%;
+}
+.line-map .table td{
+	width: 11%;
+}
+.line-KMG th{
+	width: 20%;
+}
+
+/*国际航线图设置*/
+.main{
+	margin-top: 10px;
+}
+.use-text{
+	margin: 15px 0 3px;
+	
+}
+.divbor{
+	position: relative;
+}
+#otherText{
+	width: 100%;
+	height: 150px;
+	border: 1px solid #DDDDDD;
+	border-radius: 3px;
+	text-indent: 5px;
+}
+.main-bg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background:black;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+.main table.tablePrice tr td{
+	/*padding-left: 0;*/
+	padding: 6px;
+}
+.main table.tablePrice select:last-child{
+	margin-top: 5px;
+}
+
+
+
+
+
+/*新增规则new-rule*/
+ .cont-head input[type=button]{
+	width: 65px;
+	height: 25px;
+	margin: 0 2px;
+}
+ .cont-head select{
+	height: 25px;
+}
+ .main{
+	margin-top: 0;
+}
+ table th{
+	background: rgb(250,251,252);
+	text-align: right;
+	padding-right: 10px;
+	width: 15%;
+}
+ .table_rule td{
+	padding-left: 10px;
+}
+ .field{
+	margin-bottom: 10px;
+}
+ .title{
+	position: relative;
+}
+
+/*头部设置*/
+ .table{
+	text-align: center;
+}
+ .title{
+	height: 41px;
+	line-height: 41px;
+	margin-bottom: 10px;
+	color: white;
+	background-color: rgb(40,81,144);
+	min-width: 930px;
+	border-bottom: 1px solid rgb(40,81,144);
+}
+ .title b{
+	font-size: 14px;
+}
+ .title u,
+ .title a{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-image: url(../images/Untitled2.png);
+}
+ .title:not(.title-first) u,
+ .title a{
+	background-image: url(../images/Untitled1.png);
+}
+ .title span,
+ .title b,
+ .title u{
+	cursor: pointer;
+}
+.rule{
+	float: right;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	background-image: url(../images/span-add.png);
+	top: 6px;
+	left: -9px;
+}
+.rule input[type=button]{
+	border: none;
+	outline: none;
+	background: none;
+	width: 100%;
+	height: 100%;
+}
+ .title:not(.title-first){
+	background-color: rgb(242,244,248);
+	color: black;
+}
+
+/*显示设置,除了第一个表格其他隐藏*/
+ .field:not(.field-first) .body{
+	display: none;
+}
+ .body .del input[type=button]{
+	border: none;
+	outline: none;
+	width: 18px;
+	height: 20px;
+	background: url(../images/recycle-bin.png);
+	cursor: pointer;
+}
+.new-rule #table_rules_cat2 tr>*:not(last-child),
+.new-rule #table_rules_cat4 tr>*:not(last-child){
+	width: 18%;
+}
+.new-rule #table_rules_cat3 tr>*:not(last-child),
+.new-rule #table_rules_cat11 tr>*:not(last-child){
+	width: 30%;
+}
+.new-rule #table_rules_cat19 tr>*:not(last-child){
+	width: 15%;
+}
+
+/*文本限制设置*/
+.new-rule .field:last-child .body{
+	margin-bottom: 10px;
+}
+.new-rule  .main>.field:last-child>.title{
+	margin-bottom: 0;
+}
+.new-rule .field:last-child .field:first-child{
+	margin-top: 10px;
+}
+.mainbody{
+	display: none;
+}
+.mainbody>*{
+	width: 97%;
+	margin: 0 auto;
+}
+.mainbody .title{
+	height: 33px;
+	line-height: 33px;
+	min-width: 880px;
+}
+
+
+/*国际运价*/
+.inter-rule .cont{
+	margin-bottom: 110px;
+}
+.inter-rule input[type=radio],
+.inter-rule input[type=checkbox]{
+	margin-right: 5px;
+}
+.inter-rule .field-first .body table td,
+.inter-rule fieldset table td{
+	border: none;
+}
+.inter-rule .field-first .body textarea{
+	height: 80px;
+}
+.inter-rule .field-first .body>table>tbody>tr>*{
+	height: 75px;
+}
+.inter-rule .field-first .body fieldset{
+	width: 95%;
+	height: 70px;
+	margin: 0 auto;
+}
+.inter-rule .field-first .body fieldset table tr{
+	height: auto;
+}
+.inter-rule .field-first .body>table>tbody>tr>td:nth-child(2){
+	padding-left: 60px;
+}
+.inter-rule .field-first .body>table>tbody>tr:nth-child(2n){
+	height: 85px;
+}
+.inter-rule .field-first .body td td{
+	width: 50%;
+	text-align: center;
+}
+.inter-rule .field .body>input[type=button],
+.inter-rule .body .table_div>input[type=button]{
+	border: 1px solid #999;
+	background: #eee;
+	padding: 3px;
+	border-radius: 0;
+}
+.inter-rule .body .table_div table{
+	margin-top: 10px;
+}
+.inter-rule .body .table_div fieldset{
+	width: 100%;
+	margin-bottom: 10px;
+}
+/*CAT3*/
+.inter-rule #cat3Filed .body table{
+	margin-top: 10px;
+}
+.inter-rule #cat3Filed .body .table tr>*{
+	/*width: 8.3%;*/
+}
+/*CAT4*/
+.inter-rule #cat4Filed .body>*:not(input){
+	margin-top: 10px;
+}
+.inter-rule #cat4Filed .body>table:not(.table_rule){
+	margin-top: 6px;
+}
+.inter-rule #cat4Filed .body>table:not(.table_rule) td{
+	border: none;
+}
+.inter-rule #cat4Filed .body>table:not(.table_rule) fieldset{
+	height: 190px;
+}
+.inter-rule #cat4Filed .body fieldset.middle{
+	width: 70%;
+}
+.inter-rule #cat4Filed .body fieldset.less{
+	width: 28%;
+	float: right !important;
+}
+.inter-rule #cat4Filed .body fieldset.middle td{
+	width: 25%;
+}
+.inter-rule #cat4Filed .body fieldset.middle td select,
+.inter-rule #cat4Filed .body fieldset.middle td input{
+	width: 80% !important;
+}
+
+.inter-rule #cat4Filed .body fieldset.less input,
+.inter-rule #cat4Filed .body fieldset.less select{
+	width: 90% !important;
+}
+.inter-rule #cat4Filed .body fieldset.less tr td:first-child{
+	/*text-align: right;
+	padding-right: 30px;*/
+}
+.inter-rule #cat4Filed fieldset.big table td{
+	width: 20%;
+	white-space: nowrap;
+}
+.inter-rule #cat4Filed fieldset.big table td select,
+.inter-rule #cat4Filed fieldset.big table td input[type=text]{
+	width: 85% !important;
+}
+.inter-rule #cat4Filed fieldset.big table td:nth-child(4) input[type=text],
+.inter-rule #cat4Filed fieldset.big table td:nth-child(4) select,
+.inter-rule #cat4Filed fieldset.big table td:nth-child(5) input[type=text],
+.inter-rule #cat4Filed fieldset.big table td:nth-child(5) select{
+	width: 60% !important;
+}
+.inter-rule #cat5Filed .body>*:not(input){
+	margin-top: 10px;
+}
+.inter-rule #cat5Filed .body>select{
+	margin-top: 0;
+}
+
+/*CAT6*/
+.inter-rule #cat6Filed .body .table_div table:first-child,
+.inter-rule #cat7Filed .body .table_div table:first-child,
+.inter-rule #cat7Filed .body .table_div table:last-child{
+	margin-top: 0;
+}
+.inter-rule #cat6Filed .body .table_div table:first-child td,
+.inter-rule #cat7Filed .body .table_div table:first-child td{
+	border: none;
+}
+.inter-rule #cat6Filed .body .table_div table:first-child fieldset{
+	margin-top: 10px;
+}
+/*CAT8*/
+.inter-rule #cat8Filed #table_rules_cat8 td{
+	/*width: 10%;*/
+}
+.inter-rule #cat8Filed #table_rules_cat8 td:last-child,
+.inter-rule #cat9Filed #table_rules_cat9 td:last-child{
+	text-align: right;
+	padding-right: 13px;
+}
+/*CAT9*/
+.inter-rule #cat9Filed #table_rules_cat9 td{
+	/*width: 11.1%;*/
+}
+/*公共*/
+.inter-rule .body>table{
+	margin-top: 10px;
+}
+/*CAT11*/
+.inter-rule #cat11Filed .body .table{
+	margin-bottom: 10px;
+}
+.inter-rule #cat11Filed .body .table td{
+	/*width: 11.1%;*/
+	white-space: nowrap;
+}
+/*CAT13*/
+.inter-rule #cat13Filed .table_div table:first-child td{
+	padding-left: 0;
+	border: none;
+}
+ .inter-rule #cat13Filed .table_div table:last-child{
+ 	margin-top: 0;
+ }
+/*CAT14*/
+.inter-rule #cat14Filed .table_div table:first-child td{
+	border: none;
+}
+/*CAT15*/
+.inter-rule #cat15Filed .body>div{
+	overflow: hidden;
+}
+.inter-rule #cat15Filed .body>div>table{
+	margin-top: 10px;
+}
+.inter-rule #cat15Filed .body>div>table td{
+	border: none;
+	/*text-align: center;*/
+}
+.inter-rule #cat15Filed fieldset.lot:first-child,
+.inter-rule #cat15Filed fieldset.lot:last-child{
+	width: 49%;
+}
+.inter-rule #cat15Filed fieldset.lot:last-child{
+	float: right !important;
+}
+.inter-rule #cat15Filed fieldset{
+	margin-bottom: 10px;
+}
+.inter-rule #cat15Filed legend{
+	text-align: left;
+}
+.inter-rule #cat15Filed fieldset.big{
+	width: 49%;
+	height: 165px;
+	float: left;
+	white-space: nowrap;
+}
+.inter-rule #cat15Filed fieldset.big2{
+	float: right !important;
+}
+
+.inter-rule #cat15Filed fieldset.less,
+.inter-rule #cat15Filed fieldset.middle{
+	width: 49%;
+}
+.inter-rule #cat15Filed fieldset.middle{
+	float: left !important;
+}
+.inter-rule #cat15Filed fieldset.less{
+	float: right !important;
+}
+/*CAT16*/
+.inter-rule #cat16Filed .body>div{
+	overflow: hidden;
+}
+.inter-rule #cat16Filed .body>div>table{
+	width: 49%;
+	margin: 10px 0;
+}
+.inter-rule #cat16Filed .body>div>table td{
+	border: none;
+	width: 50%;
+}
+.inter-rule #cat16Filed .body>div table fieldset{
+	width: 90%;
+	height: 130px;
+}
+.inter-rule #cat16Filed .body>div>table fieldset table{
+	width: 100%;
+}
+.inter-rule #cat16Filed .body>div>table:first-child{
+	float: left;
+}
+.inter-rule #cat16Filed .body>div>table:last-child{
+	float: right;
+}
+.inter-rule #cat16Filed .body>div>table:first-child input[type=text],
+.inter-rule #cat16Filed .body>div>table:first-child select{
+	margin-bottom: 5px;
+	width: 60% !important;
+}
+.inter-rule #cat16Filed .body>div>table:first-child tr>td:nth-child(2){
+	padding-top: 10px;
+}
+.inter-rule #cat16Filed .body>div>table:last-child table td{
+	height: 25px;
+}
+/*CAT18*/
+.inter-rule #cat18Filed .body>table:not(.table_rule){
+	border: 1px solid #ddd;
+}
+.inter-rule #cat18Filed .body>table:not(.table_rule) td{
+	border: none;
+	height: 36px;
+	padding-left: 9px;
+}
+/*CAT19*/
+.inter-rule #cat19Filed .body fieldset{
+	margin-top: 10px;
+}
+.inter-rule #cat19Filed .body>div{
+	overflow: hidden;
+}
+.inter-rule #cat19Filed .body>div fieldset{
+	width: 49%;
+	height: 140px;
+}
+.inter-rule #cat19Filed .body>div fieldset:nth-child(1){
+	float: left;
+}
+.inter-rule #cat19Filed .body>div fieldset:nth-child(2){
+	float: right;
+}
+
+
+
+/*.body{
+	width: 99%;
+	margin: 0 auto;
+}*/
+
+
+/*底部*/
+.inter-rule .button_field{
+	width: 100% !important;
+	background: rgb(250,251,252);
+	left: 0;
+}
+.inter-rule .button_field .anchorCat{
+	padding-bottom: 10px;
+	color: #ddd;
+}
+.inter-rule .button_field .anchorCat a{
+	color: #999;
+	margin: 0 5px;
+}
+
+
+
+
+/*ec系统运价引擎国内right*/
+.title img{
+	cursor: pointer;
+	margin: 0 10px;
+}
+.fare-manage select,
+.fare-manage input[type=text]{
+	width: 120px;
+}
+.fare-manage .form-d1 .divTab td{
+	width: 25%;
+}
+.fare-manage .form-d1 .divTab td:nth-child(2n+1){
+	text-align: center;
+}
+.fare-manage .form-d1 .divTab td:nth-child(2n),
+.pad-left30{
+	padding-left: 30px;
+}
+.fare-manage .divTabNoTd td{
+	border: none;
+}
+.fare-manage .pop-btn input[type=submit]{
+	display: block;
+	margin: 0 auto;
+}
+.fare-manage iframe{
+	display: block;
+}
+.fare-manage .form-d2 .divTab:not(:first-child) td,
+.fare-manage .form-d3 .divTab:not(:first-child) td{
+	border-top: none;
+}
+.fare-manage .form-d2 .divTab td:first-child{
+	box-sizing: border-box;
+	padding: 10px;
+}
+.fare-manage .form-d2 td>div{
+	width: 100%;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.fare-manage .form-d2 td>div nav{
+	display: inline-block;
+	width: 33%;
+	text-align: center;
+}
+.fare-manage .form-d2 p{
+	margin-top: 5px;
+	padding-left: 20px;
+}
+.fare-manage .form-d2 p span{
+	display: inline-block;
+	margin-top: 8px;
+	padding: 0 6px;
+}
+.fare-manage .form-d2 p span input,
+.fare-manage .form-d2 p span select{
+	display: block;
+	margin-top: 3px;
+}
+.fare-manage .form-d2 p img{
+	position: relative;
+	top: 3px;
+}
+
+/*ec系统运价引擎国内iframe*/
+.cont-iframe{
+	padding-top: 10px;
+	margin-bottom: 20px;
+}
+.cont-iframe>*{
+	width: 98%;
+	margin: 0 auto;
+}
+.cont-iframe .tabe01 td{
+	background: rgb(40,81,144);
+	color: white;
+}
+.cont-iframe table:nth-child(1) td{
+	font-size: 14px;
+}
+.cont-iframe table:nth-child(2){
+	margin-top: 1px;
+}
+
+/*ec系统运价引擎国际*/
+.form-d3 .divTab td:first-child select{
+	width: 80px;
+}
+/*ec手动刷新页面*/
+.manual-refresh table.editTab td{
+	width: 33%;
+}
+.manual-refresh table.editTab input[type=text],
+.manual-refresh table.editTab select{
+	width: 220px;
+}
+.manual-refresh table.editTab td:nth-child(1){
+	text-align: center;
+}
+.manual-refresh table.editTab td:nth-child(2){
+	padding-left: 10px;
+}
+.formDataDiv:not(.formDataDiv-first){
+	display: none;
+}

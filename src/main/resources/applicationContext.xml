@@ -20,16 +20,16 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:jdbc_pro.properties</value>
+                <value>classpath:jdbc_dev.properties</value>
                 <!--<value>classpath:product_param.properties</value>-->
             </list>
         </property>
     </bean>
 
-    <!--<bean id="manager" class="com.fate.schedule.SteerableScheduleManager">-->
-        <!--<constructor-arg name="poolSize" value="10" />-->
-        <!--<constructor-arg name="autoOpen" value="false"/>-->
-    <!--</bean>-->
+    <bean id="manager" class="com.fate.schedule.SteerableScheduleManager">
+        <constructor-arg name="poolSize" value="4" />
+        <constructor-arg name="autoOpen" value="false"/>
+    </bean>
 
     <!--配置DataSource数据源 -->
     <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource">

@@ -2,7 +2,7 @@ package com.airline.account.utils;
 
 import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,9 +20,9 @@ public final class TaxUtil {
      * @param orgSegTaxes 原票分摊税费 要求金额负数
      * @return
      */
-    public static List<Tax> taxCollate(List<Tax> taxes, List<Tax> orgSegTaxes) {
-        for (Tax tax : taxes) {
-            Tax f = findTax(orgSegTaxes, tax);
+    public static List<ETax> taxCollate(List<ETax> taxes, List<ETax> orgSegTaxes) {
+        for (ETax tax : taxes) {
+            ETax f = findTax(orgSegTaxes, tax);
             if (f != null) {
                 tax.setAmt(tax.getAmt() + f.getAmt());
             }
@@ -31,10 +31,10 @@ public final class TaxUtil {
         return taxes;
     }
 
-    public static Tax findTax(List<Tax> taxes, Tax tax) {
-        Iterator<Tax> iterator = taxes.iterator();
+    public static ETax findTax(List<ETax> taxes, ETax tax) {
+        Iterator<ETax> iterator = taxes.iterator();
         while (iterator.hasNext()) {
-            Tax queryTax = iterator.next();
+            ETax queryTax = iterator.next();
             if (tax.key().equals(queryTax.key())) {
                 iterator.remove();
                 return queryTax;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>OneOrder</title>
+    <link rel="stylesheet" type="text/css" href="./mu/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="./mu/css/frame-right-com.css"/>
+    <link rel="stylesheet" type="text/css" href="./mu/css/frame-table.css"/>
+    <link rel="stylesheet" type="text/css" href="./mu/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="./mu/css/dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css">
+    <link rel="stylesheet" type="text/css" href="./mu/bootstrap-3.3.7/css/bootstrap.min.css" >
+</head>
+<body>
+<table id="test">
+
+</table>
+
+<script type="text/javascript" src="./mu/js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="./mu/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./mu/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="./mu/js/alert-newConfirm.js"></script>
+<script type="text/javascript" src="./js/bt-table.js"></script>
+<script type="text/javascript">
+    $("#test").btTable({
+        data:[{option:"a", type:"a", desc:"c", value:"a"}],
+        height:400,
+        columns:[[
+            {
+                title:"选项",
+                field:"option"
+            }, {
+                title:"类型",
+                field:"type"
+            }, {
+                title:"说明",
+                field:"desc"
+            }, {
+                title:"使用方法",
+                field:"value"
+            }
+        ]]
+    });
+</script>
+</body>
+</html>

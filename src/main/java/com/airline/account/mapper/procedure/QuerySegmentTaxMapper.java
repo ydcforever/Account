@@ -12,6 +12,6 @@ import java.util.HashMap;
 @Switch("ydc")
 public interface QuerySegmentTaxMapper {
 
-    public void querySegmentTax(HashMap map);
+    void querySegmentTax(HashMap map);
 
 }

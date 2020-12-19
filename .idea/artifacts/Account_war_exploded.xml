@@ -60,6 +60,7 @@
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: com.zaxxer:HikariCP-java6:2.3.13" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.4" />
+          <element id="file-copy" path="$PROJECT_DIR$/../YdcWork/out/artifacts/parser/parser.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Account/web/Web" />

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.airline.account.mapper.et.SegmentTaxMapper">
+    <resultMap type="com.airline.account.model.et.SegmentTax" id="SegmentTax">
+        <result column="DOCUMENT_CARRIER_IATA_NO" property="documentCarrierIataNo" jdbcType="VARCHAR"/>
+        <result column="CONJUNCTION_TICKET_NO" property="conjunctionTicketNo" jdbcType="VARCHAR"/>
+        <result column="CNJ_CURRENT" property="cnjCurrent" jdbcType="DECIMAL"/>
+        <result column="DOCUMENT_NO" property="documentNo" jdbcType="VARCHAR"/>
+        <result column="ISSUE_DATE" property="issueDate" jdbcType="DATE"/>
+        <result column="COUPON_NO" property="couponNo" jdbcType="DECIMAL"/>
+        <result column="FEE_CODE" property="feeCode" jdbcType="VARCHAR"/>
+        <result column="FEE_AMOUNT" property="feeAmount" jdbcType="DECIMAL"/>
+        <result column="SALE_CURRENCY" property="saleCurrency" jdbcType="VARCHAR"/>
+        <result column="PRORATE_NO" property="prorateNo" jdbcType="DECIMAL"/>
+        <result column="PRORATE_UNION_NO" property="prorateUnionNo" jdbcType="VARCHAR"/>
+        <result column="UNION_AMOUNT" property="unionAmount" jdbcType="DECIMAL"/>
+        <result column="COUPON_STATUS" property="couponStatus" jdbcType="VARCHAR"/>
+        <result column="OPT_CARRIER" property="optCarrier" jdbcType="VARCHAR"/>
+        <result column="TAX_INTERLINABLE_FLAG" property="taxInterlinableFlag" jdbcType="VARCHAR"/>
+        <result column="PRORATE_TIME" property="prorateTime" jdbcType="VARCHAR"/>
+        <result column="MKT_CARRIER" property="mktCarrier" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="querySegmentTax" resultMap="SegmentTax">
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            select t.fee_code,t.fee_amount,t.sale_currency
+            from ET_FLIGHT_COUPON_TAX t
+            where t.document_no = #{item.documentNo}
+            and t.coupon_no = #{item.couponNo}
+        </foreach>
+    </select>
+
+    <insert id="insertSegmentTax" parameterType="java.util.List">
+        insert into ET_FLIGHT_COUPON_TAX
+        (
+        <include refid="showCol"/>
+        )
+        <foreach collection="list" item="item" index="index" separator="UNION ALL">
+            SELECT
+            #{item.documentCarrierIataNo, jdbcType=VARCHAR},
+            #{item.conjunctionTicketNo, jdbcType=VARCHAR},
+            #{item.cnjCurrent, jdbcType=DECIMAL},
+            #{item.documentNo, jdbcType=VARCHAR},
+            to_date(#{item.issueDate, jdbcType=DATE}, 'yyyyMMdd'),
+            #{item.couponNo, jdbcType=DECIMAL},
+            #{item.feeCode, jdbcType=VARCHAR},
+            #{item.feeAmount, jdbcType=DECIMAL},
+            #{item.saleCurrency, jdbcType=VARCHAR},
+            #{item.prorateNo, jdbcType=DECIMAL},
+            #{item.prorateUnionNo, jdbcType=VARCHAR},
+            #{item.unionAmount, jdbcType=DECIMAL},
+            #{item.couponStatus, jdbcType=VARCHAR},
+            #{item.optCarrier, jdbcType=VARCHAR},
+            #{item.taxInterlinableFlag, jdbcType=VARCHAR},
+            #{item.prorateTime, jdbcType=VARCHAR},
+            #{item.mktCarrier, jdbcType=VARCHAR}
+            FROM dual
+        </foreach>
+    </insert>
+
+    <sql id="showCol">
+        DOCUMENT_CARRIER_IATA_NO,CONJUNCTION_TICKET_NO,CNJ_CURRENT,DOCUMENT_NO,ISSUE_DATE,COUPON_NO,
+        FEE_CODE,FEE_AMOUNT,SALE_CURRENCY,PRORATE_NO,PRORATE_UNION_NO,UNION_AMOUNT,COUPON_STATUS,
+        OPT_CARRIER,TAX_INTERLINABLE_FLAG,PRORATE_TIME,MKT_CARRIER
+    </sql>
+</mapper>

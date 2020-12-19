@@ -1,0 +1,85 @@
+/*运价监控—运价查询(国内)*/
+.freightFareInland>ul{
+	background: #edf0f5;
+	line-height: 40px;
+	border-bottom: 3px solid rgb(40,81,144);
+	overflow: hidden;
+}
+.freightFareInland>ul li{
+	float: left;
+	padding: 0 7px;
+	outline: none;
+}
+.freightFareInland>ul li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: #333;
+	font-size: 14px;
+	outline: none;
+}
+.freightFareInland hr{
+	border-top: none;
+	color: #DDDDDD;
+	margin: 15px 0 10px;
+}
+#tabs .ui-state-hover{
+	background: ghostwhite;
+}
+#tabs .ui-state-active{
+	background: rgb(40,81,144);
+}
+#tabs .ui-state-active a{
+	color: white;
+}
+.freightFareInland .selected{
+	background: #f8efe1 !important;
+}
+.freightFareInland .hover{
+	background: #acc8f3;
+}
+
+
+
+/*第一块tabs设置*/
+.freightFareInland .table_form{
+	border: 1px solid #DDDDDD;
+}
+.freightFareInland .table_form a{
+	display: inline-block;
+	
+}
+.freightFareInland .table_form tr>*{
+	border: none;
+}
+
+.freightFareInland .table_form input[type="button"],
+.freightFareInland .table_form input[type="reset"]{
+	width: 80px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+.freightFareInland #tabs-1 .divbor,
+.freightFareInland #tabs-3 .divbor{
+	position: relative;
+}
+.freightFareInland #tabs-1 .divbor table,
+.freightFareInland #tabs-3 .divbor table{
+	text-align: center;
+}
+.freightFareInland #tabs-1 .divbor table:first-child,
+.freightFareInland #tabs-3 .divbor table:first-child{
+	position: absolute;
+	top: 0;
+}
+.freightFareInland #tabs-1 .divbor tr th,
+.freightFareInland #tabs-3 .divbor tr th{
+	background: rgb(40,81,144);
+	color: white;
+}
+.freightFareInland #tabs-1 .divbor tr,
+.freightFareInland #tabs-3 .divbor tr{
+	height: 30px;
+}
+

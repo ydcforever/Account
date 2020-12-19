@@ -2,6 +2,8 @@ package com.airline.account.utils;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 import java.lang.reflect.Method;
@@ -10,6 +12,8 @@ import java.lang.reflect.Method;
  * Created by ydc on 2020/10/13.
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
+
+    private Logger logger = LoggerFactory.getLogger(DynamicDataSource.class);
 
     private static final ThreadLocal<String> ds = new ThreadLocal<>();
 
@@ -40,7 +44,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
                 ds.set(source.value());
             }
         } catch (Exception e) {
-            System.out.println(clazz + ":" + e.getMessage());
+            logger.error(clazz + ":" + e.getMessage());
         }
     }
 }

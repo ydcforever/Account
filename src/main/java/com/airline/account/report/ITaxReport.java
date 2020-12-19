@@ -1,6 +1,6 @@
 package com.airline.account.report;
 
-import com.airline.account.ticket.Tax;
+import com.airline.account.ticket.ETax;
 
 import java.util.List;
 
@@ -17,6 +17,6 @@ public interface ITaxReport {
      * @param end
      * @return 带有航段信息的报表
      */
-    public List<Tax> doReport(String nation, String taxCode, String begin, String end);
+    public List<ETax> doReport(String nation, String taxCode, String begin, String end);
 
 }

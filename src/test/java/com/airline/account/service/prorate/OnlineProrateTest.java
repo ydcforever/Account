@@ -1,7 +1,7 @@
 package com.airline.account.service.prorate;
 
-import com.airline.account.mapper.et.AuditorSegmentMapper;
-import com.airline.account.mapper.et.AuditorTicketMapper;
+import com.airline.account.mapper.et.SegmentMapper;
+import com.airline.account.mapper.et.TicketMapper;
 import com.airline.account.mapper.procedure.QuerySegmentTaxMapper;
 import com.airline.account.model.et.Segment;
 import com.airline.account.model.et.Ticket;
@@ -27,18 +27,18 @@ public class OnlineProrateTest {
     private QuerySegmentTaxMapper querySegmentTaxMapper;
 
     @Autowired
-    private AuditorTicketMapper auditorTicketMapper;
+    private TicketMapper ticketMapper;
 
     @Autowired
-    private AuditorSegmentMapper auditorSegmentMapper;
+    private SegmentMapper segmentMapper;
 
     @Test
     public void testHandler() throws Exception {
         Ticket ticket = new Ticket("781","2319427089", "N", "2019-03-30");
-        Ticket route = auditorTicketMapper.queryTicket(ticket);
+        Ticket route = ticketMapper.queryTicket(ticket);
 
         Segment segment = new Segment("781", "2319427089", 1);
-        List<Segment> segments = auditorSegmentMapper.querySegment(segment);
+        List<Segment> segments = segmentMapper.querySegment(segment);
         HashMap taxMap = TaxUtil.procedure(route, segments);
         querySegmentTaxMapper.querySegmentTax(taxMap);
         List<SegmentTax> list = (List<SegmentTax>)taxMap.get("result_set");
